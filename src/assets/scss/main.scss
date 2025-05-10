@@ -1,0 +1,34 @@
+// App Theme
+@import "./mixins/bs-overrides";
+
+// Required bootstrap dependency
+@import "~bootstrap/scss/functions.scss";
+@import "~bootstrap/scss/variables.scss";
+@import "~bootstrap/scss/mixins.scss";
+
+@import "~bootstrap/scss/root.scss";
+@import "~bootstrap/scss/reboot.scss";
+@import "~bootstrap/scss/type.scss";
+@import "~bootstrap/scss/alert.scss";
+@import "~bootstrap/scss/buttons.scss";
+@import "~bootstrap/scss/card.scss";
+@import "~bootstrap/scss/close.scss";
+@import "~bootstrap/scss/dropdown.scss";
+@import "~bootstrap/scss/forms.scss";
+@import "~bootstrap/scss/grid.scss";
+@import "~bootstrap/scss/images.scss";
+@import "~bootstrap/scss/list-group.scss";
+@import "~bootstrap/scss/modal.scss";
+@import "~bootstrap/scss/nav.scss";
+@import "~bootstrap/scss/navbar.scss";
+@import "~bootstrap/scss/spinners.scss";
+@import "~bootstrap/scss/tables.scss";
+@import "~bootstrap/scss/transitions.scss";
+@import "~bootstrap/scss/utilities.scss";
+@import "~bootstrap/scss/badge.scss";
+@import "~bootstrap/scss/progress.scss";
+
+
+.animate__animated.animate__zoomIn {
+  --animate-duration: 0.4s;
+}

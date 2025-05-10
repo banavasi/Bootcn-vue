@@ -1,0 +1,32 @@
+// Rocket Design System Spacing
+
+// SPACE Variables
+$space-xxxs: 0.25rem;
+$space-xxs: 0.5rem;
+$space-xs: 1rem;
+$space-sm: 1.5rem;
+$space-md: 2rem;
+$space-lg: 3rem;
+$space-xl: 4rem;
+$space-xxl: 6rem;
+$space-xxxl: 8rem;
+
+// Grid columns
+$grid-gutter-width: 30px;
+
+// Spacing
+//
+// control the default styling of most of elements
+$spacers: (
+  "0": 0,
+  "gutter": calc($grid-gutter-width / 2),
+  "space-xxxs": $space-xxxs,
+  "space-xxs": $space-xxs,
+  "space-xs": $space-xs,
+  "space-sm": $space-sm,
+  "space-md": $space-md,
+  "space-lg": $space-lg,
+  "space-xl": $space-xl,
+  "space-xxl": $space-xxl,
+  "space-xxxl": $space-xxxl
+);
