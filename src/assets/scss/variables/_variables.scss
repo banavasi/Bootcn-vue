@@ -1,0 +1,189 @@
+// Overwrite bootstrap sass variables (check _variables for all options)
+// Colors
+@import "./colors";
+@import "./space";
+$primary: $asu-maroon;
+$secondary: $asu-gold;
+$success: $asu-success;
+$info: $asu-info;
+$warning: $asu-warning;
+$danger: $asu-danger;
+
+$input-placeholder-color: $asu-dark-1;
+
+$enable-negative-margins: true;
+$border-radius-sm: 0.25rem;
+$border-radius: 1rem;
+$border-radius-lg: 3rem;
+
+// Headings
+// bootstrap overridess
+$headings-margin-bottom: 0;
+$headings-line-height: 1.2;
+$headings-font-weight: 700;
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+// Font
+$font-family-sans-serif: var(
+  --rds-font-family,
+  Arial,
+  Helvetica,
+  "Nimbus Sans L",
+  "Liberation Sans",
+  FreeSans,
+  sans-serif
+);
+$font-family-base: $font-family-sans-serif;
+
+$font-size-base: 1rem;
+
+$font-weight-lighter: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-bolder: 700;
+
+$font-weight-base: $font-weight-normal;
+$line-height-base: 1.5;
+$body-color: $asu-dark-3;
+
+$font-sizes: (
+  xxl: 2.5rem,
+  xl: 1.5rem,
+  large: 1.125rem,
+  medium: 1rem,
+  small: 0.875rem,
+  xs: 0.75rem,
+);
+
+// Headings
+// bootstrap overridess
+$headings-margin-bottom: 0;
+$headings-line-height: 1.2;
+$headings-font-weight: 700;
+
+// BORDER COLORS
+$border-color: var(--rds-light-4, $asu-light-4);
+
+$input-focus-border-color: var(--rds-light-4, $asu-light-4);
+$input-border-color: var(--rds-light-4, $asu-light-4);
+$custom-select-border-color: var(--rds-light-4, $asu-light-4);
+
+$nav-tabs-border-color: var(--rds-light-4, $asu-light-4);
+
+$card-border-color: var(--rds-light-4, $asu-light-4);
+$card-border-radius: 0;
+$card-border-width: var(--#{$prefix}border-width);
+
+$hr-border-color: var(--rds-light-4, $asu-light-4);
+$hr-opacity: 1;
+
+// Alerts
+$alert-bg-level: -10.45;
+$alert-border-level: 0;
+$alert-color-level: 12.5;
+$alert-border-radius: 0px;
+
+// Modals
+$modal-backdrop-bg: var(--rds-dark-3, $asu-dark-3);
+$modal-backdrop-opacity: 0.8;
+$modal-content-border-radius: 5px;
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+$input-focus-border-color: var(--rds-light-4, $asu-light-4);
+
+$input-btn-padding-y: 0.5rem;
+$input-btn-padding-x: 1rem;
+
+$input-btn-padding-y-sm: 0.25rem;
+$input-btn-padding-x-sm: 0.5rem;
+
+$input-btn-padding-y-lg: 1rem;
+$input-btn-padding-x-lg: 2rem;
+
+$input-border-radius: 0;
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+$btn-focus-width: 0px;
+
+$btn-padding-y: $input-btn-padding-y;
+$btn-padding-x: $input-btn-padding-x;
+
+$btn-padding-y-sm: $input-btn-padding-y-sm;
+$btn-padding-x-sm: $input-btn-padding-x-sm;
+
+$btn-padding-y-lg: $input-btn-padding-y-lg;
+$btn-padding-x-lg: $input-btn-padding-x-lg;
+
+$btn-font-weight: $font-weight-bold;
+
+$btn-block-spacing-y: 2rem;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius: 50.25rem;
+$btn-border-radius-lg: 50.3rem;
+$btn-border-radius-sm: 50.2rem;
+
+$btn-transition:
+  color 0.15s ease-in-out,
+  background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out;
+
+// Tables
+$table-color: var(--rds-dark-3, $asu-dark-3);
+$table-accent-bg: var(--rds-light-3, #e8e8e8);
+$table-border-color: var(--rds-light-4, $asu-light-4);
+
+// Navbar
+$navbar-light-color: var(--rds-dark-3, $asu-dark-3);
+
+// Pagination
+$pagination-color: var(--rds-dark-3, $asu-dark-3);
+$pagination-border-color: var(--rds-white, $white);
+$pagination-hover-color: var(--rds-dark-3, $asu-dark-3);
+$pagination-hover-border-color: var(light-2, $asu-light-2);
+$pagination-focus-box-shadow: var(--rds-dark-3, $asu-dark-3);
+$pagination-active-bg: var(--rds-primary, $asu-maroon);
+$pagination-active-border-color: var(--rds-primary, $asu-maroon);
+$pagination-disabled-color: var(--rds-dark-2, $asu-dark-2);
+$pagination-disabled-border-color: var(--rds-white, $white);
+
+// dropdown ( updated for new ver of bootstrap )
+$dropdown-link-hover-bg: $gray-100;
+$dropdown-link-disabled-color: $gray-600;
+$dropdown-border-radius: $border-radius-sm;
+$dropdown-link-active-bg: var(--#{$prefix}light-4);
+
+// Links
+$link-decoration: none;
+$link-color: $primary;
+
+// Focus Ring
+$focus-ring-width: 2px;
+$focus-ring-opacity: 1;
+$focus-ring-color: $black;
+$focus-ring-blur: 0;
+$focus-ring-box-shadow: 0 0 $focus-ring-blur $focus-ring-width $focus-ring-color;
+
+// tooltip
+$tooltip-border-radius: 0px;
+
+$position-values: (
+        0: 0,
+        1: 1%,
+        2: 2%,
+        5: 5%,
+        50: 50%,
+        95: 95%,
+        98: 98%,
+        99: 99%,
+        100: 100%,
+);

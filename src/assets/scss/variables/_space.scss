@@ -1,15 +1,15 @@
 // Rocket Design System Spacing
 
 // SPACE Variables
-$space-xxxs: 0.25rem;
-$space-xxs: 0.5rem;
-$space-xs: 1rem;
-$space-sm: 1.5rem;
-$space-md: 2rem;
-$space-lg: 3rem;
-$space-xl: 4rem;
-$space-xxl: 6rem;
-$space-xxxl: 8rem;
+$rds-space-xxxs: 0.25rem;
+$rds-space-xxs: 0.5rem;
+$rds-space-xs: 1rem;
+$rds-space-sm: 1.5rem;
+$rds-space-md: 2rem;
+$rds-space-lg: 3rem;
+$rds-space-xl: 4rem;
+$rds-space-xxl: 6rem;
+$rds-space-xxxl: 8rem;
 
 // Grid columns
 $grid-gutter-width: 30px;
@@ -20,13 +20,31 @@ $grid-gutter-width: 30px;
 $spacers: (
   "0": 0,
   "gutter": calc($grid-gutter-width / 2),
-  "space-xxxs": $space-xxxs,
-  "space-xxs": $space-xxs,
-  "space-xs": $space-xs,
-  "space-sm": $space-sm,
-  "space-md": $space-md,
-  "space-lg": $space-lg,
-  "space-xl": $space-xl,
-  "space-xxl": $space-xxl,
-  "space-xxxl": $space-xxxl
+  "space-xxxs": $rds-space-xxxs,
+  "space-xxs": $rds-space-xxs,
+  "space-xs": $rds-space-xs,
+  "space-sm": $rds-space-sm,
+  "space-md": $rds-space-md,
+  "space-lg": $rds-space-lg,
+  "space-xl": $rds-space-xl,
+  "space-xxl": $rds-space-xxl,
+  "space-xxxl": $rds-space-xxxl
+);
+
+$zindex-levels: (
+  n1: -1,
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+  top: 1055,
+);
+
+$border-widths: (
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px,
+  8: 8px,
 );
