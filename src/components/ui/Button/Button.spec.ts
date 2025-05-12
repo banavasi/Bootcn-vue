@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { Button } from '.' // Assuming Button.vue exports Button and buttonVariants are in index.ts
-import { h } from 'vue' // For testing 'asChild'
+import { Button } from '.'
+import { h } from 'vue'
 
 const testVariants = {
   variant: {

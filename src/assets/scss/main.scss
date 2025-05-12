@@ -7,7 +7,10 @@ $white: #fff;
 
 // 2. Include any default variable overrides here
 // import all variable overrides
-@import './variables/variables';
+@import './variables/colors';
+@import './variables/space';
+@import "./variables/variables";
+
 
 // 3. Include remainder of required ~bootstrap stylesheets (including any separate color mode stylesheets)
 @import '~bootstrap/scss/variables';
