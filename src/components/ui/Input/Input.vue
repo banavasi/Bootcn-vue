@@ -105,7 +105,7 @@ function handleFocus() {
     </div>
 
     <!-- Input wrapper -->
-    <div :class="{ 'is-invalid': invalid }" data-test="input-div">
+    <div class="position-relative" :class="{ 'is-invalid': invalid }" data-test="input-div">
       <input
         :id="id"
         v-model.trim="model"
@@ -130,6 +130,14 @@ function handleFocus() {
         @blur="handleBlur"
         @focus="handleFocus"
       >
+      <!-- Error icon inside input -->
+      <span
+        v-if="invalid"
+        class="position-absolute top-50 end-0 translate-middle-y me-3 text-danger"
+        aria-hidden="true"
+      >
+        <i class="fa-solid fa-circle-exclamation" />
+      </span>
       <!-- Button slot for actions next to input -->
       <slot name="button" />
     </div>
@@ -145,10 +153,10 @@ function handleFocus() {
     </div>
 
     <!-- Error message -->
-    <span v-if="invalid" :id="fieldErrorId" class="invalid-feedback d-block mt-space-xxxs">
-      <i class="fa-sharp fa-regular fa-circle-exclamation me-space-xxxs" />
+    <div v-if="invalid" :id="fieldErrorId" class="text-danger mt-space-xxxs d-flex align-items-center">
+      <i class="fa-solid fa-circle-exclamation me-space-xxs" />
       <span>{{ errorMessage }}</span>
-    </span>
+    </div>
   </div>
 </template>
 
@@ -158,6 +166,11 @@ function handleFocus() {
   border: 2px solid var(--bs-success, #198754);
   border-bottom-width: 5px;
   background-image: none;
+}
+
+/* Add padding to input when error icon is present */
+.is-invalid input {
+  padding-right: 2.5rem;
 }
 
 /* Ensure button slot positioning works correctly */
