@@ -1,40 +1,76 @@
-import { Meta } from '@storybook/blocks';
+import { Meta } from "@storybook/blocks";
 
 <Meta title="Introduction" />
 
-# Welcome to Reka UI
+# Welcome to bootcn-vue
 
-This is the component library documentation for Reka UI. Here you'll find all the components and their usage guidelines.
+**Accessible, customizable Bootstrap 5 + Vue 3 components with a shadcn/ui-inspired CLI.**
 
-## Getting Started
+This is the component library documentation for bootcn-vue. Browse the sidebar to explore all available components and their usage.
 
-To use Reka UI components in your project:
+## Features
 
-1. Install the package
-2. Import the components you need
-3. Use them in your Vue application
+- 🎨 **Bootstrap 5 Design** - Built on Bootstrap 5.3+ with full SCSS customization
+- ⚡ **Vue 3 Composition API** - Modern Vue 3 with `<script setup>` and TypeScript
+- 📦 **CLI Installation** - Copy components directly into your project (no npm install!)
+- ♿ **Accessible** - Built with [Reka UI](https://reka-ui.com) primitives for ARIA compliance
+- 🎯 **Customizable** - Full control over styles and variants using class-variance-authority
+- 📘 **TypeScript** - Fully typed components and props
+
+## Installation
+
+### Using the CLI (Recommended)
+
+```bash
+# Initialize bootcn-vue in your Vue 3 project
+npx @bootcn-vue/cli@latest init
+
+# Add components to your project
+npx @bootcn-vue/cli@latest add button
+```
+
+### Manual Installation
+
+```bash
+# Install individual packages
+npm install @bootcn-vue/core @bootcn-vue/buttons
+```
+
+## Quick Start
+
+After installation, import and use components:
+
+```vue
+<script setup lang="ts">
+import { Button } from "@/components/ui/Button";
+</script>
+
+<template>
+  <Button variant="primary">Click me</Button>
+</template>
+```
 
 ## Component Categories
 
-Our components are organized into the following categories:
+- **Buttons** - Button, ButtonGroup (coming soon)
+- **Forms** - Input, Textarea, Select, Checkbox (coming soon)
+- **Layout** - Container, Grid, Stack (coming soon)
+- **Feedback** - Alert, Toast, Modal (coming soon)
 
-- **Basic Components**: Fundamental building blocks like  , inputs, and typography
-- **Layout Components**: Components for structuring your application layout
-- **Navigation Components**: Components for navigation and routing
-- **Data Display Components**: Components for displaying data and information
+## Links
 
-## Contributing
+- **GitHub**: [github.com/banavasi/Bootcn-vue](https://github.com/banavasi/Bootcn-vue)
+- **npm**: [@bootcn-vue](https://www.npmjs.com/org/bootcn-vue)
+- **Issues**: [Report a bug](https://github.com/banavasi/Bootcn-vue/issues)
 
-We welcome contributions to Reka UI. Please refer to our contribution guidelines for more information.
+## Philosophy
 
-## Support
-
-If you need help or have questions, please open an issue in our repository.
+bootcn-vue follows the **shadcn/ui approach**: components are copied into your project, giving you full ownership and customization freedom. No black-box npm dependencies—just clean, readable code you can modify.
 
 <style>
-{`
+  {`
   .sb-container {
     margin-bottom: 48px;
   }
 `}
-</style> 
+</style>
