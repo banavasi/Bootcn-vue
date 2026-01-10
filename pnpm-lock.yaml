@@ -44,9 +44,6 @@ importers:
       '@bootcn-vue/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@rds-vue-ui/rds-theme-base':
-        specifier: ^0.7.1
-        version: 0.7.1(@popperjs/core@2.11.8)
       bootstrap:
         specifier: ^5.3.6
         version: 5.3.8(@popperjs/core@2.11.8)
@@ -1214,9 +1211,6 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
-  '@rds-vue-ui/rds-theme-base@0.7.1':
-    resolution: {integrity: sha512-LeoqMesXxyG9ruTUKgtP0fxQJzrBcOahBA6CvFxVoEV0WGTVrZmj79rneQvMR4PydlJLAZQSElSQ2+WM7dixRA==}
-
   '@rolldown/binding-android-arm64@1.0.0-beta.59':
     resolution: {integrity: sha512-6yLLgyswYwiCfls9+hoNFY9F8TQdwo15hpXDHzlAR0X/GojeKF+AuNcXjYNbOJ4zjl/5D6lliE8CbpB5t1OWIQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -2074,11 +2068,6 @@ packages:
 
   boolbase@1.0.0:
     resolution: {integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=}
-
-  bootstrap@5.3.0:
-    resolution: {integrity: sha512-UnBV3E3v4STVNQdms6jSGO2CvOkjUMdDAVR2V5N4uCMdaIkaQjbcEAMqRimDHIs4uqBYzDAKCQwCB+97tJgHQw==}
-    peerDependencies:
-      '@popperjs/core': ^2.11.7
 
   bootstrap@5.3.8:
     resolution: {integrity: sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==}
@@ -5473,12 +5462,6 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@rds-vue-ui/rds-theme-base@0.7.1(@popperjs/core@2.11.8)':
-    dependencies:
-      bootstrap: 5.3.0(@popperjs/core@2.11.8)
-    transitivePeerDependencies:
-      - '@popperjs/core'
-
   '@rolldown/binding-android-arm64@1.0.0-beta.59':
     optional: true
 
@@ -6423,10 +6406,6 @@ snapshots:
   birpc@2.9.0: {}
 
   boolbase@1.0.0: {}
-
-  bootstrap@5.3.0(@popperjs/core@2.11.8):
-    dependencies:
-      '@popperjs/core': 2.11.8
 
   bootstrap@5.3.8(@popperjs/core@2.11.8):
     dependencies:

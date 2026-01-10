@@ -32,10 +32,8 @@ jobs:
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
-      # Install only publishable packages (skip playground with private deps)
-      - name: Install package dependencies
-        run: |
-          pnpm install --filter "@bootcn-vue/core..." --filter "@bootcn-vue/buttons..." --filter "@bootcn-vue/forms..." --filter "@bootcn-vue/cli..."
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build packages
         run: pnpm turbo build --filter='./packages/*'
