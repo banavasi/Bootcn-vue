@@ -18,15 +18,17 @@ You need to configure **each** npm package to trust GitHub Actions as a publishe
 #### For Each Package:
 
 1. **@bootcn-vue/core**
-   - Go to: https://www.npmjs.com/settings/banavasi/packages/@bootcn-vue/core/access
-2. **@bootcn-vue/buttons**
-   - Go to: https://www.npmjs.com/settings/banavasi/packages/@bootcn-vue/buttons/access
+   - Go to: https://www.npmjs.com/package/@bootcn-vue/core/access
+2. **@bootcn-vue/buttons** (⚠️ Not published yet - will configure after first publish)
+   - Go to: https://www.npmjs.com/package/@bootcn-vue/buttons/access
 
-3. **@bootcn-vue/cli**
-   - Go to: https://www.npmjs.com/settings/banavasi/packages/@bootcn-vue/cli/access
+3. **@bootcn-vue/cli** (⚠️ Not published yet - will configure after first publish)
+   - Go to: https://www.npmjs.com/package/@bootcn-vue/cli/access
 
-4. **@bootcn-vue/forms**
-   - Go to: https://www.npmjs.com/settings/banavasi/packages/@bootcn-vue/forms/access
+4. **@bootcn-vue/forms** (⚠️ Not published yet - will configure after first publish)
+   - Go to: https://www.npmjs.com/package/@bootcn-vue/forms/access
+
+**Note**: You can only configure trusted publishers for packages that have been published at least once. Only `@bootcn-vue/core@0.0.1` is currently published, so start with that one.
 
 #### Configuration Steps:
 
@@ -108,11 +110,32 @@ Once published with provenance, you'll see:
 - [GitHub OIDC Documentation](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
 - [Trusted Publishers Guide](https://github.blog/2023-04-19-introducing-npm-package-provenance/)
 
-## Alternative: Automation Token (Fallback)
+## Alternative: Automation Token (RECOMMENDED FOR NOW)
 
-If provenance setup doesn't work, you can use an **Automation** token:
+**Since only `@bootcn-vue/core` is published**, using an automation token is simpler:
 
-1. Go to https://www.npmjs.com/settings/YOUR_USERNAME/tokens
-2. Generate New Token → Select **"Automation"** type (not "Publish")
-3. Update GitHub Secret `NPM_TOKEN` with the new automation token
-4. This token bypasses 2FA but doesn't provide provenance
+1. Go to https://www.npmjs.com/settings/banavasi/tokens
+2. Click **"Generate New Token"**
+3. Select **"Automation"** type (NOT "Publish")
+4. Copy the token
+5. Update GitHub Secret:
+   - Go to: https://github.com/banavasi/Bootcn-vue/settings/secrets/actions
+   - Click `NPM_TOKEN` → **"Update secret"**
+   - Paste the automation token
+6. **Temporarily remove provenance flag** from release.yml:
+   - Change `publish: pnpm changeset publish --provenance`
+   - To: `publish: pnpm changeset publish`
+7. Commit and push to trigger publish
+
+**Why this is easier now**:
+
+- Automation tokens bypass 2FA completely
+- No need to configure trusted publishers for unpublished packages
+- Once all packages are published, you can switch to provenance
+- Automation tokens work immediately
+
+**After successful publish**:
+
+- All 4 packages will be on npm
+- Then configure trusted publishers for all packages
+- Re-enable `--provenance` flag in workflow
