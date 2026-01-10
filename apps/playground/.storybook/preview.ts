@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/vue3";
-import "../node_modules/@rds-vue-ui/rds-theme-base/style/rds-theme-base.scss";
+import "bootstrap/scss/bootstrap.scss";
 
 const preview: Preview = {
   parameters: {
