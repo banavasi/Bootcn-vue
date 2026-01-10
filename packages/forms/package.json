@@ -1,6 +1,6 @@
 {
   "name": "@bootcn-vue/forms",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Form components for bootcn-vue",
   "type": "module",
   "main": "./dist/index.js",
