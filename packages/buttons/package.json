@@ -48,7 +48,8 @@
     "vue": "^3.5.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "repository": {
     "type": "git",
