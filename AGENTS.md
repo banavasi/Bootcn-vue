@@ -111,6 +111,25 @@ const props = withDefaults(defineProps<Props>(), {
 - **Alias**: `~bootstrap` for Bootstrap imports
 - **Data Attributes**: Use `data-slot` for component identification
 
+### RDS Spacing System
+Use RDS spacing classes instead of Bootstrap's numeric spacing (m-1, m-2, etc.):
+- **RDS Spacing Scale**:
+  - `space-xxxs`: 0.25rem (4px)
+  - `space-xxs`: 0.5rem (8px)
+  - `space-xs`: 1rem (16px)
+  - `space-sm`: 1.5rem (24px)
+  - `space-md`: 2rem (32px)
+  - `space-lg`: 3rem (48px)
+  - `space-xl`: 4rem (64px)
+  - `space-xxl`: 6rem (96px)
+  - `space-xxxl`: 8rem (128px)
+- **Usage Examples**:
+  - Margin: `mb-space-sm`, `mt-space-xs`, `me-space-xxs`, `ms-space-lg`
+  - Padding: `px-space-md`, `py-space-xs`, `p-space-sm`
+  - Gap: `gap-space-xs`, `column-gap-space-sm`, `row-gap-space-md`
+- **Typography**: Use RDS heading sizes (`h1-small`, `h2-medium`, `h3-large`) and body text classes
+- **Always prefer RDS spacing over Bootstrap numeric spacing** (e.g., use `mb-space-sm` instead of `mb-3`)
+
 ### Error Handling
 - Use TypeScript's type system to prevent errors at compile time
 - Validate props with TypeScript interfaces
