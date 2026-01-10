@@ -6,6 +6,14 @@
   "description": "Modern, type-safe Bootstrap + Vue 3 component library with CLI for rapid UI development",
   "author": "Shashank Shandilya",
   "license": "MIT",
+  "homepage": "https://banavasi.github.io/Bootcn-vue/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/banavasi/Bootcn-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/banavasi/Bootcn-vue/issues"
+  },
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",

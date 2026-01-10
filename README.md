@@ -53,7 +53,11 @@ import { Button } from "@/components/ui/Button";
 
 ## Documentation
 
-📚 **[View Components](https://banavasi.github.io/Bootcn-vue/)** - Browse all available components in our Storybook
+📚 **[View Live Components](https://banavasi.github.io/Bootcn-vue/)** - Interactive Storybook with all components, variants, and props
+
+📦 **[npm Packages](https://www.npmjs.com/org/bootcn-vue)** - Published packages on npm registry
+
+> **Note**: The "Packages" section on GitHub shows GitHub Packages (container/npm registries hosted on GitHub). Our packages are published to the **public npm registry** instead.
 
 ## Packages
 
