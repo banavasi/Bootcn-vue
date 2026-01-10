@@ -1,0 +1,8 @@
+{
+  "$schema": "https://bootcn-vue.dev/schema.json",
+  "srcDir": "src",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib"
+  }
+}
