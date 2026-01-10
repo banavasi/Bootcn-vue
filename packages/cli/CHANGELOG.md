@@ -1,5 +1,33 @@
 # @bootcn-vue/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- [`99ed540`](https://github.com/banavasi/Bootcn-vue/commit/99ed5401615ae705bd8c12c636c6a2684e562958) Thanks [@banavasi](https://github.com/banavasi)! - feat: add remove command to clean up components and configuration
+
+  Added a new `remove` command that allows you to:
+
+  **Remove specific components:**
+
+  ```bash
+  bootcn-vue remove button
+  ```
+
+  **Remove all bootcn-vue setup:**
+
+  ```bash
+  bootcn-vue remove --all
+  ```
+
+  The `--all` flag removes:
+  - All components in `src/components/ui/`
+  - `src/lib/utils.ts` (and `lib/` directory if empty)
+  - `bootcn.config.json`
+  - Prompts to show uninstall command for dependencies
+
+  The command includes safety confirmations and automatically detects installed components when no arguments are provided.
+
 ## 0.2.4
 
 ### Patch Changes
