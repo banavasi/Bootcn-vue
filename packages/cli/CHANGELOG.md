@@ -1,5 +1,13 @@
 # @bootcn-vue/cli
 
+## 0.3.2
+
+### Patch Changes
+
+- [#9](https://github.com/banavasi/Bootcn-vue/pull/9) [`8532da9`](https://github.com/banavasi/Bootcn-vue/commit/8532da9f93ecb249649aa1b0672ff610b6131d38) Thanks [@banavasi](https://github.com/banavasi)! - docs: add comprehensive release process guide (RELEASE.md)
+
+  Added detailed documentation explaining the automated Changesets workflow for creating releases. This guide helps developers understand how to properly version and publish packages.
+
 ## 0.3.1
 
 ### Patch Changes
