@@ -100,6 +100,9 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+// Re-export from class-variance-authority
+export { cva, type VariantProps } from "class-variance-authority";
 `;
 
     await fs.writeFile(path.join(libDir, "utils.ts"), utilsContent, "utf-8");
