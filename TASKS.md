@@ -27,14 +27,14 @@
 
 ## Sprint Overview
 
-| Sprint   | Focus                   | Status            |
-| -------- | ----------------------- | ----------------- |
-| Sprint 1 | Monorepo Infrastructure | `[x]` Complete    |
-| Sprint 2 | Core & Button Package   | `[ ]` Not Started |
-| Sprint 3 | CLI Development         | `[ ]` Not Started |
-| Sprint 4 | CI/CD & Publishing      | `[ ]` Not Started |
-| Sprint 5 | Forms Package           | `[ ]` Not Started |
-| Sprint 6 | Documentation & Polish  | `[ ]` Not Started |
+| Sprint   | Focus                   | Status                  |
+| -------- | ----------------------- | ----------------------- |
+| Sprint 1 | Monorepo Infrastructure | `[x]` Complete          |
+| Sprint 2 | Core & Button Package   | `[ ]` Not Started       |
+| Sprint 3 | CLI Development         | `[ ]` Not Started       |
+| Sprint 4 | CI/CD & Publishing      | `[~]` In Progress (80%) |
+| Sprint 5 | Forms Package           | `[ ]` Not Started       |
+| Sprint 6 | Documentation & Polish  | `[ ]` Not Started       |
 
 ---
 
@@ -298,15 +298,15 @@
 
 #### Tasks
 
-- [ ] **T4.1.1:** Create CI workflow
-  - [ ] Create `.github/workflows/ci.yml`
-  - [ ] Set up pnpm and Node.js
-  - [ ] Run lint, type-check, test on PRs
-  - [ ] Run build to verify packages compile
+- [x] **T4.1.1:** Create CI workflow
+  - [x] Create `.github/workflows/ci.yml`
+  - [x] Set up pnpm and Node.js
+  - [x] Run lint, type-check, test on PRs
+  - [x] Run build to verify packages compile
 
-- [ ] **T4.1.2:** Configure Turborepo caching
-  - [ ] Set up Turborepo remote caching (optional)
-  - [ ] Configure GitHub Actions caching for pnpm
+- [x] **T4.1.2:** Configure Turborepo caching
+  - [x] Skip Turborepo remote caching (using pnpm cache instead)
+  - [x] Configure GitHub Actions caching for pnpm
 
 ### S4.2: GitHub Actions - Release (P1)
 
@@ -314,17 +314,17 @@
 
 #### Tasks
 
-- [ ] **T4.2.1:** Create release workflow
-  - [ ] Create `.github/workflows/release.yml`
-  - [ ] Configure Changesets action
-  - [ ] Set up NPM_TOKEN secret
-  - [ ] Test release process
+- [x] **T4.2.1:** Create release workflow
+  - [x] Create `.github/workflows/release.yml`
+  - [x] Configure Changesets action
+  - [ ] Set up NPM_TOKEN secret (manual step in GitHub settings)
+  - [ ] Test release process (after first merge to main)
 
-- [ ] **T4.2.2:** Configure npm publishing
-  - [ ] Set up npm organization (if needed)
-  - [ ] Configure package.json for publishing
-  - [ ] Add publishConfig to packages
-  - [ ] Test publish with dry-run
+- [x] **T4.2.2:** Configure npm publishing
+  - [ ] Set up npm organization @bootcn-vue (manual step)
+  - [x] Configure package.json for publishing
+  - [x] Add publishConfig to packages
+  - [ ] Test publish with dry-run (after npm org setup)
 
 ### S4.3: GitHub Actions - Storybook (P1)
 
@@ -332,15 +332,14 @@
 
 #### Tasks
 
-- [ ] **T4.3.1:** Create Storybook deploy workflow
-  - [ ] Create `.github/workflows/storybook.yml`
-  - [ ] Build Storybook on main push
-  - [ ] Deploy to GitHub Pages
+- [x] **T4.3.1:** Create Storybook deploy workflow
+  - [x] Create `.github/workflows/deploy-docs.yml`
+  - [x] Build Storybook on main push
+  - [x] Deploy to GitHub Pages
 
 - [ ] **T4.3.2:** Configure GitHub Pages
-  - [ ] Enable GitHub Pages in repo settings
-  - [ ] Configure custom domain (optional)
-  - [ ] Verify deployment works
+  - [ ] Enable GitHub Pages in repo settings (manual step)
+  - [ ] Verify deployment works (after first merge to main)
 
 ---
 
