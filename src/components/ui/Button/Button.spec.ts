@@ -167,4 +167,40 @@ describe('Button.vue', () => {
     })
     expect(wrapper.find('button').element.disabled).toBe(true)
   })
+
+  it('shows loading spinner when loading is true', () => {
+    const wrapper = mount(Button, {
+      props: { loading: true },
+      slots: { default: 'Loading Button' }
+    })
+    const spinner = wrapper.find('.spinner-border')
+    expect(spinner.exists()).toBe(true)
+    expect(spinner.classes()).toContain('spinner-border-sm')
+  })
+
+  it('disables button when loading is true', () => {
+    const wrapper = mount(Button, {
+      props: { loading: true },
+      slots: { default: 'Loading Button' }
+    })
+    expect(wrapper.find('button').element.disabled).toBe(true)
+  })
+
+  it('does not show spinner when loading is false', () => {
+    const wrapper = mount(Button, {
+      props: { loading: false },
+      slots: { default: 'Normal Button' }
+    })
+    const spinner = wrapper.find('.spinner-border')
+    expect(spinner.exists()).toBe(false)
+  })
+
+  it('shows both spinner and content when loading', () => {
+    const wrapper = mount(Button, {
+      props: { loading: true },
+      slots: { default: 'Loading...' }
+    })
+    expect(wrapper.find('.spinner-border').exists()).toBe(true)
+    expect(wrapper.text()).toContain('Loading...')
+  })
 })

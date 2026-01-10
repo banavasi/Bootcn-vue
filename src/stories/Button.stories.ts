@@ -50,6 +50,7 @@ const meta = {
     asChild: false,
     default: 'Button',
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render: (args: any) => ({
     components: { Button },
     setup() {
@@ -278,6 +279,7 @@ export const Disabled: Story = {
     variant: 'primary',
     default: 'Disabled Button',
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render: (args: any) => ({
     components: { Button },
     setup() {
@@ -308,6 +310,7 @@ export const AsLink: Story = {
     variant: 'primary',
     default: 'Button as Link',
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render: (args: any) => ({
     components: { Button },
     setup() {
