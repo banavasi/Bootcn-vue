@@ -15,6 +15,16 @@ const meta = {
       control: { type: "text" },
       description: "Label text for the input field.",
     },
+    labelLevel: {
+      control: { type: "select" },
+      options: ["h1", "h2", "h3", "h4", "h5", "h6"],
+      description: "Heading level for the label.",
+    },
+    labelSize: {
+      control: { type: "select" },
+      options: ["small", "medium", "large"],
+      description: "Size variant for the label.",
+    },
     placeholder: {
       control: { type: "text" },
       description: "Placeholder text for the input.",
@@ -31,9 +41,17 @@ const meta = {
       control: { type: "boolean" },
       description: "Whether the input is readonly.",
     },
-    optional: {
+    isOptional: {
       control: { type: "boolean" },
       description: "Shows optional badge next to label.",
+    },
+    isLabelVisible: {
+      control: { type: "boolean" },
+      description: "Controls label visibility.",
+    },
+    isValid: {
+      control: { type: "boolean" },
+      description: "Shows valid state styling.",
     },
     error: {
       control: { type: "text" },
@@ -42,6 +60,10 @@ const meta = {
     helpText: {
       control: { type: "text" },
       description: "Help text to display below input.",
+    },
+    tooltipText: {
+      control: { type: "text" },
+      description: "Tooltip text to show next to label.",
     },
   },
   args: {
@@ -52,7 +74,11 @@ const meta = {
     required: false,
     disabled: false,
     readonly: false,
-    optional: false,
+    isOptional: false,
+    isLabelVisible: true,
+    isValid: false,
+    labelLevel: "h3",
+    labelSize: "small",
   },
 } satisfies Meta<typeof Input>;
 
@@ -72,6 +98,7 @@ export const WithoutLabel: Story = {
   args: {
     id: "no-label-input",
     placeholder: "Input without label",
+    isLabelVisible: false,
   },
 };
 
@@ -85,12 +112,22 @@ export const WithHelpText: Story = {
   },
 };
 
+export const WithTooltip: Story = {
+  args: {
+    id: "tooltip-input",
+    label: "Password",
+    type: "password",
+    placeholder: "Enter password",
+    tooltipText: "Password must be at least 8 characters long",
+  },
+};
+
 export const Optional: Story = {
   args: {
     id: "optional-input",
     label: "Middle Name",
     placeholder: "Optional field",
-    optional: true,
+    isOptional: true,
     optionalText: "Optional",
   },
 };
@@ -101,6 +138,37 @@ export const Required: Story = {
     label: "Full Name",
     placeholder: "John Doe",
     required: true,
+  },
+};
+
+// Label Variants
+export const LabelSizeSmall: Story = {
+  args: {
+    id: "label-small",
+    label: "Small Label",
+    labelLevel: "h3",
+    labelSize: "small",
+    placeholder: "h3-small",
+  },
+};
+
+export const LabelSizeMedium: Story = {
+  args: {
+    id: "label-medium",
+    label: "Medium Label",
+    labelLevel: "h3",
+    labelSize: "medium",
+    placeholder: "h3-medium",
+  },
+};
+
+export const LabelSizeLarge: Story = {
+  args: {
+    id: "label-large",
+    label: "Large Label",
+    labelLevel: "h2",
+    labelSize: "large",
+    placeholder: "h2-large",
   },
 };
 
@@ -162,6 +230,15 @@ export const WithMultipleErrors: Story = {
       "Password must be at least 8 characters",
       "Password must contain a number",
     ],
+  },
+};
+
+export const ValidState: Story = {
+  args: {
+    id: "valid-input",
+    label: "Username",
+    placeholder: "john_doe",
+    isValid: true,
   },
 };
 
@@ -234,6 +311,27 @@ export const WithButton: Story = {
   }),
 };
 
+// With Custom Tooltip Slot
+export const WithTooltipSlot: Story = {
+  name: "With Tooltip Slot",
+  render: () => ({
+    components: { Input },
+    template: `
+      <Input
+        id="tooltip-slot-input"
+        label="Custom Tooltip"
+        placeholder="Hover over the icon"
+      >
+        <template #tooltip>
+          <span class="badge bg-info text-white" style="cursor: help;" title="This is a custom tooltip">
+            <i class="fa-solid fa-circle-question"></i>
+          </span>
+        </template>
+      </Input>
+    `,
+  }),
+};
+
 // Form Example
 export const FormExample: Story = {
   name: "Form Example",
@@ -273,6 +371,8 @@ export const FormExample: Story = {
           id="first-name"
           v-model="firstName"
           label="First Name"
+          label-level="h4"
+          label-size="small"
           placeholder="John"
           required
           :error="errors.firstName"
@@ -282,6 +382,8 @@ export const FormExample: Story = {
           id="last-name"
           v-model="lastName"
           label="Last Name"
+          label-level="h4"
+          label-size="small"
           placeholder="Doe"
           required
           :error="errors.lastName"
@@ -292,6 +394,8 @@ export const FormExample: Story = {
           v-model="email"
           type="email"
           label="Email"
+          label-level="h4"
+          label-size="small"
           placeholder="john.doe@example.com"
           required
           :error="errors.email"
@@ -303,14 +407,51 @@ export const FormExample: Story = {
           v-model="phone"
           type="tel"
           label="Phone Number"
+          label-level="h4"
+          label-size="small"
           placeholder="(555) 123-4567"
-          optional
+          is-optional
         />
         
         <button type="submit" class="btn btn-primary mt-space-sm">
           Submit
         </button>
       </form>
+    `,
+  }),
+};
+
+// Validation States Example
+export const ValidationStates: Story = {
+  name: "Validation States",
+  render: () => ({
+    components: { Input },
+    template: `
+      <div class="p-space-md">
+        <h3 class="mb-space-md">Input Validation States</h3>
+        
+        <Input
+          id="valid-state"
+          label="Valid Input"
+          placeholder="Valid input"
+          is-valid
+          class="mb-space-md"
+        />
+        
+        <Input
+          id="error-state"
+          label="Invalid Input"
+          placeholder="Invalid input"
+          error="This field has an error"
+          class="mb-space-md"
+        />
+        
+        <Input
+          id="default-state"
+          label="Default Input"
+          placeholder="Default input"
+        />
+      </div>
     `,
   }),
 };

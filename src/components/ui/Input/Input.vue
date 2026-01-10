@@ -7,7 +7,8 @@ interface Props {
   id: string
   type?: "text" | "email" | "number" | "password" | "tel" | "url"
   label?: string
-  labelClass?: HTMLAttributes["class"]
+  labelLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+  labelSize?: "small" | "medium" | "large"
   name?: string
   placeholder?: string
   required?: boolean
@@ -20,8 +21,14 @@ interface Props {
   errors?: string[]
   helpText?: string
   /** Shows optional badge next to label */
-  optional?: boolean
+  isOptional?: boolean
   optionalText?: string
+  /** Show label (default: true) */
+  isLabelVisible?: boolean
+  /** Show valid state styling */
+  isValid?: boolean
+  /** Tooltip text to show next to label */
+  tooltipText?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -29,113 +36,132 @@ const props = withDefaults(defineProps<Props>(), {
   required: false,
   disabled: false,
   readonly: false,
-  optional: false,
+  isOptional: false,
+  isLabelVisible: true,
+  isValid: false,
   optionalText: "Optional",
+  labelLevel: "h3",
+  labelSize: "small",
+  placeholder: "Enter your text",
   errors: () => [],
 })
 
 const emit = defineEmits<{
-  blur: [e: FocusEvent]
-  focus: [e: FocusEvent]
+  blur: []
+  focus: []
 }>()
 
 const model = defineModel<string | number>()
 
-const hasError = computed(() => (props.errors && props.errors.length > 0) || !!props.error)
+const invalid = computed(() => (props.errors && props.errors.length > 0) || !!props.error)
+const computedInvalid = computed(() => (invalid.value ? "true" : undefined))
 const errorMessage = computed(() => props.error || (props.errors && props.errors[0]))
 const fieldErrorId = computed(() => `${props.id}-error`)
-const fieldHelpId = computed(() => `${props.id}-help`)
+const labelClass = computed(() => `${props.labelLevel}-${props.labelSize}`)
 
-const ariaDescribedby = computed(() => {
-  const ids: string[] = []
-  if (hasError.value) ids.push(fieldErrorId.value)
-  if (props.helpText) ids.push(fieldHelpId.value)
-  return ids.length > 0 ? ids.join(" ") : undefined
-})
-
-function handleBlur(e: FocusEvent) {
-  emit("blur", e)
+function handleBlur() {
+  emit("blur")
 }
 
-function handleFocus(e: FocusEvent) {
-  emit("focus", e)
+function handleFocus() {
+  emit("focus")
 }
 </script>
 
 <template>
   <div
+    class="field position-relative mb-space-sm"
+    :class="cn({ 'is-invalid': invalid }, props.class)"
     data-slot="input-field"
-    :class="cn('mb-space-sm', props.class)"
   >
-    <!-- Label -->
-    <label
-      v-if="label"
-      :for="id"
-      class="form-label fw-bold mb-space-xs d-flex align-items-center"
-      :class="labelClass"
-    >
-      <span>{{ label }}</span>
-      <span
-        v-if="optional"
-        class="badge bg-light text-dark ms-space-xxs"
+    <!-- Label with optional badge and tooltip -->
+    <div class="field-label col-12 d-flex">
+      <label
+        v-if="label && isLabelVisible"
+        :for="id"
+        :aria-label="label"
+        class="d-flex fw-bold lh-sm"
+        :class="labelClass"
       >
-        {{ optionalText }}
-      </span>
-      <slot name="label-suffix" />
-    </label>
+        <div class="d-flex mb-space-xs">
+          <span class="my-auto">{{ label }}</span>
+          <!-- Optional badge -->
+          <span
+            v-if="isOptional"
+            class="my-auto ms-space-xxs ms-lg-space-sm me-lg-space-xs badge bg-light text-dark fs-xs px-space-xxs py-lg-space-xxxs"
+          >
+            {{ optionalText }}
+          </span>
+        </div>
+      </label>
+      <!-- Tooltip slot -->
+      <div v-if="tooltipText || $slots.tooltip" class="ms-space-xxs ms-lg-space-sm">
+        <slot name="tooltip">
+          <span class="text-muted" :title="tooltipText">
+            <i class="fa-regular fa-circle-info" />
+          </span>
+        </slot>
+      </div>
+    </div>
 
-    <!-- Input Group (allows for button slot) -->
-    <div class="position-relative">
+    <!-- Input wrapper -->
+    <div :class="{ 'is-invalid': invalid }" data-test="input-div">
       <input
         :id="id"
-        v-model="model"
-        data-slot="input"
+        v-model.trim="model"
         :type="type"
+        class="form-control col-12"
+        :class="cn(
+          {
+            'is-invalid': invalid,
+            'is-valid': isValid && !invalid,
+          },
+          inputClass
+        )"
         :name="name"
         :placeholder="placeholder"
         :required="required"
         :disabled="disabled"
         :readonly="readonly"
-        :autocomplete="autocomplete === 'off' ? 'new-password' : (autocomplete || undefined)"
         :aria-required="required"
-        :aria-invalid="hasError ? 'true' : undefined"
-        :aria-describedby="ariaDescribedby"
-        :class="cn(
-          'form-control',
-          {
-            'is-invalid': hasError,
-          },
-          inputClass
-        )"
+        :aria-invalid="computedInvalid"
+        :aria-describedby="invalid ? fieldErrorId : undefined"
+        :autocomplete="autocomplete === 'off' ? 'new-password' : (autocomplete || undefined)"
         @blur="handleBlur"
         @focus="handleFocus"
       >
-      <!-- Slot for button next to input -->
+      <!-- Button slot for actions next to input -->
       <slot name="button" />
     </div>
 
-    <!-- Help Text -->
-    <div
-      v-if="helpText && !hasError"
-      :id="fieldHelpId"
-      class="form-text mt-space-xxxs"
-    >
-      {{ helpText }}
-    </div>
-
-    <!-- Message Slot -->
+    <!-- Message slot -->
     <div v-if="$slots.message" class="mt-space-xxxs">
       <slot name="message" />
     </div>
 
-    <!-- Error Message -->
-    <div
-      v-if="hasError"
-      :id="fieldErrorId"
-      class="invalid-feedback d-block mt-space-xxxs"
-    >
-      <i class="fa-sharp fa-regular fa-circle-exclamation me-space-xxxs" />
-      {{ errorMessage }}
+    <!-- Help text (hidden when error is shown) -->
+    <div v-if="helpText && !invalid" class="form-text mt-space-xxxs">
+      {{ helpText }}
     </div>
+
+    <!-- Error message -->
+    <span v-if="invalid" :id="fieldErrorId" class="invalid-feedback d-block mt-space-xxxs">
+      <i class="fa-sharp fa-regular fa-circle-exclamation me-space-xxxs" />
+      <span>{{ errorMessage }}</span>
+    </span>
   </div>
 </template>
+
+<style lang="scss" scoped>
+/* Valid state styling with bottom border emphasis */
+.is-valid {
+  border: 2px solid var(--bs-success, #198754);
+  border-bottom-width: 5px;
+  background-image: none;
+}
+
+/* Ensure button slot positioning works correctly */
+.field .position-relative {
+  position: relative;
+}
+</style>

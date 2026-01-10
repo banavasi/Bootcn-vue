@@ -30,6 +30,18 @@ describe("Input", () => {
       expect(label.attributes("for")).toBe("test-input");
     });
 
+    it("hides label when isLabelVisible is false", () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          label: "Test Label",
+          isLabelVisible: false,
+        },
+      });
+
+      expect(wrapper.find("label").exists()).toBe(false);
+    });
+
     it("renders without label when not provided", () => {
       const wrapper = mount(Input, {
         props: {
@@ -38,6 +50,34 @@ describe("Input", () => {
       });
 
       expect(wrapper.find("label").exists()).toBe(false);
+    });
+  });
+
+  describe("Label Styling", () => {
+    it("applies label level and size classes", () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          label: "Test Label",
+          labelLevel: "h2",
+          labelSize: "large",
+        },
+      });
+
+      const label = wrapper.find("label");
+      expect(label.classes()).toContain("h2-large");
+    });
+
+    it("uses default label level and size", () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          label: "Test Label",
+        },
+      });
+
+      const label = wrapper.find("label");
+      expect(label.classes()).toContain("h3-small");
     });
   });
 
@@ -167,8 +207,45 @@ describe("Input", () => {
         },
       });
 
-      expect(wrapper.find("input").attributes("aria-describedby")).toContain("test-input-error");
+      expect(wrapper.find("input").attributes("aria-describedby")).toBe("test-input-error");
       expect(wrapper.find("#test-input-error").exists()).toBe(true);
+    });
+
+    it("adds is-invalid class to field wrapper", () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          error: "Error message",
+        },
+      });
+
+      expect(wrapper.find('[data-slot="input-field"]').classes()).toContain("is-invalid");
+    });
+  });
+
+  describe("Valid State", () => {
+    it("shows valid state styling when isValid is true", () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          isValid: true,
+        },
+      });
+
+      expect(wrapper.find("input").classes()).toContain("is-valid");
+    });
+
+    it("does not show valid state when there is an error", () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          isValid: true,
+          error: "Error message",
+        },
+      });
+
+      expect(wrapper.find("input").classes()).not.toContain("is-valid");
+      expect(wrapper.find("input").classes()).toContain("is-invalid");
     });
   });
 
@@ -197,26 +274,15 @@ describe("Input", () => {
       expect(wrapper.text()).not.toContain("Help text");
       expect(wrapper.text()).toContain("Error message");
     });
-
-    it("includes help text id in aria-describedby", () => {
-      const wrapper = mount(Input, {
-        props: {
-          id: "test-input",
-          helpText: "Help text",
-        },
-      });
-
-      expect(wrapper.find("input").attributes("aria-describedby")).toContain("test-input-help");
-    });
   });
 
   describe("Optional Badge", () => {
-    it("shows optional badge when optional is true", () => {
+    it("shows optional badge when isOptional is true", () => {
       const wrapper = mount(Input, {
         props: {
           id: "test-input",
           label: "Test Label",
-          optional: true,
+          isOptional: true,
         },
       });
 
@@ -229,7 +295,7 @@ describe("Input", () => {
         props: {
           id: "test-input",
           label: "Test Label",
-          optional: true,
+          isOptional: true,
           optionalText: "Not required",
         },
       });
@@ -237,16 +303,45 @@ describe("Input", () => {
       expect(wrapper.find(".badge").text()).toBe("Not required");
     });
 
-    it("does not show optional badge when optional is false", () => {
+    it("does not show optional badge when isOptional is false", () => {
       const wrapper = mount(Input, {
         props: {
           id: "test-input",
           label: "Test Label",
-          optional: false,
+          isOptional: false,
         },
       });
 
       expect(wrapper.find(".badge").exists()).toBe(false);
+    });
+  });
+
+  describe("Tooltip", () => {
+    it("shows tooltip when tooltipText is provided", () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          label: "Test Label",
+          tooltipText: "This is a tooltip",
+        },
+      });
+
+      const tooltip = wrapper.find(".fa-circle-info").element.parentElement;
+      expect(tooltip?.getAttribute("title")).toBe("This is a tooltip");
+    });
+
+    it("renders tooltip slot", () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          label: "Test Label",
+        },
+        slots: {
+          tooltip: '<button class="tooltip-btn">?</button>',
+        },
+      });
+
+      expect(wrapper.find(".tooltip-btn").exists()).toBe(true);
     });
   });
 
@@ -270,6 +365,18 @@ describe("Input", () => {
       await input.setValue("new value");
       expect(wrapper.emitted("update:modelValue")).toBeTruthy();
       expect(wrapper.emitted("update:modelValue")?.[0]).toEqual(["new value"]);
+    });
+
+    it("trims whitespace from input value", async () => {
+      const wrapper = mount(Input, {
+        props: {
+          id: "test-input",
+          modelValue: "",
+        },
+      });
+
+      await wrapper.find("input").setValue("  trimmed  ");
+      expect(wrapper.emitted("update:modelValue")?.[0]).toEqual(["trimmed"]);
     });
   });
 
@@ -324,20 +431,6 @@ describe("Input", () => {
 
       expect(wrapper.text()).toContain("Custom message");
     });
-
-    it("renders label-suffix slot", () => {
-      const wrapper = mount(Input, {
-        props: {
-          id: "test-input",
-          label: "Test Label",
-        },
-        slots: {
-          "label-suffix": '<span class="text-danger">*</span>',
-        },
-      });
-
-      expect(wrapper.find("label .text-danger").exists()).toBe(true);
-    });
   });
 
   describe("Custom Classes", () => {
@@ -361,18 +454,6 @@ describe("Input", () => {
       });
 
       expect(wrapper.find("input").classes()).toContain("custom-input-class");
-    });
-
-    it("applies custom label class", () => {
-      const wrapper = mount(Input, {
-        props: {
-          id: "test-input",
-          label: "Test Label",
-          labelClass: "custom-label-class",
-        },
-      });
-
-      expect(wrapper.find("label").classes()).toContain("custom-label-class");
     });
   });
 
