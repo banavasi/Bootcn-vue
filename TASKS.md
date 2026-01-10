@@ -30,9 +30,9 @@
 | Sprint   | Focus                   | Status                  |
 | -------- | ----------------------- | ----------------------- |
 | Sprint 1 | Monorepo Infrastructure | `[x]` Complete          |
-| Sprint 2 | Core & Button Package   | `[ ]` Not Started       |
+| Sprint 2 | Core & Button Package   | `[x]` Complete          |
 | Sprint 3 | CLI Development         | `[ ]` Not Started       |
-| Sprint 4 | CI/CD & Publishing      | `[~]` In Progress (80%) |
+| Sprint 4 | CI/CD & Publishing      | `[~]` In Progress (90%) |
 | Sprint 5 | Forms Package           | `[ ]` Not Started       |
 | Sprint 6 | Documentation & Polish  | `[ ]` Not Started       |
 
@@ -123,21 +123,21 @@
 
 #### Tasks
 
-- [ ] **T2.1.1:** Initialize core package
-  - [ ] Create `packages/core/package.json`
-  - [ ] Set up package metadata (name, version, exports)
-  - [ ] Configure peer dependencies (vue)
+- [x] **T2.1.1:** Initialize core package
+  - [x] Create `packages/core/package.json`
+  - [x] Set up package metadata (name, version, exports)
+  - [x] Configure peer dependencies (vue)
 
-- [ ] **T2.1.2:** Add utility functions
-  - [ ] Copy/create `cn()` utility function
-  - [ ] Create `lib/utils.ts`
-  - [ ] Set up barrel exports in `index.ts`
+- [x] **T2.1.2:** Add utility functions
+  - [x] Copy/create `cn()` utility function
+  - [x] Create `lib/utils.ts`
+  - [x] Set up barrel exports in `index.ts`
 
-- [ ] **T2.1.3:** Configure package build
-  - [ ] Install and configure `tsup`
-  - [ ] Create build script
-  - [ ] Generate TypeScript declarations
-  - [ ] Test build output
+- [x] **T2.1.3:** Configure package build
+  - [x] Install and configure `tsup`
+  - [x] Create build script
+  - [x] Generate TypeScript declarations
+  - [x] Test build output
 
 ### S2.2: Buttons Package Setup (P1)
 
@@ -145,26 +145,26 @@
 
 #### Tasks
 
-- [ ] **T2.2.1:** Initialize buttons package
-  - [ ] Create `packages/buttons/package.json`
-  - [ ] Set up dependencies (reka-ui, cva, @bootcn-vue/core)
-  - [ ] Configure peer dependencies
+- [x] **T2.2.1:** Initialize buttons package
+  - [x] Create `packages/buttons/package.json`
+  - [x] Set up dependencies (reka-ui, cva, @bootcn-vue/core)
+  - [x] Configure peer dependencies
 
-- [ ] **T2.2.2:** Migrate Button component
-  - [ ] Copy Button.vue from playground
-  - [ ] Copy index.ts with cva variants
-  - [ ] Update imports to use @bootcn-vue/core
-  - [ ] Create barrel exports
+- [x] **T2.2.2:** Migrate Button component
+  - [x] Copy Button.vue from playground
+  - [x] Copy index.ts with cva variants
+  - [x] Update imports to use @bootcn-vue/core
+  - [x] Create barrel exports
 
-- [ ] **T2.2.3:** Add Button tests
-  - [ ] Set up Vitest for package
-  - [ ] Migrate/create Button.spec.ts
-  - [ ] Ensure all tests pass
+- [x] **T2.2.3:** Add Button tests
+  - [x] Set up Vitest for package
+  - [x] Migrate/create Button.spec.ts
+  - [x] Ensure all tests pass (31 tests)
 
-- [ ] **T2.2.4:** Add Button to Storybook
-  - [ ] Configure Storybook to use packages
-  - [ ] Create/update Button.stories.ts
-  - [ ] Verify stories render correctly
+- [x] **T2.2.4:** Add Button to Storybook
+  - [x] Configure Storybook to use packages
+  - [x] Playground re-exports from @bootcn-vue/buttons
+  - [x] Button.stories.ts works correctly
 
 - [ ] **T2.2.5:** User Testing Checkpoint
   - [ ] Request user to test Button in Storybook
@@ -511,6 +511,7 @@
 
 ## Changelog
 
-| Date       | Change                  |
-| ---------- | ----------------------- |
-| 2026-01-09 | Initial backlog created |
+| Date       | Change                                                 |
+| ---------- | ------------------------------------------------------ |
+| 2026-01-10 | Sprint 2 complete - Core & Buttons packages with tests |
+| 2026-01-09 | Initial backlog created                                |

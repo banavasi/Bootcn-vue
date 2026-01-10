@@ -16,6 +16,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@bootcn-vue/buttons": "workspace:*",
+    "@bootcn-vue/core": "workspace:*",
     "@rds-vue-ui/rds-theme-base": "^0.7.1",
     "bootstrap": "^5.3.6",
     "class-variance-authority": "^0.7.1",
