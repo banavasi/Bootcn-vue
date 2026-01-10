@@ -1,5 +1,12 @@
 # @bootcn-vue/forms
 
+## 0.2.0
+
+### Patch Changes
+
+- Updated dependencies [[`28462af`](https://github.com/banavasi/Bootcn-vue/commit/28462afa6d4c12c41581f98063747b26f7199a7b)]:
+  - @bootcn-vue/core@0.2.0
+
 ## 0.1.0
 
 ### Patch Changes
