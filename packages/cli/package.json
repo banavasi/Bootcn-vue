@@ -1,6 +1,6 @@
 {
   "name": "@bootcn-vue/cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "CLI for adding accessible, customizable Bootstrap + Vue 3 components to your project",
   "type": "module",
   "bin": {
