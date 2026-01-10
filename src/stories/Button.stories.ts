@@ -26,14 +26,6 @@ const meta = {
         defaultValue: { summary: 'default' },
       },
     },
-    to: {
-      control: { type: 'text' },
-      description: 'The navigation path for vue-router when the button is a link.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
-      },
-    },
     as: {
       control: { type: 'text' },
       description: 'The HTML tag to render the button as.',
@@ -61,7 +53,7 @@ const meta = {
     asChild: false,
     default: 'Button Text', // Default slot content using 'default' key
   },
-  render: (args) => ({
+  render: (args: any) => ({
     components: { Button },
     setup() {
       return { args };
@@ -124,13 +116,20 @@ export const RouterLinkButton: Story = {
   name: 'Router Link Button',
   args: {
     default: 'Router Link',
-    to: '/example-path',
     variant: 'link',
+    asChild: true,
   },
+  render: (args: any) => ({
+    components: { Button },
+    setup() {
+      return { args };
+    },
+    template: '<Button v-bind="args"><a href="/example-path">{{ args.default }}</a></Button>',
+  }),
   parameters: {
     docs: {
       description: {
-        story: 'This button uses vue-router for navigation. The `to` prop specifies the path.',
+        story: 'This button uses asChild with an anchor tag for navigation. The href specifies the path.',
       },
     },
   },
@@ -155,7 +154,7 @@ export const Icon: Story = {
     size: 'icon',
     default: '❤️', // Example icon, users can replace this with an SVG or icon component
   },
-  render: (args) => ({
+  render: (args: any) => ({
     components: { Button },
     setup() {
       return { args };
@@ -172,7 +171,7 @@ export const AsChild: Story = {
     asChild: true,
     default: 'I am a link now',
   },
-  render: (args) => ({
+  render: (args: any) => ({
     components: { Button },
     setup() {
       return { args };
