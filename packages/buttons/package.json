@@ -55,6 +55,10 @@
     "url": "https://github.com/banavasi/Bootcn-vue.git",
     "directory": "packages/buttons"
   },
+  "homepage": "https://banavasi.github.io/Bootcn-vue/?path=/docs/components-button--docs",
+  "bugs": {
+    "url": "https://github.com/banavasi/Bootcn-vue/issues"
+  },
   "keywords": [
     "vue",
     "vue3",

@@ -58,6 +58,10 @@
     "url": "https://github.com/banavasi/Bootcn-vue.git",
     "directory": "packages/forms"
   },
+  "homepage": "https://banavasi.github.io/Bootcn-vue/",
+  "bugs": {
+    "url": "https://github.com/banavasi/Bootcn-vue/issues"
+  },
   "keywords": [
     "vue",
     "vue3",

@@ -40,6 +40,10 @@
     "url": "https://github.com/banavasi/Bootcn-vue.git",
     "directory": "packages/cli"
   },
+  "homepage": "https://banavasi.github.io/Bootcn-vue/",
+  "bugs": {
+    "url": "https://github.com/banavasi/Bootcn-vue/issues"
+  },
   "keywords": [
     "vue",
     "vue3",
