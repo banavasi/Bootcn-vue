@@ -185,8 +185,14 @@ function handleFocus() {
   border-bottom-width: 5px;
 }
 
-/* Invalid + Focus state: blue border color */
+/* Invalid + Focus state: danger border color and box-shadow */
 .is-invalid:focus {
+  border-color: var(--bs-danger, #dc3545);
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-danger-rgb, 220, 53, 69), 0.25);
+}
+
+/* Invalid + Focus state: blue border color */
+.is-invalid input:focus {
   border-color: var(--rds-danger, #dc3545);
 }
 
