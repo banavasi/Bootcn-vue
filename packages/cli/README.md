@@ -53,6 +53,30 @@ This command will:
 2. Transform imports from package imports to local imports
 3. Make the component ready to use
 
+### Remove components from your project
+
+```bash
+# Remove a single component
+npx bootcn-vue remove button
+
+# Remove multiple components
+npx bootcn-vue remove button input
+
+# Interactive mode - select from list
+npx bootcn-vue remove
+
+# Remove ALL bootcn-vue setup (components, config, utils)
+npx bootcn-vue remove --all
+```
+
+The `remove --all` command will:
+
+1. Delete all components in `src/components/ui/`
+2. Delete `src/lib/utils.ts` (and `lib/` directory if empty)
+3. Delete `bootcn.config.json`
+4. Show command to uninstall dependencies
+5. Include safety confirmations before removing
+
 ## Configuration
 
 After running `init`, a `bootcn.config.json` file is created:

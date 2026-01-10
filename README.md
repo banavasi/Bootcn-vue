@@ -51,6 +51,52 @@ import { Button } from "@/components/ui/Button";
 </template>
 ```
 
+## CLI Commands
+
+### `init`
+
+Initialize bootcn-vue in your Vue 3 project:
+
+```bash
+npx @bootcn-vue/cli init
+```
+
+This command will:
+
+- Detect your Vue 3 + Vite project
+- Set up path aliases (`@/*`)
+- Install dependencies (Bootstrap, Reka UI, etc.)
+- Create utility functions and component directory
+
+### `add`
+
+Add components to your project:
+
+```bash
+# Add specific components
+npx @bootcn-vue/cli add button
+
+# Interactive selection
+npx @bootcn-vue/cli add
+```
+
+### `remove`
+
+Remove components from your project:
+
+```bash
+# Remove specific components
+npx @bootcn-vue/cli remove button
+
+# Interactive selection
+npx @bootcn-vue/cli remove
+
+# Remove ALL bootcn-vue setup
+npx @bootcn-vue/cli remove --all
+```
+
+The `--all` flag removes components, configuration, utilities, and prompts for dependency cleanup.
+
 ## Documentation
 
 📚 **[View Live Components](https://banavasi.github.io/Bootcn-vue/)** - Interactive Storybook with all components, variants, and props
