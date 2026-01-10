@@ -14,6 +14,12 @@ const REQUIRED_DEPS = [
   "tailwind-merge",
 ];
 
+const REQUIRED_DEV_DEPS = [
+  "@bootcn-vue/buttons@latest",
+  "@bootcn-vue/forms@latest",
+  "@bootcn-vue/core@latest",
+];
+
 export async function init() {
   console.log(pc.bold(pc.cyan("bootcn-vue init")));
   console.log();
@@ -117,6 +123,7 @@ export function cn(...inputs: ClassValue[]) {
 
     if (shouldInstall) {
       await installDependencies(project.packageManager, REQUIRED_DEPS, cwd);
+      await installDependencies(project.packageManager, REQUIRED_DEV_DEPS, cwd, true);
     }
 
     prompts.outro(pc.green("✓ bootcn-vue initialized successfully!"));
