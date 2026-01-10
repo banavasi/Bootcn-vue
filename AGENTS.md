@@ -1,15 +1,166 @@
-# Agent Guidelines for reka-bootstrap
+# Agent Guidelines for bootcn-vue
 
-This document provides guidelines for AI coding agents working in this Vue 3 + Vite + TypeScript project.
+> **Project:** bootcn-vue - Bootstrap + Vue 3 Component Library with CLI
+> **Package Scope:** `@bootcn-vue/*`
+
+This document provides guidelines for AI coding agents working in this Vue 3 + Vite + TypeScript monorepo.
+
+---
+
+## Project Management Workflow
+
+### Task Tracking
+
+All work is tracked in `TASKS.md` using the Epic → Story → Task → Subtask hierarchy.
+
+### Workflow for Each Task
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        TASK WORKFLOW                            │
+├─────────────────────────────────────────────────────────────────┤
+│  1. UPDATE TASKS.MD                                             │
+│     - Mark task as [~] In Progress                              │
+│     - Note start date if significant                            │
+│                                                                 │
+│  2. IMPLEMENT                                                   │
+│     - Follow code standards below                               │
+│     - Commit with conventional commits                          │
+│     - Keep commits atomic and focused                           │
+│                                                                 │
+│  3. VALIDATE                                                    │
+│     - Run: pnpm lint && pnpm type-check && pnpm test:unit       │
+│     - Fix any failures before proceeding                        │
+│                                                                 │
+│  4. USER TESTING CHECKPOINT (for UI components)                 │
+│     - Add component to Storybook                                │
+│     - Ask user to test in Storybook                             │
+│     - Collect feedback, iterate if needed                       │
+│                                                                 │
+│  5. WRITE TESTS                                                 │
+│     - Unit tests (Vitest)                                       │
+│     - E2E tests if applicable (Playwright)                      │
+│                                                                 │
+│  6. DOCUMENTATION                                               │
+│     - Update Storybook documentation                            │
+│     - Update README if needed                                   │
+│     - Ask user to review documentation                          │
+│                                                                 │
+│  7. COMPLETE                                                    │
+│     - Mark task as [x] Complete in TASKS.md                     │
+│     - Create changeset if publishable change                    │
+│     - Commit: git add . && git commit                           │
+│                                                                 │
+│  8. MERGE TO MAIN (when story complete)                         │
+│     - Ensure all story tasks are complete                       │
+│     - Create PR or merge to main                                │
+│     - CI will: build, test, deploy Storybook, publish to npm    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Commit Convention
+
+Use **Conventional Commits** (enforced by commitlint):
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**Types:**
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation only
+- `style`: Formatting, no code change
+- `refactor`: Code change that neither fixes bug nor adds feature
+- `perf`: Performance improvement
+- `test`: Adding/updating tests
+- `build`: Build system or dependencies
+- `ci`: CI configuration
+- `chore`: Other changes (e.g., updating tasks)
+
+**Scopes:** `core`, `buttons`, `forms`, `cli`, `docs`, `ci`
+
+**Examples:**
+
+```bash
+feat(buttons): add ButtonGroup component
+fix(forms): correct Input focus border color
+docs(cli): add init command usage guide
+chore(tasks): mark E1.S1.1 as complete
+```
+
+### Changesets
+
+For any publishable change, create a changeset:
+
+```bash
+pnpm changeset
+# Select packages affected
+# Choose bump type (patch/minor/major)
+# Write change description
+```
+
+### Epic/Story/Task Status Updates
+
+When working on tasks, update TASKS.md:
+
+```markdown
+# Before starting:
+
+- [ ] **T1.1.1:** Create monorepo directory structure
+
+# While working:
+
+- [~] **T1.1.1:** Create monorepo directory structure
+
+# When blocked:
+
+- [!] **T1.1.1:** Create monorepo directory structure
+  - Blocked: waiting for npm org creation
+
+# When complete:
+
+- [x] **T1.1.1:** Create monorepo directory structure
+```
+
+### User Testing Checkpoints
+
+For UI components, ALWAYS request user testing:
+
+```markdown
+## User Testing Checkpoint
+
+**Component:** Button
+**Location:** Storybook → Buttons → Button
+
+Please test the following:
+
+1. [ ] All variants render correctly
+2. [ ] All sizes render correctly
+3. [ ] Disabled state works
+4. [ ] Click interactions work
+5. [ ] Accessibility (keyboard nav, screen reader)
+
+**Feedback:** (user fills this in)
+
+**Status:** Awaiting feedback / Approved / Changes requested
+```
 
 ## Build, Test & Lint Commands
 
 ### Development
+
 - `pnpm dev` - Start dev server (opens at http://localhost:8080)
 - `pnpm build` - Type-check and build for production
 - `pnpm preview` - Preview production build
 
 ### Testing
+
 - `pnpm test:unit` - Run all unit tests (Vitest)
 - `pnpm test:unit -- Button.spec.ts` - Run specific test file
 - `pnpm test:unit -- --watch` - Run tests in watch mode
@@ -18,29 +169,34 @@ This document provides guidelines for AI coding agents working in this Vue 3 + V
 - `pnpm test:e2e -- --debug` - Run E2E tests in debug mode
 
 ### Type Checking & Linting
+
 - `pnpm type-check` - Type check without building
 - `pnpm lint` - Run both oxlint and eslint (with auto-fix)
 - `pnpm lint:eslint` - Run eslint only
 - `pnpm lint:oxlint` - Run oxlint only
 
 ### Storybook
+
 - `pnpm storybook` - Start Storybook dev server (port 6006)
 - `pnpm build-storybook` - Build Storybook static site
 
 ## Code Style Guidelines
 
 ### Imports
+
 - Use `@/` alias for src imports: `import { Button } from '@/components/ui/Button'`
 - Group imports: external packages → Vue imports → internal modules → types
 - Prefer named exports over default exports for components in barrel files
 
 ### TypeScript
+
 - Always use strict TypeScript - no `any` types
 - Define interfaces for component props using `interface Props extends ...`
 - Use type inference where obvious, explicit types for public APIs
 - Export types alongside components: `export type ButtonVariants = VariantProps<...>`
 
 ### Vue 3 Composition API
+
 - Use `<script setup lang="ts">` for all components
 - Use `defineProps<Props>()` with TypeScript interfaces, not runtime props
 - Use `withDefaults()` for default prop values
@@ -48,25 +204,26 @@ This document provides guidelines for AI coding agents working in this Vue 3 + V
 - Use `type` imports for types: `import type { HTMLAttributes } from 'vue'`
 
 ### Component Structure
+
 ```vue
 <script setup lang="ts">
 // 1. Type imports
-import type { HTMLAttributes } from 'vue'
+import type { HTMLAttributes } from "vue";
 // 2. External imports
-import { Primitive, type PrimitiveProps } from 'reka-ui'
+import { Primitive, type PrimitiveProps } from "reka-ui";
 // 3. Internal imports
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils";
 
 // 4. Types/Interfaces
 interface Props extends PrimitiveProps {
-  variant?: string
-  class?: HTMLAttributes['class']
+  variant?: string;
+  class?: HTMLAttributes["class"];
 }
 
 // 5. Props with defaults
 const props = withDefaults(defineProps<Props>(), {
-  as: 'button',
-})
+  as: "button",
+});
 </script>
 
 <template>
@@ -75,6 +232,7 @@ const props = withDefaults(defineProps<Props>(), {
 ```
 
 ### Naming Conventions
+
 - **Components**: PascalCase (e.g., `Button.vue`, `HelloWorld.vue`)
 - **Files**: Match component name (e.g., `Button.vue`, `Button.spec.ts`, `index.ts`)
 - **UI Components**: Store in `src/components/ui/{ComponentName}/` with barrel export
@@ -82,6 +240,7 @@ const props = withDefaults(defineProps<Props>(), {
 - **CSS Classes**: kebab-case or use utility functions (Bootstrap + Tailwind merge)
 
 ### UI Components Pattern
+
 - Place in `src/components/ui/{ComponentName}/` directory
 - Include: `{ComponentName}.vue`, `index.ts` (barrel export), `{ComponentName}.spec.ts`
 - Use `class-variance-authority` (cva) for variant styling
@@ -89,6 +248,7 @@ const props = withDefaults(defineProps<Props>(), {
 - Multi-word component names not required for UI components (ESLint rule disabled)
 
 ### Testing
+
 - **Unit Tests**: Vitest + @vue/test-utils
 - Place tests alongside components: `Button.spec.ts` next to `Button.vue`
 - Test structure:
@@ -105,6 +265,7 @@ const props = withDefaults(defineProps<Props>(), {
 - Test custom classes, slots, and asChild behavior
 
 ### Styling
+
 - **CSS Framework**: Bootstrap 5.3.6 (SCSS) + utility classes
 - **Utility Function**: Use `cn()` from `@/lib/utils` to merge classes (clsx + tailwind-merge)
 - **Preprocessor**: SCSS with Bootstrap auto-import
@@ -112,7 +273,9 @@ const props = withDefaults(defineProps<Props>(), {
 - **Data Attributes**: Use `data-slot` for component identification
 
 ### RDS Spacing System
+
 Use RDS spacing classes instead of Bootstrap's numeric spacing (m-1, m-2, etc.):
+
 - **RDS Spacing Scale**:
   - `space-xxxs`: 0.25rem (4px)
   - `space-xxs`: 0.5rem (8px)
@@ -131,12 +294,14 @@ Use RDS spacing classes instead of Bootstrap's numeric spacing (m-1, m-2, etc.):
 - **Always prefer RDS spacing over Bootstrap numeric spacing** (e.g., use `mb-space-sm` instead of `mb-3`)
 
 ### Error Handling
+
 - Use TypeScript's type system to prevent errors at compile time
 - Validate props with TypeScript interfaces
 - Handle edge cases in component logic
 - Write defensive code for user inputs
 
 ### Formatting
+
 - **Indentation**: 2 spaces (enforced by .editorconfig)
 - **Line Length**: 100 characters max
 - **Quotes**: Single quotes for strings
@@ -145,12 +310,14 @@ Use RDS spacing classes instead of Bootstrap's numeric spacing (m-1, m-2, etc.):
 - **Final Newline**: Yes (enforced)
 
 ### Path Aliases
+
 - `@/` → `./src/`
 - `~bootstrap` → `node_modules/bootstrap`
 
 ## Project-Specific Rules
 
 ### Content Management (i18n)
+
 - All user-facing text must be stored in JSON files in `content/en/`
 - Pattern: `${PageName}Page.json` or `${WidgetName}Widget.json`
 - Run `pnpm content:create` after editing content files
@@ -159,12 +326,14 @@ Use RDS spacing classes instead of Bootstrap's numeric spacing (m-1, m-2, etc.):
 - Every content file must include `meta.title`
 
 ### Special Characters
+
 - Email addresses: Use `&#64;` instead of `@` in JSON files
 - Replace in template: `t('key').replace(/&#64;/g, '@')`
 
 ## Common Patterns
 
 ### Creating a New UI Component
+
 1. Create directory: `src/components/ui/{ComponentName}/`
 2. Create `{ComponentName}.vue` with `<script setup lang="ts">`
 3. Create `index.ts` with cva variants and barrel exports
@@ -172,25 +341,28 @@ Use RDS spacing classes instead of Bootstrap's numeric spacing (m-1, m-2, etc.):
 5. Import and use: `import { ComponentName } from '@/components/ui/{ComponentName}'`
 
 ### Component Props Pattern
+
 ```ts
 interface Props extends PrimitiveProps {
-  variant?: ComponentVariants['variant']
-  size?: ComponentVariants['size']
-  class?: HTMLAttributes['class']
+  variant?: ComponentVariants["variant"];
+  size?: ComponentVariants["size"];
+  class?: HTMLAttributes["class"];
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  as: 'button',
+  as: "button",
   asChild: false,
-})
+});
 ```
 
 ## CI/CD Notes
+
 - E2E tests run in headless mode on CI
 - Type checking required before build
 - ESLint forbids `test.only` on CI
 - Retries: 2 on CI, 0 locally
 
 ## Package Manager
+
 - **Use pnpm** exclusively (not npm or yarn)
 - Lock file: `pnpm-lock.yaml`

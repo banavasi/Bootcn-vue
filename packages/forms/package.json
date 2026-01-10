@@ -1,0 +1,71 @@
+{
+  "name": "@bootcn-vue/forms",
+  "version": "0.0.1",
+  "description": "Form components for bootcn-vue",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./Input": {
+      "types": "./src/Input/index.d.ts",
+      "import": "./src/Input/index.ts"
+    },
+    "./MaskInput": {
+      "types": "./src/MaskInput/index.d.ts",
+      "import": "./src/MaskInput/index.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --fix",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@bootcn-vue/core": "workspace:*",
+    "reka-ui": "^2.2.1"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^26.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "~5.8.0",
+    "unplugin-vue": "^7.1.0",
+    "vitest": "^3.1.1",
+    "vue": "^3.5.13"
+  },
+  "peerDependencies": {
+    "bootstrap": "^5.3.0",
+    "vue": "^3.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/banavasi/bootcn-vue.git",
+    "directory": "packages/forms"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "bootstrap",
+    "form",
+    "input",
+    "components"
+  ],
+  "author": "Shashank Shandilya",
+  "license": "MIT"
+}

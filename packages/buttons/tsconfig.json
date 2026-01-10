@@ -10,10 +10,12 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
     "declaration": true,
     "declarationMap": true,
-    "composite": true
+    "jsx": "preserve"
   },
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts"]
 }

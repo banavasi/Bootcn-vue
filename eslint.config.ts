@@ -1,9 +1,9 @@
-import { globalIgnores } from 'eslint/config'
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import pluginVue from 'eslint-plugin-vue'
-import pluginVitest from '@vitest/eslint-plugin'
-import pluginPlaywright from 'eslint-plugin-playwright'
-import pluginOxlint from 'eslint-plugin-oxlint'
+import { globalIgnores } from "eslint/config";
+import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
+import pluginVue from "eslint-plugin-vue";
+import pluginVitest from "@vitest/eslint-plugin";
+import pluginPlaywright from "eslint-plugin-playwright";
+import pluginOxlint from "eslint-plugin-oxlint";
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
 // import { configureVueProject } from '@vue/eslint-config-typescript'
@@ -12,30 +12,30 @@ import pluginOxlint from 'eslint-plugin-oxlint'
 
 export default defineConfigWithVueTs(
   {
-    name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
+    name: "app/files-to-lint",
+    files: ["**/*.{ts,mts,tsx,vue}"],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  globalIgnores(["**/dist/**", "**/dist-ssr/**", "**/coverage/**"]),
 
-  pluginVue.configs['flat/essential'],
+  pluginVue.configs["flat/essential"],
   vueTsConfigs.recommended,
 
   {
     ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    files: ["**/__tests__/*", "**/*.spec.ts"],
   },
 
   {
-    ...pluginPlaywright.configs['flat/recommended'],
-    files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+    ...pluginPlaywright.configs["flat/recommended"],
+    files: ["**/e2e/**/*.{test,spec}.{js,ts,jsx,tsx}"],
   },
-  ...pluginOxlint.configs['flat/recommended'],
+  ...pluginOxlint.configs["flat/recommended"],
 
   {
-    files: ['src/components/ui/**/*.vue'],
+    files: ["**/components/ui/**/*.vue", "packages/**/*.vue"],
     rules: {
-      'vue/multi-word-component-names': 'off',
+      "vue/multi-word-component-names": "off",
     },
   },
-)
+);

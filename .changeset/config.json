@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.2/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "banavasi/bootcn-vue" }
+  ],
+  "commit": false,
+  "fixed": [],
+  "linked": [
+    [
+      "@bootcn-vue/core",
+      "@bootcn-vue/buttons",
+      "@bootcn-vue/forms",
+      "@bootcn-vue/cli"
+    ]
+  ],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@bootcn-vue/playground"]
+}

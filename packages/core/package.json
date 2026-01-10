@@ -1,0 +1,59 @@
+{
+  "name": "@bootcn-vue/core",
+  "version": "0.0.1",
+  "description": "Core utilities and shared code for bootcn-vue",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./lib/*": {
+      "types": "./src/lib/*.d.ts",
+      "import": "./src/lib/*.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --fix"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.2.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "~5.8.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/banavasi/bootcn-vue.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "bootstrap",
+    "components",
+    "utilities"
+  ],
+  "author": "Shashank Shandilya",
+  "license": "MIT"
+}
