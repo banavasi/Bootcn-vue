@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
-import { computed } from "vue"
-import { cn } from "@/lib/utils"
+import type { HTMLAttributes } from "vue";
+import { computed } from "vue";
+import { cn } from "@/lib/utils";
 
 interface Props {
-  id: string
-  type?: "text" | "email" | "number" | "password" | "tel" | "url"
-  label?: string
-  labelLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
-  labelSize?: "small" | "medium" | "large"
-  name?: string
-  placeholder?: string
-  required?: boolean
-  disabled?: boolean
-  readonly?: boolean
-  autocomplete?: string
-  class?: HTMLAttributes["class"]
-  inputClass?: HTMLAttributes["class"]
-  error?: string
-  errors?: string[]
-  helpText?: string
+  id: string;
+  type?: "text" | "email" | "number" | "password" | "tel" | "url";
+  label?: string;
+  labelLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  labelSize?: "small" | "medium" | "large";
+  name?: string;
+  placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
+  readonly?: boolean;
+  autocomplete?: string;
+  class?: HTMLAttributes["class"];
+  inputClass?: HTMLAttributes["class"];
+  error?: string;
+  errors?: string[];
+  helpText?: string;
   /** Shows optional badge next to label */
-  isOptional?: boolean
-  optionalText?: string
+  isOptional?: boolean;
+  optionalText?: string;
   /** Show label (default: true) */
-  isLabelVisible?: boolean
+  isLabelVisible?: boolean;
   /** Show valid state styling */
-  isValid?: boolean
+  isValid?: boolean;
   /** Tooltip text to show next to label */
-  tooltipText?: string
+  tooltipText?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -44,27 +44,27 @@ const props = withDefaults(defineProps<Props>(), {
   labelSize: "small",
   placeholder: "Enter your text",
   errors: () => [],
-})
+});
 
 const emit = defineEmits<{
-  blur: []
-  focus: []
-}>()
+  blur: [];
+  focus: [];
+}>();
 
-const model = defineModel<string | number>()
+const model = defineModel<string | number>();
 
-const invalid = computed(() => (props.errors && props.errors.length > 0) || !!props.error)
-const computedInvalid = computed(() => (invalid.value ? "true" : undefined))
-const errorMessage = computed(() => props.error || (props.errors && props.errors[0]))
-const fieldErrorId = computed(() => `${props.id}-error`)
-const labelClass = computed(() => `${props.labelLevel}-${props.labelSize}`)
+const invalid = computed(() => (props.errors && props.errors.length > 0) || !!props.error);
+const computedInvalid = computed(() => (invalid.value ? "true" : undefined));
+const errorMessage = computed(() => props.error || (props.errors && props.errors[0]));
+const fieldErrorId = computed(() => `${props.id}-error`);
+const labelClass = computed(() => `${props.labelLevel}-${props.labelSize}`);
 
 function handleBlur() {
-  emit("blur")
+  emit("blur");
 }
 
 function handleFocus() {
-  emit("focus")
+  emit("focus");
 }
 </script>
 
@@ -110,14 +110,16 @@ function handleFocus() {
         :id="id"
         v-model.trim="model"
         :type="type"
-        class="form-control col-12"
-        :class="cn(
-          {
-            'is-invalid': invalid,
-            'is-valid': isValid && !invalid,
-          },
-          inputClass
-        )"
+        class="form-control col-12 p-space-xs"
+        :class="
+          cn(
+            {
+              'is-invalid': invalid,
+              'is-valid': isValid && !invalid,
+            },
+            inputClass,
+          )
+        "
         :name="name"
         :placeholder="placeholder"
         :required="required"
@@ -126,10 +128,10 @@ function handleFocus() {
         :aria-required="required"
         :aria-invalid="computedInvalid"
         :aria-describedby="invalid ? fieldErrorId : undefined"
-        :autocomplete="autocomplete === 'off' ? 'new-password' : (autocomplete || undefined)"
+        :autocomplete="autocomplete === 'off' ? 'new-password' : autocomplete || undefined"
         @blur="handleBlur"
         @focus="handleFocus"
-      >
+      />
       <!-- Error icon inside input -->
       <span
         v-if="invalid"
@@ -153,7 +155,11 @@ function handleFocus() {
     </div>
 
     <!-- Error message -->
-    <div v-if="invalid" :id="fieldErrorId" class="text-danger mt-space-xxxs d-flex align-items-center">
+    <div
+      v-if="invalid"
+      :id="fieldErrorId"
+      class="text-danger mt-space-xxxs d-flex align-items-center"
+    >
       <i class="fa-solid fa-circle-exclamation me-space-xxs" />
       <span>{{ errorMessage }}</span>
     </div>
@@ -161,11 +167,27 @@ function handleFocus() {
 </template>
 
 <style lang="scss" scoped>
+/* Form control focus state with RDS styling */
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(var(--rds-info-rgb, 0, 123, 255), 0.5);
+  border-color: var(--rds-info, #007bff);
+}
+
 /* Valid state styling with bottom border emphasis */
 .is-valid {
   border: 2px solid var(--bs-success, #198754);
   border-bottom-width: 5px;
   background-image: none;
+}
+
+/* Invalid state styling with bottom border emphasis */
+.is-invalid {
+  border-bottom-width: 5px;
+}
+
+/* Invalid + Focus state: blue border color */
+.is-invalid:focus {
+  border-color: var(--rds-danger, #dc3545);
 }
 
 /* Add padding to input when error icon is present */
