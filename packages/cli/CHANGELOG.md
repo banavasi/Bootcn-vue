@@ -1,5 +1,15 @@
 # @bootcn-vue/cli
 
+## 0.2.3
+
+### Patch Changes
+
+- [`c538960`](https://github.com/banavasi/Bootcn-vue/commit/c538960cc1e3e72d5c06b274b049326f02765643) Thanks [@banavasi](https://github.com/banavasi)! - fix: remove duplicate shebang causing CLI syntax error
+
+  The shebang (`#!/usr/bin/env node`) was being added twice - once in the source file and once by the tsup banner configuration. This caused an "Invalid or unexpected token" syntax error when users tried to run the CLI via `npx @bootcn-vue/cli@latest init`.
+
+  Fixed by removing the shebang from the source file (`src/index.ts`) and letting tsup's banner configuration handle it exclusively.
+
 ## 0.2.2
 
 ### Patch Changes
