@@ -180,6 +180,33 @@ Please test the following:
 - `pnpm storybook` - Start Storybook dev server (port 6006)
 - `pnpm build-storybook` - Build Storybook static site
 
+### Creating New Modules
+
+- `pnpm create:module` - Interactive CLI to scaffold a new component module
+
+This command creates a complete module structure:
+
+- Package with all config files (tsconfig, tsup, vitest)
+- Component Vue file with tests and barrel exports
+- Storybook story
+- README and CHANGELOG
+- Prompts for: module name, description, component name, author
+
+Example workflow:
+
+```bash
+pnpm create:module
+# Module name: alerts
+# Description: Accessible, customizable alert components
+# Component name: Alert
+# Author: Your Name
+
+# Then:
+pnpm install
+pnpm turbo build --filter=@bootcn-vue/alerts
+pnpm dev  # See it in Storybook
+```
+
 ## Code Style Guidelines
 
 ### Imports
