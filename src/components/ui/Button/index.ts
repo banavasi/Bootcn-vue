@@ -7,28 +7,36 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'btn-primary',
-        destructive:
-          'btn-danger',
-        outline:
-          'btn-outline',
-        secondary:
-          'btn-secondary',
-        ghost:
-          'btn-ghost',
+        // Solid variants (Bootstrap standard)
+        primary: 'btn-primary',
+        secondary: 'btn-secondary',
+        success: 'btn-success',
+        danger: 'btn-danger',
+        warning: 'btn-warning',
+        info: 'btn-info',
+        light: 'btn-light',
+        dark: 'btn-dark',
+        // Outline variants
+        'outline-primary': 'btn-outline-primary',
+        'outline-secondary': 'btn-outline-secondary',
+        'outline-success': 'btn-outline-success',
+        'outline-danger': 'btn-outline-danger',
+        'outline-warning': 'btn-outline-warning',
+        'outline-info': 'btn-outline-info',
+        'outline-light': 'btn-outline-light',
+        'outline-dark': 'btn-outline-dark',
+        // Additional
         link: 'btn-link',
       },
       size: {
-        default: 'btn-default',
         sm: 'btn-sm',
+        md: '',
         lg: 'btn-lg',
-        icon: 'btn-icon',
       },
     },
     defaultVariants: {
-      variant: 'default',
-      size: 'default',
+      variant: 'primary',
+      size: 'md',
     },
   },
 )

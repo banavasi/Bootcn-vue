@@ -5,17 +5,28 @@ import { h } from 'vue'
 
 const testVariants = {
   variant: {
-    default:'btn-primary',
-    destructive:'btn-danger',
-    outline:'btn-outline',
-    secondary:'btn-secondary',
-    ghost:'btn-ghost',
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    success: 'btn-success',
+    danger: 'btn-danger',
+    warning: 'btn-warning',
+    info: 'btn-info',
+    light: 'btn-light',
+    dark: 'btn-dark',
+    'outline-primary': 'btn-outline-primary',
+    'outline-secondary': 'btn-outline-secondary',
+    'outline-success': 'btn-outline-success',
+    'outline-danger': 'btn-outline-danger',
+    'outline-warning': 'btn-outline-warning',
+    'outline-info': 'btn-outline-info',
+    'outline-light': 'btn-outline-light',
+    'outline-dark': 'btn-outline-dark',
+    link: 'btn-link',
   },
   size: {
-    default: 'btn-default',
     sm: 'btn-sm',
+    md: '',
     lg: 'btn-lg',
-    icon: 'btn-icon',
   },
 }
 
@@ -29,35 +40,69 @@ describe('Button.vue', () => {
     expect(wrapper.find('button').exists()).toBe(true)
     expect(wrapper.text()).toBe('Click Me')
     expect(wrapper.classes()).toContain('btn')
-    expect(wrapper.classes()).toContain(testVariants.variant.default) // default variant
-    expect(wrapper.classes()).toContain(testVariants.size.default)   // default size
+    expect(wrapper.classes()).toContain(testVariants.variant.primary) // default variant
   })
 
-  // Test all variants
-  const variantsToTest = Object.keys(testVariants.variant) as Array<keyof typeof testVariants.variant>
-  variantsToTest.forEach(variant => {
-    it(`renders with variant: ${String(variant)}`, () => {
+  // Test all solid variants
+  const solidVariants = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'] as const
+  solidVariants.forEach(variant => {
+    it(`renders with variant: ${variant}`, () => {
       const wrapper = mount(Button, {
         props: { variant },
-        slots: { default: `Button ${String(variant)}` }
+        slots: { default: `Button ${variant}` }
       })
       const expectedClass = testVariants.variant[variant];
       expect(wrapper.classes()).toContain(expectedClass)
-      expect(wrapper.text()).toBe(`Button ${String(variant)}`)
+      expect(wrapper.text()).toBe(`Button ${variant}`)
     })
+  })
+
+  // Test all outline variants
+  const outlineVariants = [
+    'outline-primary',
+    'outline-secondary',
+    'outline-success',
+    'outline-danger',
+    'outline-warning',
+    'outline-info',
+    'outline-light',
+    'outline-dark'
+  ] as const
+  outlineVariants.forEach(variant => {
+    it(`renders with variant: ${variant}`, () => {
+      const wrapper = mount(Button, {
+        props: { variant },
+        slots: { default: `Button ${variant}` }
+      })
+      const expectedClass = testVariants.variant[variant];
+      expect(wrapper.classes()).toContain(expectedClass)
+      expect(wrapper.text()).toBe(`Button ${variant}`)
+    })
+  })
+
+  // Test link variant
+  it('renders with variant: link', () => {
+    const wrapper = mount(Button, {
+      props: { variant: 'link' },
+      slots: { default: 'Link Button' }
+    })
+    expect(wrapper.classes()).toContain('btn-link')
+    expect(wrapper.text()).toBe('Link Button')
   })
 
   // Test all sizes
   const sizesToTest = Object.keys(testVariants.size) as Array<keyof typeof testVariants.size>
   sizesToTest.forEach(size => {
-    it(`renders with size: ${String(size)}`, () => {
+    it(`renders with size: ${size}`, () => {
       const wrapper = mount(Button, {
         props: { size },
-        slots: { default: `Button ${String(size)}` }
+        slots: { default: `Button ${size}` }
       })
       const expectedClass = testVariants.size[size];
-      expect(wrapper.classes()).toContain(expectedClass)
-      expect(wrapper.text()).toBe(`Button ${String(size)}`)
+      if (expectedClass) {
+        expect(wrapper.classes()).toContain(expectedClass)
+      }
+      expect(wrapper.text()).toBe(`Button ${size}`)
     })
   })
 
@@ -95,26 +140,31 @@ describe('Button.vue', () => {
     expect(child.exists()).toBe(true)
     expect(child.text()).toBe('Child Content')
     expect(child.classes()).toContain('btn')
-    expect(child.classes()).toContain(testVariants.variant.default)
-    expect(child.classes()).toContain(testVariants.size.default)
+    expect(child.classes()).toContain(testVariants.variant.primary)
   })
 
   it('applies defaultVariants from cva when no variant or size props are passed', () => {
     const wrapper = mount(Button, {
       slots: { default: 'Default Button' }
     })
-    expect(wrapper.classes()).toContain(testVariants.variant.default)
-    expect(wrapper.classes()).toContain(testVariants.size.default)
+    expect(wrapper.classes()).toContain(testVariants.variant.primary)
   })
 
-  it('renders with destructive variant and lg size', () => {
+  it('renders with danger variant and lg size', () => {
     const wrapper = mount(Button, {
-      props: { variant: 'destructive', size: 'lg' },
-      slots: { default: 'Destructive Large' }
+      props: { variant: 'danger', size: 'lg' },
+      slots: { default: 'Danger Large' }
     })
-    expect(wrapper.classes()).toContain(testVariants.variant.destructive)
+    expect(wrapper.classes()).toContain(testVariants.variant.danger)
     expect(wrapper.classes()).toContain(testVariants.size.lg)
-    expect(wrapper.text()).toBe('Destructive Large')
+    expect(wrapper.text()).toBe('Danger Large')
   })
 
-});
+  it('handles disabled state', () => {
+    const wrapper = mount(Button, {
+      props: { disabled: true },
+      slots: { default: 'Disabled Button' }
+    })
+    expect(wrapper.find('button').element.disabled).toBe(true)
+  })
+})
