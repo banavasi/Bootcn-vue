@@ -1,5 +1,17 @@
 # @bootcn-vue/cli
 
+## 0.2.4
+
+### Patch Changes
+
+- [`60a55d4`](https://github.com/banavasi/Bootcn-vue/commit/60a55d43b4e818694edab87bc81cea38454b4d33) Thanks [@banavasi](https://github.com/banavasi)! - fix: install component packages as dev dependencies during init
+
+  The `add` command was failing because it couldn't find source files from `@bootcn-vue/buttons` and `@bootcn-vue/forms` packages. The `init` command now installs these packages as dev dependencies, allowing the `add` command to copy component source files from node_modules.
+
+  This enables the intended workflow:
+  1. `bootcn-vue init` - Sets up project and installs component packages as dev deps
+  2. `bootcn-vue add button` - Copies source files from @bootcn-vue/buttons to your project
+
 ## 0.2.3
 
 ### Patch Changes
