@@ -1,5 +1,19 @@
 # @bootcn-vue/cli
 
+## 0.3.1
+
+### Patch Changes
+
+- [`8480174`](https://github.com/banavasi/Bootcn-vue/commit/8480174f8caa0c4633ed7ca02129b5573b3c7519) Thanks [@banavasi](https://github.com/banavasi)! - fix: export cva and VariantProps from utils.ts
+
+  The Button component imports `cva` and `VariantProps` which are transformed from `@bootcn-vue/core` to `@/lib/utils` during the `add` command. The `init` command now properly exports these from `utils.ts` by re-exporting from `class-variance-authority`.
+
+  This fixes the runtime error:
+
+  ```
+  Uncaught SyntaxError: The requested module '/src/lib/utils.ts' does not provide an export named 'cva'
+  ```
+
 ## 0.3.0
 
 ### Minor Changes
