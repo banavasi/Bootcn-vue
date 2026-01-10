@@ -1,8 +1,8 @@
-# @bootcn-vue/buttons
+# @bootcn-vue/cli
 
 ## 0.2.0
 
-### Patch Changes
+### Minor Changes
 
 - [`28462af`](https://github.com/banavasi/Bootcn-vue/commit/28462afa6d4c12c41581f98063747b26f7199a7b) Thanks [@banavasi](https://github.com/banavasi)! - feat(cli): implement complete CLI with init and add commands
 
@@ -29,27 +29,22 @@
   - Improved package descriptions for better discoverability
   - Added comprehensive CLI documentation
 
-- Updated dependencies [[`28462af`](https://github.com/banavasi/Bootcn-vue/commit/28462afa6d4c12c41581f98063747b26f7199a7b)]:
-  - @bootcn-vue/core@0.2.0
-
-## 0.1.0
-
-### Minor Changes
-
-- [`d5343a4`](https://github.com/banavasi/reka-bootstrap/commit/d5343a41182545700297e2712b63021331f0d1b9) Thanks [@banavasi](https://github.com/banavasi)! - Initial release of bootcn-vue packages
-
-  ## @bootcn-vue/core
-  - `cn()` utility function for merging class names (clsx + tailwind-merge)
-  - Re-exports `cva` and `VariantProps` from class-variance-authority
-
-  ## @bootcn-vue/buttons
-  - Button component with Bootstrap 5 styling
-  - 17 variants (8 solid, 8 outline, 1 link)
-  - 3 sizes (sm, md, lg)
-  - Loading state with spinner
-  - Composition support via `asChild` prop (reka-ui Primitive)
-
 ### Patch Changes
 
-- Updated dependencies [[`d5343a4`](https://github.com/banavasi/reka-bootstrap/commit/d5343a41182545700297e2712b63021331f0d1b9)]:
-  - @bootcn-vue/core@0.1.0
+- [`28462af`](https://github.com/banavasi/Bootcn-vue/commit/28462afa6d4c12c41581f98063747b26f7199a7b) Thanks [@banavasi](https://github.com/banavasi)! - chore(ci): optimize CI/CD workflows for monorepo
+
+  ## CI/CD Improvements
+
+  ### GitHub Actions CI
+  - Added fetch-depth: 0 for proper Turbo caching
+  - Turbo automatically uses smart caching based on git history
+  - Only rebuilds packages that have changed
+
+  ### GitHub Actions Deploy Docs
+  - Added path filters to only trigger when relevant files change
+  - Deploys only when apps/playground/ or packages/ change
+  - Saves unnecessary Storybook builds
+
+  ### GitHub Actions Release
+  - Changesets automatically handles only publishing changed packages
+  - Proper git history for version bumping
