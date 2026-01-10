@@ -1,5 +1,16 @@
 # @bootcn-vue/forms
 
+## 0.2.2
+
+### Patch Changes
+
+- [`72123e6`](https://github.com/banavasi/Bootcn-vue/commit/72123e6a0ae5efc14ad48ff16e26708183d0d903) Thanks [@banavasi](https://github.com/banavasi)! - chore: trigger npm publish with updated credentials
+
+  Update all packages to test npm publish with new granular access token.
+
+- Updated dependencies [[`72123e6`](https://github.com/banavasi/Bootcn-vue/commit/72123e6a0ae5efc14ad48ff16e26708183d0d903)]:
+  - @bootcn-vue/core@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes
