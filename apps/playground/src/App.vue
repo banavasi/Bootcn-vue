@@ -8,6 +8,7 @@ const handleClick = () => {
 
 <template>
   <Button @click="handleClick">click me</Button>
+  <h1>How are you doing today</h1>
 </template>
 
 <style scoped></style>

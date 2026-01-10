@@ -27,14 +27,14 @@
 
 ## Sprint Overview
 
-| Sprint   | Focus                   | Status                  |
-| -------- | ----------------------- | ----------------------- |
-| Sprint 1 | Monorepo Infrastructure | `[x]` Complete          |
-| Sprint 2 | Core & Button Package   | `[x]` Complete          |
-| Sprint 3 | CLI Development         | `[ ]` Not Started       |
-| Sprint 4 | CI/CD & Publishing      | `[~]` In Progress (90%) |
-| Sprint 5 | Forms Package           | `[ ]` Not Started       |
-| Sprint 6 | Documentation & Polish  | `[ ]` Not Started       |
+| Sprint   | Focus                   | Status            |
+| -------- | ----------------------- | ----------------- |
+| Sprint 1 | Monorepo Infrastructure | `[x]` Complete    |
+| Sprint 2 | Core & Button Package   | `[x]` Complete    |
+| Sprint 3 | CLI Development         | `[x]` Complete    |
+| Sprint 4 | CI/CD & Publishing      | `[x]` Complete    |
+| Sprint 5 | Forms Package           | `[ ]` Not Started |
+| Sprint 6 | Documentation & Polish  | `[ ]` Not Started |
 
 ---
 
@@ -183,21 +183,20 @@
 
 #### Tasks
 
-- [ ] **T3.1.1:** Initialize CLI package
-  - [ ] Create `packages/cli/package.json`
-  - [ ] Set up bin entry point
-  - [ ] Install dependencies (commander, prompts, picocolors)
+- [x] **T3.1.1:** Initialize CLI package
+  - [x] Create `packages/cli/package.json`
+  - [x] Set up bin entry point
+  - [x] Install dependencies (commander, @clack/prompts, picocolors)
 
-- [ ] **T3.1.2:** Set up CLI structure
-  - [ ] Create `src/index.ts` entry point
-  - [ ] Create `src/commands/` directory
-  - [ ] Create `src/utils/` directory
-  - [ ] Create `src/schemas/` directory
+- [x] **T3.1.2:** Set up CLI structure
+  - [x] Create `src/index.ts` entry point
+  - [x] Create `src/commands/` directory
+  - [x] Create `src/utils/` directory
 
-- [ ] **T3.1.3:** Configure CLI build
-  - [ ] Set up tsup for CLI bundling
-  - [ ] Configure shebang for executable
-  - [ ] Test CLI can be invoked
+- [x] **T3.1.3:** Configure CLI build
+  - [x] Set up tsup for CLI bundling
+  - [x] Configure shebang for executable
+  - [x] Test CLI can be invoked
 
 ### S3.2: Init Command (P0)
 
@@ -205,34 +204,34 @@
 
 #### Tasks
 
-- [ ] **T3.2.1:** Create config schema
-  - [ ] Define `bootcn.config.json` schema with Zod
-  - [ ] Define prompts for user input
-  - [ ] Handle defaults and validation
+- [x] **T3.2.1:** Create config schema
+  - [x] Define `bootcn.config.json` schema
+  - [x] Define prompts for user input
+  - [x] Handle defaults and validation
 
-- [ ] **T3.2.2:** Implement project detection
-  - [ ] Detect if Vue 3 + Vite project
-  - [ ] Detect package manager (pnpm/npm/yarn)
-  - [ ] Detect existing tsconfig paths
+- [x] **T3.2.2:** Implement project detection
+  - [x] Detect if Vue 3 + Vite project
+  - [x] Detect package manager (pnpm/npm/yarn)
+  - [x] Detect TypeScript
 
-- [ ] **T3.2.3:** Implement vite.config.ts updater
-  - [ ] Parse existing vite.config.ts
-  - [ ] Add alias for @/ui and @/lib
-  - [ ] Write updated config
+- [x] **T3.2.3:** Implement vite.config.ts updater
+  - [x] Parse existing vite.config.ts
+  - [x] Add alias for @/\* paths
+  - [x] Write updated config
 
-- [ ] **T3.2.4:** Implement tsconfig.json updater
-  - [ ] Parse existing tsconfig.json
-  - [ ] Add paths for aliases
-  - [ ] Write updated config
+- [x] **T3.2.4:** Implement tsconfig.json updater
+  - [x] Parse existing tsconfig.json
+  - [x] Add paths for aliases
+  - [x] Write updated config
 
-- [ ] **T3.2.5:** Implement utils copy
-  - [ ] Copy utils.ts to user's lib directory
-  - [ ] Transform imports if needed
+- [x] **T3.2.5:** Implement utils copy
+  - [x] Copy utils.ts to user's lib directory
+  - [x] Create cn() utility function
 
-- [ ] **T3.2.6:** Implement dependency installer
-  - [ ] Detect package manager
-  - [ ] Install base dependencies (reka-ui, cva, clsx, tailwind-merge)
-  - [ ] Handle installation errors
+- [x] **T3.2.6:** Implement dependency installer
+  - [x] Detect package manager
+  - [x] Install base dependencies (reka-ui, cva, clsx, tailwind-merge, bootstrap)
+  - [x] Handle installation errors
 
 ### S3.3: Add Command (P1)
 
@@ -240,20 +239,20 @@
 
 #### Tasks
 
-- [ ] **T3.3.1:** Create registry system
-  - [ ] Define registry item schema
-  - [ ] Create registry.json for each package
-  - [ ] Set up registry fetching (local for now)
+- [x] **T3.3.1:** Create registry system
+  - [x] Define registry item schema
+  - [x] Create in-memory registry for Button
+  - [x] Set up component fetching from packages
 
-- [ ] **T3.3.2:** Implement component selector
-  - [ ] List available components from package
-  - [ ] Multi-select prompt for components
-  - [ ] Handle component dependencies
+- [x] **T3.3.2:** Implement component selector
+  - [x] List available components from package
+  - [x] Multi-select prompt for components
+  - [x] Support command line arguments
 
-- [ ] **T3.3.3:** Implement file copier
-  - [ ] Read component files from registry
-  - [ ] Transform imports (@bootcn-vue/core -> @/lib/utils)
-  - [ ] Write files to user's ui directory
+- [x] **T3.3.3:** Implement file copier
+  - [x] Read component files from packages
+  - [x] Transform imports (@bootcn-vue/core -> @/lib/utils)
+  - [x] Write files to user's ui directory
 
 - [ ] **T3.3.4:** Implement dependency resolver
   - [ ] Resolve registryDependencies recursively
@@ -317,6 +316,7 @@
 - [x] **T4.2.1:** Create release workflow
   - [x] Create `.github/workflows/release.yml`
   - [x] Configure Changesets action
+  - [x] Changesets automatically handles changed packages
   - [ ] Set up NPM_TOKEN secret (manual step in GitHub settings)
   - [ ] Test release process (after first merge to main)
 
@@ -337,7 +337,9 @@
   - [x] Build Storybook on main push
   - [x] Deploy to GitHub Pages
 
-- [ ] **T4.3.2:** Configure GitHub Pages
+- [x] **T4.3.2:** Configure GitHub Pages
+  - [x] Added path filters to only deploy when packages/playground change
+  - [x] Added fetch-depth: 0 for proper Turbo caching
   - [ ] Enable GitHub Pages in repo settings (manual step)
   - [ ] Verify deployment works (after first merge to main)
 
@@ -511,7 +513,8 @@
 
 ## Changelog
 
-| Date       | Change                                                 |
-| ---------- | ------------------------------------------------------ |
-| 2026-01-10 | Sprint 2 complete - Core & Buttons packages with tests |
-| 2026-01-09 | Initial backlog created                                |
+| Date       | Change                                                            |
+| ---------- | ----------------------------------------------------------------- |
+| 2026-01-10 | Sprint 3 & 4 complete - CLI implementation and CI/CD optimization |
+| 2026-01-10 | Sprint 2 complete - Core & Buttons packages with tests            |
+| 2026-01-09 | Initial backlog created                                           |

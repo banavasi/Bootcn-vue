@@ -1,7 +1,7 @@
 {
   "name": "@bootcn-vue/buttons",
   "version": "0.1.0",
-  "description": "Button components for bootcn-vue",
+  "description": "Accessible, customizable Button components built with Bootstrap 5 and Vue 3",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -52,7 +52,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/banavasi/bootcn-vue.git",
+    "url": "https://github.com/banavasi/Bootcn-vue.git",
     "directory": "packages/buttons"
   },
   "keywords": [

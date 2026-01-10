@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Bootstrap + Vue 3 Component Library with CLI",
+  "description": "Modern, type-safe Bootstrap + Vue 3 component library with CLI for rapid UI development",
   "author": "Shashank Shandilya",
   "license": "MIT",
   "scripts": {
