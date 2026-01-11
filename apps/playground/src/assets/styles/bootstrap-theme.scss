@@ -1,6 +1,9 @@
 // Bootstrap Theme
-// Standard Bootstrap 5 with minimal customizations
+// Standard Bootstrap 5 with RDS spacing utilities
 
 @import "bootstrap/scss/bootstrap.scss";
 
-// Optional: Add any Bootstrap-specific customizations here
+// Import RDS spacing system from core package
+@import "@bootcn-vue/core/styles/rds-spacing";
+
+// Optional: Add any additional customizations here
