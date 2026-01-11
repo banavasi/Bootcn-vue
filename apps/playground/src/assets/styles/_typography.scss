@@ -1,0 +1,136 @@
+// Rocket Design System Typography
+
+h1,
+h2 {
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  letter-spacing: -0.025em;
+}
+
+// links
+a:hover {
+  text-decoration: underline;
+}
+
+// h1 class
+/* Extra-small, small and Medium devices */
+.h1-small {
+  font-size: 24px;
+}
+
+.h1-medium {
+  font-size: 30px;
+}
+
+.h1-large {
+  font-size: 36px;
+}
+
+.h1-xl {
+  font-size: 56px;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .h1-small {
+    font-size: 36px;
+  }
+
+  .h1-medium {
+    font-size: 48px;
+  }
+
+  .h1-large {
+    font-size: 56px;
+  }
+
+  .h1-xl {
+    font-size: 72px;
+  }
+}
+
+// h2 styles
+/* Extra-small, small and Medium devices */
+.h2-small {
+  font-size: 18px;
+}
+
+.h2-medium {
+  font-size: 24px;
+}
+
+.h2-large {
+  font-size: 30px;
+}
+
+.h2-xl {
+  font-size: 48px;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .h2-small {
+    font-size: 24px;
+  }
+
+  .h2-medium {
+    font-size: 36px;
+  }
+
+  .h2-large {
+    font-size: 48px;
+  }
+
+  .h2-xl {
+    font-size: 60px;
+  }
+}
+
+// h3 styles
+/* Extra-small, small and Medium devices */
+.h3-small {
+  font-size: 16px;
+}
+
+.h3-medium {
+  font-size: 18px;
+}
+
+.h3-large {
+  font-size: 18px;
+}
+
+.h3-xl {
+  font-size: 30px;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .h3-small {
+    font-size: 16px;
+  }
+
+  .h3-medium {
+    font-size: 18px;
+  }
+
+  .h3-large {
+    font-size: 24px;
+  }
+
+  .h3-xl {
+    font-size: 36px;
+  }
+}
+
+// setting al fs- classes to use line-height values of 1.4
+%fs-line-heights {
+  line-height: 1.4;
+}
+@each $font-size, $value in $font-sizes {
+  .fs-#{$font-size} {
+    @extend %fs-line-heights;
+  }
+}
