@@ -14,7 +14,8 @@
     "./lib/*": {
       "types": "./src/lib/*.d.ts",
       "import": "./src/lib/*.ts"
-    }
+    },
+    "./styles/*": "./src/styles/*"
   },
   "files": [
     "dist",

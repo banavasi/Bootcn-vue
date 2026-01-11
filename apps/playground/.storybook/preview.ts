@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/vue3";
-import "bootstrap/scss/bootstrap.scss";
+
+// Import Bootstrap theme
+import "../src/assets/styles/bootstrap-theme.scss";
 
 const preview: Preview = {
   parameters: {

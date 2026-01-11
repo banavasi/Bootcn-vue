@@ -1,0 +1,101 @@
+// RDS (Rocket Design System) Spacing Scale
+// ASU EdPlus Foundation - Custom spacing system
+// Use these spacing classes for consistent design system spacing
+
+// RDS Spacing Variables
+$rds-space-xxxs: 0.25rem !default; // 4px
+$rds-space-xxs: 0.5rem !default; // 8px
+$rds-space-xs: 1rem !default; // 16px
+$rds-space-sm: 1.5rem !default; // 24px
+$rds-space-md: 2rem !default; // 32px
+$rds-space-lg: 3rem !default; // 48px
+$rds-space-xl: 4rem !default; // 64px
+$rds-space-xxl: 6rem !default; // 96px
+$rds-space-xxxl: 8rem !default; // 128px
+
+// RDS Spacing Map for iteration
+$rds-spacers: (
+  "xxxs": $rds-space-xxxs,
+  "xxs": $rds-space-xxs,
+  "xs": $rds-space-xs,
+  "sm": $rds-space-sm,
+  "md": $rds-space-md,
+  "lg": $rds-space-lg,
+  "xl": $rds-space-xl,
+  "xxl": $rds-space-xxl,
+  "xxxl": $rds-space-xxxl,
+) !default;
+
+// Generate RDS Spacing Utility Classes
+// Follows Bootstrap naming convention: {property}{sides}-space-{size}
+// Properties: m (margin), p (padding)
+// Sides: t (top), b (bottom), s (start/left), e (end/right), x (horizontal), y (vertical)
+
+@each $size, $value in $rds-spacers {
+  // Margin utilities
+  .m-space-#{$size} {
+    margin: $value !important;
+  }
+  .mt-space-#{$size} {
+    margin-top: $value !important;
+  }
+  .mb-space-#{$size} {
+    margin-bottom: $value !important;
+  }
+  .ms-space-#{$size} {
+    margin-left: $value !important;
+  }
+  .me-space-#{$size} {
+    margin-right: $value !important;
+  }
+  .mx-space-#{$size} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  .my-space-#{$size} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+
+  // Padding utilities
+  .p-space-#{$size} {
+    padding: $value !important;
+  }
+  .pt-space-#{$size} {
+    padding-top: $value !important;
+  }
+  .pb-space-#{$size} {
+    padding-bottom: $value !important;
+  }
+  .ps-space-#{$size} {
+    padding-left: $value !important;
+  }
+  .pe-space-#{$size} {
+    padding-right: $value !important;
+  }
+  .px-space-#{$size} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .py-space-#{$size} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+
+  // Gap utilities (for flexbox/grid)
+  .gap-space-#{$size} {
+    gap: $value !important;
+  }
+  .row-gap-space-#{$size} {
+    row-gap: $value !important;
+  }
+  .column-gap-space-#{$size} {
+    column-gap: $value !important;
+  }
+}
+
+// Usage Examples:
+// <div class="mb-space-sm">      <!-- 24px bottom margin -->
+// <div class="px-space-md">      <!-- 32px horizontal padding -->
+// <div class="gap-space-xs">     <!-- 16px gap in flex/grid -->
+// <div class="my-space-lg">      <!-- 48px vertical margin -->
