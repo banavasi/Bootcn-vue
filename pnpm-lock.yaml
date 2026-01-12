@@ -265,11 +265,45 @@ importers:
         specifier: ~5.8.0
         version: 5.8.3
 
+  packages/field-text:
+    dependencies:
+      '@bootcn-vue/forms':
+        specifier: workspace:*
+        version: link:../forms
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^5.2.1
+        version: 5.2.4(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))
+      '@vue/test-utils':
+        specifier: ^2.4.6
+        version: 2.4.6
+      tsup:
+        specifier: ^8.3.5
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.6)(typescript@5.8.3)(yaml@2.8.2)
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+      unplugin-vue:
+        specifier: ^7.1.0
+        version: 7.1.0(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
+      vite:
+        specifier: ^8.0.0-beta.7
+        version: 8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2)
+      vitest:
+        specifier: ^3.0.2
+        version: 3.2.4(@types/node@22.19.5)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2)
+      vue:
+        specifier: ^3.5.13
+        version: 3.5.26(typescript@5.8.3)
+
   packages/forms:
     dependencies:
       '@bootcn-vue/core':
         specifier: workspace:*
         version: link:../core
+      '@bootcn-vue/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
       bootstrap:
         specifier: ^5.3.0
         version: 5.3.8(@popperjs/core@2.11.8)

@@ -38,6 +38,15 @@ export interface BaseFieldProps {
   /** Help text to display below the input */
   helpText?: string;
 
+  /** Tooltip message to display next to the label */
+  tooltipMessage?: string;
+
+  /** Show "Optional" badge next to label */
+  isOptional?: boolean;
+
+  /** Custom text for optional badge (default: "Optional") */
+  optionalText?: string;
+
   /** CSS class for the root container */
   class?: HTMLAttributes["class"];
 
