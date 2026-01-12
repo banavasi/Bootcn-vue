@@ -11,6 +11,9 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./dist/index.css": {
+      "default": "./dist/index.css"
+    },
     "./Input": {
       "types": "./src/Input/index.d.ts",
       "import": "./src/Input/index.ts"

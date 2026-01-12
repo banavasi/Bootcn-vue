@@ -1,0 +1,7 @@
+.form-control {
+  border-radius: 0 !important;
+}
+
+.is-invalid {
+  border-bottom-width: 0.25rem !important;
+}
