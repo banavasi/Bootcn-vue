@@ -1,5 +1,68 @@
 # @bootcn-vue/forms
 
+## 0.4.0
+
+### Minor Changes
+
+- [#13](https://github.com/banavasi/Bootcn-vue/pull/13) [`4993a5f`](https://github.com/banavasi/Bootcn-vue/commit/4993a5f61b724da775e29ccfc93f5eb6d693e8fc) Thanks [@banavasi](https://github.com/banavasi)! - # Enhanced Tooltip Features
+
+  ## Tooltip Package
+  - Add `htmlContent` prop to TooltipContent for rendering HTML content
+  - Add `bgColor` prop for custom background colors (Bootstrap classes or hex colors)
+  - Add `textColor` prop for custom text colors (Bootstrap classes or hex colors)
+  - Support both Bootstrap utility classes (e.g., `bg-primary`, `text-white`) and custom colors (e.g., `#ff0000`)
+
+  ## Forms Package
+  - Add `tooltipHtmlContent` prop to InputLabel for HTML tooltip content
+  - Add `tooltipBgColor` prop to InputLabel for custom tooltip background colors
+  - Add `tooltipTextColor` prop to InputLabel for custom tooltip text colors
+  - Fix InputLabel import path (use `../context` instead of `../types`)
+  - Add 4 new Storybook stories demonstrating enhanced tooltip features:
+    - TooltipWithHtmlContent
+    - TooltipWithCustomColors
+    - TooltipWithCustomHexColors
+    - TooltipHtmlWithFormatting
+
+  ## Core Package
+  - Add RDS color system with 8 custom colors (light-1 through light-5, dark-1 through dark-3)
+  - Integrate RDS colors with Bootstrap color maps for automatic utility generation
+  - Add comprehensive color documentation and Storybook examples
+
+- [#13](https://github.com/banavasi/Bootcn-vue/pull/13) [`3855991`](https://github.com/banavasi/Bootcn-vue/commit/38559916a1803dad3998003094fd42d8337a3fd6) Thanks [@banavasi](https://github.com/banavasi)! - Add primitives architecture with BaseFieldProps interface
+  - Add primitive components: InputRoot, InputLabel, InputField, InputError, InputHelp
+  - Add BaseFieldProps interface for consistent field component props
+  - Add context-based architecture for ARIA attributes
+  - Fix TypeScript imports to use type-only imports
+  - Add label spacing (mb-space-xxs) for better visual hierarchy
+
+- [#13](https://github.com/banavasi/Bootcn-vue/pull/13) [`4ae5802`](https://github.com/banavasi/Bootcn-vue/commit/4ae580250e01d546ef9710a57fa6c2be33d5ee07) Thanks [@banavasi](https://github.com/banavasi)! - Add tooltip and optional badge support to InputLabel
+  - Add `tooltipMessage` prop to display tooltip next to label with info icon
+  - Add `isOptional` and `optionalText` props to show optional badge
+  - Update BaseFieldProps interface with new tooltip/optional props
+  - Integrate @bootcn-vue/tooltip package as dependency
+  - Tooltip positioned to the right with 300ms delay
+  - Optional badge uses Bootstrap light badge styling
+
+- [#13](https://github.com/banavasi/Bootcn-vue/pull/13) [`4993a5f`](https://github.com/banavasi/Bootcn-vue/commit/4993a5f61b724da775e29ccfc93f5eb6d693e8fc) Thanks [@banavasi](https://github.com/banavasi)! - # InputLabel Enhancements
+  - Add `tooltipPosition` prop for positioning tooltip (top, bottom, left, right)
+  - Add `iconPosition` prop for positioning tooltip icon (before, after)
+  - Add `#icon` slot for custom tooltip trigger icons
+  - Add `#optional-badge` slot for custom optional indicator content
+  - Create comprehensive INPUT_LABEL_GUIDE.md documentation
+  - Add 5 new Storybook stories demonstrating new features
+
+### Patch Changes
+
+- [#13](https://github.com/banavasi/Bootcn-vue/pull/13) [`4993a5f`](https://github.com/banavasi/Bootcn-vue/commit/4993a5f61b724da775e29ccfc93f5eb6d693e8fc) Thanks [@banavasi](https://github.com/banavasi)! - # InputField Border Fixes
+  - Enforce square corners (`border-radius: 0`) on all input fields
+  - Add thick error border (`border-bottom-width: 0.25rem`) for invalid inputs
+  - Extract styles to external CSS file to fix tsup build issues with sourcemaps
+  - Export InputField.css in package.json
+
+- Updated dependencies [[`4993a5f`](https://github.com/banavasi/Bootcn-vue/commit/4993a5f61b724da775e29ccfc93f5eb6d693e8fc), [`7d99bf1`](https://github.com/banavasi/Bootcn-vue/commit/7d99bf17ed7655317be10791517a17d25eb01c29), [`b973a1c`](https://github.com/banavasi/Bootcn-vue/commit/b973a1c0a63bb579eb6d5d480a6bdea9ea38e894)]:
+  - @bootcn-vue/tooltip@0.2.0
+  - @bootcn-vue/core@0.4.0
+
 ## 0.2.2
 
 ### Patch Changes
