@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run --passWithNoTests",
     "test:e2e": "playwright test",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
@@ -18,6 +18,9 @@
   "dependencies": {
     "@bootcn-vue/buttons": "workspace:*",
     "@bootcn-vue/core": "workspace:*",
+    "@bootcn-vue/field-text": "workspace:*",
+    "@bootcn-vue/forms": "workspace:*",
+    "@bootcn-vue/tooltip": "workspace:*",
     "bootstrap": "^5.3.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

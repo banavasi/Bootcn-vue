@@ -1,0 +1,178 @@
+/**
+ * RDS Color System
+ * Custom color palette for the design system
+ * 
+ * Usage:
+ * - CSS Custom Properties: var(--rds-light-1)
+ * - SCSS Variables: $rds-light-1
+ * - Utility Classes: .text-rds-light-1, .bg-rds-light-1, .border-rds-light-1
+ */
+
+// ============================================================================
+// Color Variables
+// ============================================================================
+
+// Light Shades
+$rds-light-1: #fafafa !default;
+$rds-light-2: #f1f1f1 !default;
+$rds-light-3: #e8e8e8 !default;
+$rds-light-4: #d0d0d0 !default;
+$rds-light-5: #bfbfbf !default;
+
+// Dark Shades
+$rds-dark-1: #747474 !default;
+$rds-dark-2: #484848 !default;
+$rds-dark-3: #191919 !default;
+
+// ============================================================================
+// CSS Custom Properties (CSS Variables)
+// ============================================================================
+
+:root {
+  // Light shades
+  --rds-light-1: #{$rds-light-1};
+  --rds-light-2: #{$rds-light-2};
+  --rds-light-3: #{$rds-light-3};
+  --rds-light-4: #{$rds-light-4};
+  --rds-light-5: #{$rds-light-5};
+
+  // Dark shades
+  --rds-dark-1: #{$rds-dark-1};
+  --rds-dark-2: #{$rds-dark-2};
+  --rds-dark-3: #{$rds-dark-3};
+}
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+// Text Colors
+.text-rds-light-1 {
+  color: var(--rds-light-1) !important;
+}
+.text-rds-light-2 {
+  color: var(--rds-light-2) !important;
+}
+.text-rds-light-3 {
+  color: var(--rds-light-3) !important;
+}
+.text-rds-light-4 {
+  color: var(--rds-light-4) !important;
+}
+.text-rds-light-5 {
+  color: var(--rds-light-5) !important;
+}
+
+.text-rds-dark-1 {
+  color: var(--rds-dark-1) !important;
+}
+.text-rds-dark-2 {
+  color: var(--rds-dark-2) !important;
+}
+.text-rds-dark-3 {
+  color: var(--rds-dark-3) !important;
+}
+
+// Background Colors
+.bg-rds-light-1 {
+  background-color: var(--rds-light-1) !important;
+}
+.bg-rds-light-2 {
+  background-color: var(--rds-light-2) !important;
+}
+.bg-rds-light-3 {
+  background-color: var(--rds-light-3) !important;
+}
+.bg-rds-light-4 {
+  background-color: var(--rds-light-4) !important;
+}
+.bg-rds-light-5 {
+  background-color: var(--rds-light-5) !important;
+}
+
+.bg-rds-dark-1 {
+  background-color: var(--rds-dark-1) !important;
+}
+.bg-rds-dark-2 {
+  background-color: var(--rds-dark-2) !important;
+}
+.bg-rds-dark-3 {
+  background-color: var(--rds-dark-3) !important;
+}
+
+// Border Colors
+.border-rds-light-1 {
+  border-color: var(--rds-light-1) !important;
+}
+.border-rds-light-2 {
+  border-color: var(--rds-light-2) !important;
+}
+.border-rds-light-3 {
+  border-color: var(--rds-light-3) !important;
+}
+.border-rds-light-4 {
+  border-color: var(--rds-light-4) !important;
+}
+.border-rds-light-5 {
+  border-color: var(--rds-light-5) !important;
+}
+
+.border-rds-dark-1 {
+  border-color: var(--rds-dark-1) !important;
+}
+.border-rds-dark-2 {
+  border-color: var(--rds-dark-2) !important;
+}
+.border-rds-dark-3 {
+  border-color: var(--rds-dark-3) !important;
+}
+
+// ============================================================================
+// Usage Examples
+// ============================================================================
+
+/*
+HTML Examples:
+
+<!-- Text color -->
+<p class="text-rds-dark-2">Dark text</p>
+
+<!-- Background color -->
+<div class="bg-rds-light-2 p-3">Light background</div>
+
+<!-- Border color -->
+<div class="border border-rds-light-4 p-3">Bordered element</div>
+
+<!-- Combined -->
+<div class="bg-rds-dark-3 text-rds-light-1 p-3">
+  Dark background with light text
+</div>
+
+<!-- CSS Variables in inline styles -->
+<div style="background-color: var(--rds-light-3);">Custom styling</div>
+
+
+SCSS/CSS Examples:
+
+// Using SCSS variables
+.custom-card {
+  background-color: $rds-light-1;
+  border: 1px solid $rds-light-4;
+  color: $rds-dark-2;
+}
+
+// Using CSS custom properties
+.custom-button {
+  background-color: var(--rds-dark-3);
+  color: var(--rds-light-1);
+}
+
+// Hover states
+.custom-link {
+  color: var(--rds-dark-2);
+  
+  &:hover {
+    color: var(--rds-dark-3);
+  }
+}
+*/

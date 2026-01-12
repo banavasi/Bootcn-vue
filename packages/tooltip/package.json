@@ -1,7 +1,7 @@
 {
-  "name": "@bootcn-vue/forms",
-  "version": "0.2.2",
-  "description": "Accessible, customizable form components built with Bootstrap 5 and Vue 3",
+  "name": "@bootcn-vue/tooltip",
+  "version": "0.1.0",
+  "description": "Accessible, customizable tooltip component built with Bootstrap 5 and Vue 3",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -10,17 +10,6 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    },
-    "./dist/index.css": {
-      "default": "./dist/index.css"
-    },
-    "./Input": {
-      "types": "./src/Input/index.d.ts",
-      "import": "./src/Input/index.ts"
-    },
-    "./MaskInput": {
-      "types": "./src/MaskInput/index.d.ts",
-      "import": "./src/MaskInput/index.ts"
     }
   },
   "files": [
@@ -38,7 +27,6 @@
   },
   "dependencies": {
     "@bootcn-vue/core": "workspace:*",
-    "@bootcn-vue/tooltip": "workspace:*",
     "reka-ui": "^2.2.1"
   },
   "devDependencies": {
@@ -61,7 +49,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/banavasi/Bootcn-vue.git",
-    "directory": "packages/forms"
+    "directory": "packages/tooltip"
   },
   "homepage": "https://banavasi.github.io/Bootcn-vue/",
   "bugs": {
@@ -71,8 +59,8 @@
     "vue",
     "vue3",
     "bootstrap",
-    "form",
-    "input",
+    "tooltip",
+    "popover",
     "components"
   ],
   "author": "Shashank Shandilya",

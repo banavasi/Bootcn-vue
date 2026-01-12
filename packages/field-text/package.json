@@ -1,0 +1,49 @@
+{
+  "name": "@bootcn-vue/field-text",
+  "version": "0.1.0",
+  "description": "Text input field component for Vue 3 using Bootstrap primitives",
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@bootcn-vue/forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "tsup": "^8.3.5",
+    "typescript": "~5.8.2",
+    "unplugin-vue": "^7.1.0",
+    "vite": "^8.0.0-beta.7",
+    "vitest": "^3.0.2",
+    "vue": "^3.5.13"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "bootstrap",
+    "input",
+    "form",
+    "field"
+  ],
+  "author": "",
+  "license": "MIT"
+}

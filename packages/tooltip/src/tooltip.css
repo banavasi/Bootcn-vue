@@ -1,0 +1,60 @@
+/* Tooltip arrow styling for Bootstrap */
+.tooltip {
+  --bs-tooltip-arrow-width: 0.8rem;
+  --bs-tooltip-arrow-height: 0.4rem;
+}
+
+/* 
+  Reka UI's TooltipArrow handles positioning automatically.
+  We just need to style the visual appearance for Bootstrap.
+*/
+.tooltip-arrow {
+  width: var(--bs-tooltip-arrow-width);
+  height: var(--bs-tooltip-arrow-height);
+}
+
+/* Arrow triangle using ::before pseudo-element */
+.tooltip-arrow::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: transparent;
+}
+
+/* Top tooltip - triangle pointing down */
+.bs-tooltip-top .tooltip-arrow::before {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: var(--bs-tooltip-arrow-height) calc(var(--bs-tooltip-arrow-width) / 2) 0;
+  border-top-color: var(--bs-tooltip-bg);
+}
+
+/* Bottom tooltip - triangle pointing up */
+.bs-tooltip-bottom .tooltip-arrow::before {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 calc(var(--bs-tooltip-arrow-width) / 2) var(--bs-tooltip-arrow-height);
+  border-bottom-color: var(--bs-tooltip-bg);
+}
+
+/* Left tooltip - triangle pointing right */
+.bs-tooltip-start .tooltip-arrow::before {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: calc(var(--bs-tooltip-arrow-width) / 2) 0 calc(var(--bs-tooltip-arrow-width) / 2)
+    var(--bs-tooltip-arrow-height);
+  border-left-color: var(--bs-tooltip-bg);
+}
+
+/* Right tooltip - triangle pointing left */
+.bs-tooltip-end .tooltip-arrow::before {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: calc(var(--bs-tooltip-arrow-width) / 2) var(--bs-tooltip-arrow-height)
+    calc(var(--bs-tooltip-arrow-width) / 2) 0;
+  border-right-color: var(--bs-tooltip-bg);
+}
