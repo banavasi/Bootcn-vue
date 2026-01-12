@@ -1,5 +1,37 @@
 # @bootcn-vue/core
 
+## 0.4.0
+
+### Minor Changes
+
+- [#11](https://github.com/banavasi/Bootcn-vue/pull/11) [`7d99bf1`](https://github.com/banavasi/Bootcn-vue/commit/7d99bf17ed7655317be10791517a17d25eb01c29) Thanks [@banavasi](https://github.com/banavasi)! - introduces the Rocket Design System (RDS) spacing utilities to the codebase, extending Bootstrap's default spacing with a semantic, design-system-aligned scale. It adds new SCSS utilities, documentation, and a Storybook example to demonstrate usage. The changes ensure consistent and meaningful spacing across applications using both Bootstrap and RDS classes.
+
+### Patch Changes
+
+- [#13](https://github.com/banavasi/Bootcn-vue/pull/13) [`4993a5f`](https://github.com/banavasi/Bootcn-vue/commit/4993a5f61b724da775e29ccfc93f5eb6d693e8fc) Thanks [@banavasi](https://github.com/banavasi)! - # Enhanced Tooltip Features
+
+  ## Tooltip Package
+  - Add `htmlContent` prop to TooltipContent for rendering HTML content
+  - Add `bgColor` prop for custom background colors (Bootstrap classes or hex colors)
+  - Add `textColor` prop for custom text colors (Bootstrap classes or hex colors)
+  - Support both Bootstrap utility classes (e.g., `bg-primary`, `text-white`) and custom colors (e.g., `#ff0000`)
+
+  ## Forms Package
+  - Add `tooltipHtmlContent` prop to InputLabel for HTML tooltip content
+  - Add `tooltipBgColor` prop to InputLabel for custom tooltip background colors
+  - Add `tooltipTextColor` prop to InputLabel for custom tooltip text colors
+  - Fix InputLabel import path (use `../context` instead of `../types`)
+  - Add 4 new Storybook stories demonstrating enhanced tooltip features:
+    - TooltipWithHtmlContent
+    - TooltipWithCustomColors
+    - TooltipWithCustomHexColors
+    - TooltipHtmlWithFormatting
+
+  ## Core Package
+  - Add RDS color system with 8 custom colors (light-1 through light-5, dark-1 through dark-3)
+  - Integrate RDS colors with Bootstrap color maps for automatic utility generation
+  - Add comprehensive color documentation and Storybook examples
+
 ## 0.2.2
 
 ### Patch Changes

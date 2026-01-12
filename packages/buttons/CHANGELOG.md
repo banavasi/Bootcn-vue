@@ -1,5 +1,12 @@
 # @bootcn-vue/buttons
 
+## 0.4.0
+
+### Patch Changes
+
+- Updated dependencies [[`4993a5f`](https://github.com/banavasi/Bootcn-vue/commit/4993a5f61b724da775e29ccfc93f5eb6d693e8fc), [`7d99bf1`](https://github.com/banavasi/Bootcn-vue/commit/7d99bf17ed7655317be10791517a17d25eb01c29)]:
+  - @bootcn-vue/core@0.4.0
+
 ## 0.2.2
 
 ### Patch Changes
