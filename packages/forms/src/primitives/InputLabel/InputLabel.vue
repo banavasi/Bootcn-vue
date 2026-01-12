@@ -1,15 +1,37 @@
 <script setup lang="ts">
+import type { HTMLAttributes, VNode } from "vue";
 import { inject } from "vue";
-import type { VNode } from "vue";
-import { INPUT_INJECTION_KEY } from "../types";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@bootcn-vue/tooltip";
+import { INPUT_INJECTION_KEY } from "../context";
 
 interface Props {
   level?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   size?: "small" | "medium" | "large";
   class?: HTMLAttributes["class"];
+  /**
+   * Tooltip message (plain text)
+   * Use tooltipHtmlContent for HTML content
+   */
   tooltipMessage?: string;
+  /**
+   * Tooltip HTML content
+   * If provided, this takes precedence over tooltipMessage
+   */
+  tooltipHtmlContent?: string;
+  /**
+   * Tooltip position
+   */
   tooltipPosition?: "top" | "bottom" | "left" | "right";
+  /**
+   * Tooltip background color (Bootstrap class or custom color)
+   * Examples: "bg-primary", "bg-danger", "#ff0000"
+   */
+  tooltipBgColor?: string;
+  /**
+   * Tooltip text color (Bootstrap class or custom color)
+   * Examples: "text-white", "text-dark", "#ffffff"
+   */
+  tooltipTextColor?: string;
   isOptional?: boolean;
   optionalText?: string;
   iconPosition?: "before" | "after";
@@ -55,7 +77,7 @@ const labelClass = `${props.level}-${props.size}`;
     </label>
 
     <!-- Tooltip Icon (icon position: before tooltip) -->
-    <Tooltip v-if="tooltipMessage" :delay-duration="300">
+    <Tooltip v-if="tooltipMessage || tooltipHtmlContent" :delay-duration="300">
       <TooltipTrigger as-child>
         <button
           type="button"
@@ -86,7 +108,12 @@ const labelClass = `${props.level}-${props.size}`;
           </svg>
         </button>
       </TooltipTrigger>
-      <TooltipContent :side="tooltipPosition">
+      <TooltipContent
+        :side="tooltipPosition"
+        :html-content="tooltipHtmlContent"
+        :bg-color="tooltipBgColor"
+        :text-color="tooltipTextColor"
+      >
         {{ tooltipMessage }}
       </TooltipContent>
     </Tooltip>

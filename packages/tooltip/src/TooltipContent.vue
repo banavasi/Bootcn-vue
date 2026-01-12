@@ -12,6 +12,21 @@ defineOptions({
 
 interface Props extends /* @vue-ignore */ TooltipContentProps {
   class?: HTMLAttributes["class"];
+  /**
+   * HTML content to render inside tooltip
+   * If provided, this takes precedence over the default slot
+   */
+  htmlContent?: string;
+  /**
+   * Background color for the tooltip (Bootstrap class or custom color)
+   * Examples: "bg-primary", "bg-danger", "#ff0000"
+   */
+  bgColor?: string;
+  /**
+   * Text color for the tooltip (Bootstrap class or custom color)
+   * Examples: "text-white", "text-dark", "#ffffff"
+   */
+  textColor?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -40,6 +55,39 @@ const tooltipClass = computed(() => {
   );
 });
 
+// Compute tooltip inner classes and styles
+const tooltipInnerClass = computed(() => {
+  const classes: string[] = ["tooltip-inner"];
+
+  // Add background color class if it's a Bootstrap class
+  if (props.bgColor?.startsWith("bg-")) {
+    classes.push(props.bgColor);
+  }
+
+  // Add text color class if it's a Bootstrap class
+  if (props.textColor?.startsWith("text-")) {
+    classes.push(props.textColor);
+  }
+
+  return cn(...classes);
+});
+
+const tooltipInnerStyle = computed(() => {
+  const styles: Record<string, string> = {};
+
+  // Add background color if it's a custom color (hex, rgb, etc.)
+  if (props.bgColor && !props.bgColor.startsWith("bg-")) {
+    styles.backgroundColor = props.bgColor;
+  }
+
+  // Add text color if it's a custom color
+  if (props.textColor && !props.textColor.startsWith("text-")) {
+    styles.color = props.textColor;
+  }
+
+  return Object.keys(styles).length > 0 ? styles : undefined;
+});
+
 // Forward props without class
 const forwarded = computed(() => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -59,8 +107,11 @@ const forwarded = computed(() => {
       <TooltipArrow as-child>
         <div class="tooltip-arrow" />
       </TooltipArrow>
-      <div class="tooltip-inner">
-        <slot />
+      <div :class="tooltipInnerClass" :style="tooltipInnerStyle">
+        <!-- Render HTML content if provided -->
+        <span v-if="htmlContent" v-html="htmlContent" />
+        <!-- Otherwise render default slot -->
+        <slot v-else />
       </div>
     </TooltipContent>
   </TooltipPortal>

@@ -602,3 +602,197 @@ export const AdvancedLabelCustomization: Story = {
     `,
   }),
 };
+
+// Enhanced Tooltip Features
+
+export const TooltipWithHtmlContent: Story = {
+  name: "Tooltip with HTML Content",
+  render: () => ({
+    components: { InputRoot, InputField, InputLabel },
+    template: `
+      <div class="p-space-md">
+        <InputRoot id="html-tooltip-field">
+          <InputLabel 
+            tooltip-html-content="<strong>Important:</strong> Password must contain:<br/>• At least 8 characters<br/>• 1 uppercase letter<br/>• 1 number<br/>• 1 special character"
+          >
+            Password
+          </InputLabel>
+          <InputField type="password" placeholder="Enter secure password" />
+        </InputRoot>
+      </div>
+    `,
+  }),
+};
+
+export const TooltipWithCustomColors: Story = {
+  name: "Tooltip with Custom Colors",
+  render: () => ({
+    components: { InputRoot, InputField, InputLabel, FontAwesomeIcon },
+    template: `
+      <div class="p-space-md">
+        <div class="mb-space-md">
+          <InputRoot id="danger-tooltip">
+            <InputLabel 
+              tooltip-message="This field is required for security purposes"
+              tooltip-bg-color="bg-danger"
+              tooltip-text-color="text-white"
+            >
+              Security Code
+              <template #icon>
+                <FontAwesomeIcon :icon="['fas', 'shield-halved']" class="text-danger" />
+              </template>
+            </InputLabel>
+            <InputField type="text" placeholder="Enter security code" />
+          </InputRoot>
+        </div>
+
+        <div class="mb-space-md">
+          <InputRoot id="success-tooltip">
+            <InputLabel 
+              tooltip-message="This email will receive all notifications"
+              tooltip-bg-color="bg-success"
+              tooltip-text-color="text-white"
+            >
+              Email Address
+              <template #icon>
+                <FontAwesomeIcon :icon="['fas', 'envelope']" class="text-success" />
+              </template>
+            </InputLabel>
+            <InputField type="email" placeholder="you@example.com" />
+          </InputRoot>
+        </div>
+
+        <div class="mb-space-md">
+          <InputRoot id="warning-tooltip">
+            <InputLabel 
+              tooltip-message="Changes to this field cannot be undone"
+              tooltip-bg-color="bg-warning"
+              tooltip-text-color="text-dark"
+            >
+              Username
+              <template #icon>
+                <FontAwesomeIcon :icon="['fas', 'triangle-exclamation']" class="text-warning" />
+              </template>
+            </InputLabel>
+            <InputField type="text" placeholder="Choose wisely" />
+          </InputRoot>
+        </div>
+
+        <div>
+          <InputRoot id="info-tooltip">
+            <InputLabel 
+              tooltip-message="We use this to verify your identity"
+              tooltip-bg-color="bg-info"
+              tooltip-text-color="text-white"
+            >
+              Phone Number
+              <template #icon>
+                <FontAwesomeIcon :icon="['fas', 'phone']" class="text-info" />
+              </template>
+            </InputLabel>
+            <InputField type="tel" placeholder="(555) 123-4567" />
+          </InputRoot>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const TooltipWithCustomHexColors: Story = {
+  name: "Tooltip with Custom Hex Colors",
+  render: () => ({
+    components: { InputRoot, InputField, InputLabel, FontAwesomeIcon },
+    template: `
+      <div class="p-space-md">
+        <div class="mb-space-md">
+          <InputRoot id="purple-tooltip">
+            <InputLabel 
+              tooltip-html-content="<strong>Premium Feature</strong><br/>This field is only available for premium users"
+              tooltip-bg-color="#9b59b6"
+              tooltip-text-color="#ffffff"
+            >
+              Premium Field
+              <template #icon>
+                <FontAwesomeIcon :icon="['fas', 'crown']" style="color: #9b59b6;" />
+              </template>
+            </InputLabel>
+            <InputField type="text" placeholder="Premium users only" />
+          </InputRoot>
+        </div>
+
+        <div class="mb-space-md">
+          <InputRoot id="teal-tooltip">
+            <InputLabel 
+              tooltip-html-content="<div style='text-align: left;'><strong>API Key Guidelines:</strong><ul style='margin: 0; padding-left: 20px;'><li>Keep it secret</li><li>Rotate regularly</li><li>Use environment variables</li></ul></div>"
+              tooltip-bg-color="#16a085"
+              tooltip-text-color="#ecf0f1"
+            >
+              API Key
+              <template #icon>
+                <FontAwesomeIcon :icon="['fas', 'key']" style="color: #16a085;" />
+              </template>
+            </InputLabel>
+            <InputField type="password" placeholder="Enter API key" />
+          </InputRoot>
+        </div>
+
+        <div>
+          <InputRoot id="orange-tooltip">
+            <InputLabel 
+              tooltip-message="This action requires administrator privileges"
+              tooltip-bg-color="#e67e22"
+              tooltip-text-color="#fff"
+            >
+              Admin Password
+              <template #icon>
+                <FontAwesomeIcon :icon="['fas', 'user-shield']" style="color: #e67e22;" />
+              </template>
+            </InputLabel>
+            <InputField type="password" placeholder="Admin access required" />
+          </InputRoot>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const TooltipHtmlWithFormatting: Story = {
+  name: "Tooltip HTML with Rich Formatting",
+  render: () => ({
+    components: { InputRoot, InputField, InputLabel, FontAwesomeIcon },
+    template: `
+      <div class="p-space-md">
+        <InputRoot id="rich-tooltip">
+          <InputLabel 
+            tooltip-html-content="
+              <div style='text-align: left; max-width: 300px;'>
+                <h6 style='margin: 0 0 8px 0; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 4px;'>
+                  Password Requirements
+                </h6>
+                <ul style='margin: 0; padding-left: 20px; font-size: 0.9em;'>
+                  <li>Minimum <strong>8 characters</strong></li>
+                  <li>At least <strong>1 uppercase</strong> letter (A-Z)</li>
+                  <li>At least <strong>1 lowercase</strong> letter (a-z)</li>
+                  <li>At least <strong>1 number</strong> (0-9)</li>
+                  <li>At least <strong>1 special character</strong> (!@#$%^&*)</li>
+                </ul>
+                <p style='margin: 8px 0 0 0; font-size: 0.85em; color: rgba(255,255,255,0.8);'>
+                  <em>Example: MyP@ssw0rd!</em>
+                </p>
+              </div>
+            "
+            tooltip-bg-color="bg-dark"
+            tooltip-text-color="text-white"
+            tooltip-position="right"
+          >
+            Create Password
+            <template #icon>
+              <FontAwesomeIcon :icon="['fas', 'circle-question']" class="text-primary" />
+            </template>
+          </InputLabel>
+          <InputField type="password" placeholder="Must meet all requirements" />
+        </InputRoot>
+      </div>
+    `,
+  }),
+};
