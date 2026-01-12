@@ -53,6 +53,12 @@ importers:
       '@bootcn-vue/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@bootcn-vue/field-text':
+        specifier: workspace:*
+        version: link:../../packages/field-text
+      '@bootcn-vue/tooltip':
+        specifier: workspace:*
+        version: link:../../packages/tooltip
       bootstrap:
         specifier: ^5.3.6
         version: 5.3.8(@popperjs/core@2.11.8)

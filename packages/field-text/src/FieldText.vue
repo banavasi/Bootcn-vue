@@ -40,7 +40,14 @@ const invalid = computed(() => !!props.error);
     :class="props.class"
   >
     <!-- Label always exists for accessibility, use visually-hidden to hide -->
-    <InputLabel :level="labelLevel" :size="labelSize" :class="{ 'visually-hidden': !labelVisible }">
+    <InputLabel
+      :level="labelLevel"
+      :size="labelSize"
+      :tooltip-message="tooltipMessage"
+      :is-optional="isOptional"
+      :optional-text="optionalText"
+      :class="{ 'visually-hidden': !labelVisible }"
+    >
       {{ label }}
     </InputLabel>
 

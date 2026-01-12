@@ -18,6 +18,8 @@
   "dependencies": {
     "@bootcn-vue/buttons": "workspace:*",
     "@bootcn-vue/core": "workspace:*",
+    "@bootcn-vue/field-text": "workspace:*",
+    "@bootcn-vue/tooltip": "workspace:*",
     "bootstrap": "^5.3.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
