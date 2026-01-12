@@ -1,3 +1,4 @@
+// @ts-expect-error - Type declarations not yet generated for workspace package
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { FieldText } from "@bootcn-vue/field-text";
 

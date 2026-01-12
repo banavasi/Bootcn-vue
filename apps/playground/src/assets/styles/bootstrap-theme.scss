@@ -1,9 +1,110 @@
 // Bootstrap Theme
-// Standard Bootstrap 5 with RDS spacing utilities
+// Standard Bootstrap 5 with RDS design system customizations
 
-@import "bootstrap/scss/bootstrap.scss";
+// ============================================================================
+// 1. Include Bootstrap Functions (needed for color functions)
+// ============================================================================
+@import "bootstrap/scss/functions";
 
-// Import RDS spacing system from core package
+// ============================================================================
+// 2. Define RDS Color Variables (before Bootstrap variables)
+// ============================================================================
+
+// Light Shades
+$rds-light-1: #fafafa;
+$rds-light-2: #f1f1f1;
+$rds-light-3: #e8e8e8;
+$rds-light-4: #d0d0d0;
+$rds-light-5: #bfbfbf;
+
+// Dark Shades
+$rds-dark-1: #747474;
+$rds-dark-2: #484848;
+$rds-dark-3: #191919;
+
+// ============================================================================
+// 3. Import Bootstrap Variables (to get default maps)
+// ============================================================================
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+// ============================================================================
+// 4. Extend Bootstrap's Color Maps (before importing the rest)
+// ============================================================================
+
+// Add RDS colors to Bootstrap's color map
+// This makes them available in all Bootstrap utilities automatically
+$colors: map-merge(
+  $colors,
+  (
+    "rds-light-1": $rds-light-1,
+    "rds-light-2": $rds-light-2,
+    "rds-light-3": $rds-light-3,
+    "rds-light-4": $rds-light-4,
+    "rds-light-5": $rds-light-5,
+    "rds-dark-1": $rds-dark-1,
+    "rds-dark-2": $rds-dark-2,
+    "rds-dark-3": $rds-dark-3,
+  )
+);
+
+// Optional: Add to theme-colors map for .btn-*, .alert-*, .bg-* variants
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "rds-light": $rds-light-2,
+    "rds-dark": $rds-dark-2,
+  )
+);
+
+// ============================================================================
+// 5. Import Bootstrap Mixins and Utilities
+// ============================================================================
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// ============================================================================
+// 6. Import the rest of Bootstrap
+// ============================================================================
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";
+
+// ============================================================================
+// 7. Import RDS Custom Utilities
+// ============================================================================
 @import "@bootcn-vue/core/styles/rds-spacing";
+@import "@bootcn-vue/core/styles/rds-colors";
 
 // Optional: Add any additional customizations here

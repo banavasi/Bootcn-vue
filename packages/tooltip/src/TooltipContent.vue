@@ -2,8 +2,9 @@
 import type { TooltipContentEmits, TooltipContentProps } from "reka-ui";
 import type { HTMLAttributes } from "vue";
 import { computed } from "vue";
-import { TooltipContent, TooltipPortal, useForwardPropsEmits } from "reka-ui";
+import { TooltipArrow, TooltipContent, TooltipPortal, useForwardPropsEmits } from "reka-ui";
 import { cn } from "@bootcn-vue/core";
+import "./tooltip.css";
 
 defineOptions({
   inheritAttrs: false,
@@ -55,7 +56,9 @@ const forwarded = computed(() => {
       :class="tooltipClass"
       role="tooltip"
     >
-      <div class="tooltip-arrow" />
+      <TooltipArrow as-child>
+        <div class="tooltip-arrow" />
+      </TooltipArrow>
       <div class="tooltip-inner">
         <slot />
       </div>
