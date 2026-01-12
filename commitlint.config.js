@@ -1,42 +1,43 @@
 export default {
-  extends: ['@commitlint/config-conventional'],
+  extends: ["@commitlint/config-conventional"],
   rules: {
-    'type-enum': [
+    "type-enum": [
       2,
-      'always',
+      "always",
       [
-        'feat',     // New feature
-        'fix',      // Bug fix
-        'docs',     // Documentation
-        'style',    // Formatting, no code change
-        'refactor', // Code change that neither fixes bug nor adds feature
-        'perf',     // Performance improvement
-        'test',     // Adding/updating tests
-        'build',    // Build system or dependencies
-        'ci',       // CI configuration
-        'chore',    // Other changes
-        'revert',   // Revert a commit
+        "feat", // New feature
+        "fix", // Bug fix
+        "docs", // Documentation
+        "style", // Formatting, no code change
+        "refactor", // Code change that neither fixes bug nor adds feature
+        "perf", // Performance improvement
+        "test", // Adding/updating tests
+        "build", // Build system or dependencies
+        "ci", // CI configuration
+        "chore", // Other changes
+        "revert", // Revert a commit
       ],
     ],
-    'scope-enum': [
+    "scope-enum": [
       2,
-      'always',
+      "always",
       [
-        'core',       // @bootcn-vue/core
-        'buttons',    // @bootcn-vue/buttons
-        'forms',      // @bootcn-vue/forms
-        'cli',        // @bootcn-vue/cli
-        'playground', // apps/playground
-        'docs',       // Documentation
-        'ci',         // CI/CD
-        'deps',       // Dependencies
-        'release',    // Release related
-        'build',      // Build system
-        'monorepo',   // Monorepo infrastructure
+        "core", // @bootcn-vue/core
+        "buttons", // @bootcn-vue/buttons
+        "forms", // @bootcn-vue/forms
+        "tooltip", // @bootcn-vue/tooltip
+        "cli", // @bootcn-vue/cli
+        "playground", // apps/playground
+        "docs", // Documentation
+        "ci", // CI/CD
+        "deps", // Dependencies
+        "release", // Release related
+        "build", // Build system
+        "monorepo", // Monorepo infrastructure
       ],
     ],
-    'scope-empty': [1, 'never'],
-    'subject-case': [2, 'always', 'lower-case'],
-    'header-max-length': [2, 'always', 100],
+    "scope-empty": [1, "never"],
+    "subject-case": [2, "always", "lower-case"],
+    "header-max-length": [2, "always", 100],
   },
 };
