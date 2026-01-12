@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-// @ts-expect-error - Tooltip package doesn't generate type declarations yet
 import { Tooltip, TooltipTrigger, TooltipContent } from "@bootcn-vue/tooltip";
 import { Button } from "@bootcn-vue/buttons";
 

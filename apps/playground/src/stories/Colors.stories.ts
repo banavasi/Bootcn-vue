@@ -1,4 +1,3 @@
-// @ts-expect-error - Type declarations not yet generated for workspace package
 import type { Meta, StoryObj } from "@storybook/vue3";
 
 const meta: Meta = {
