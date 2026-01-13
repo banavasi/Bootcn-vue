@@ -1,5 +1,29 @@
 # @bootcn-vue/forms
 
+## 0.5.0
+
+### Minor Changes
+
+- [#14](https://github.com/banavasi/Bootcn-vue/pull/14) [`4d1c477`](https://github.com/banavasi/Bootcn-vue/commit/4d1c47749801a470336bc6b3e41aa9440316319c) Thanks [@banavasi](https://github.com/banavasi)! - Add InputPassword primitive component with show/hide toggle
+
+- [`fa3e378`](https://github.com/banavasi/Bootcn-vue/commit/fa3e378b1637144fc5bd879bfcfe3ce53dad00f4) Thanks [@banavasi](https://github.com/banavasi)! - Add InputMasked and InputNumericRange primitive components
+
+  **InputMasked**
+  - Pattern-based input masking with customizable tokens (#, %, @, \*)
+  - Auto-formats input as user types (e.g., phone numbers, dates, SSN)
+  - Returns unmasked value via v-model
+  - Prevents invalid characters from appearing
+  - Enforces maximum length based on mask pattern
+  - Includes comprehensive Storybook stories
+
+  **InputNumericRange**
+  - Numeric input with min/max validation
+  - Supports integer-only or decimal inputs
+  - Configurable prefix/suffix (e.g., $, %, kg)
+  - Real-time character validation via beforeinput
+  - Auto-clamps values to range on blur
+  - Includes comprehensive Storybook stories for percentage, rating, price, weight, and age inputs
+
 ## 0.4.0
 
 ### Minor Changes
