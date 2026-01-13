@@ -37,3 +37,6 @@ playwright-report/
 
 *storybook.log
 storybook-static
+
+# Git worktrees
+.worktrees
