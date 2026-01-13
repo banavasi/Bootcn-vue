@@ -11,21 +11,29 @@ const meta = {
         component: `
 ## Installation
 
+1. **Install dependencies:**
+
 \`\`\`bash
-npm install @bootcn-vue/field-text
+npm install @bootcn-vue/field-text @bootcn-vue/forms @bootcn-vue/core bootstrap reka-ui
 \`\`\`
+
+2. **Copy component to your project:**
+
+Copy the \`FieldText\` component files from \`node_modules/@bootcn-vue/field-text/src/\` to \`src/components/ui/FieldText/\` in your project.
 
 ## Import
 
 \`\`\`vue
 <script setup lang="ts">
-import { FieldText } from '@bootcn-vue/field-text';
+import { FieldText } from '@/components/ui/FieldText';
 </script>
 \`\`\`
 
 ## Package
 
 **[@bootcn-vue/field-text](https://www.npmjs.com/package/@bootcn-vue/field-text)** - Text input field component
+
+**Note:** Copy components to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

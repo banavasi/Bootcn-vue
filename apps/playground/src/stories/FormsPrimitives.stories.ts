@@ -13,27 +13,39 @@ const meta = {
         component: `
 ## Installation
 
+1. **Install dependencies:**
+
 \`\`\`bash
-npm install @bootcn-vue/forms
+npm install @bootcn-vue/forms @bootcn-vue/core @bootcn-vue/tooltip bootstrap reka-ui
 \`\`\`
+
+2. **Copy components to your project:**
+
+Copy the component files from \`node_modules/@bootcn-vue/forms/src/primitives/\` to \`src/components/ui/\` in your project:
+
+- \`InputRoot/\` → \`src/components/ui/InputRoot/\`
+- \`InputLabel/\` → \`src/components/ui/InputLabel/\`
+- \`InputField/\` → \`src/components/ui/InputField/\`
+- \`InputError/\` → \`src/components/ui/InputError/\`
+- \`InputHelp/\` → \`src/components/ui/InputHelp/\`
 
 ## Import
 
 \`\`\`vue
 <script setup lang="ts">
-import { 
-  InputRoot, 
-  InputLabel, 
-  InputField, 
-  InputError, 
-  InputHelp 
-} from '@bootcn-vue/forms';
+import { InputRoot } from '@/components/ui/InputRoot';
+import { InputLabel } from '@/components/ui/InputLabel';
+import { InputField } from '@/components/ui/InputField';
+import { InputError } from '@/components/ui/InputError';
+import { InputHelp } from '@/components/ui/InputHelp';
 </script>
 \`\`\`
 
 ## Package
 
 **[@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)** - Form primitives and components
+
+**Note:** Copy components to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

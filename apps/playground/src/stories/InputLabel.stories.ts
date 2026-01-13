@@ -13,21 +13,29 @@ const meta = {
         component: `
 ## Installation
 
+1. **Install dependencies:**
+
 \`\`\`bash
-npm install @bootcn-vue/forms
+npm install @bootcn-vue/forms @bootcn-vue/core @bootcn-vue/tooltip bootstrap reka-ui
 \`\`\`
+
+2. **Copy component to your project:**
+
+Copy the \`InputLabel\` component files from \`node_modules/@bootcn-vue/forms/src/primitives/InputLabel/\` to \`src/components/ui/InputLabel/\` in your project.
 
 ## Import
 
 \`\`\`vue
 <script setup lang="ts">
-import { InputLabel } from '@bootcn-vue/forms';
+import { InputLabel } from '@/components/ui/InputLabel';
 </script>
 \`\`\`
 
 ## Package
 
 **[@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)** - Form primitives and components
+
+**Note:** Copy components to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

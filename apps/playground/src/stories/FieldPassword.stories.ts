@@ -11,21 +11,29 @@ const meta = {
         component: `
 ## Installation
 
+1. **Install dependencies:**
+
 \`\`\`bash
-npm install @bootcn-vue/field-password
+npm install @bootcn-vue/field-password @bootcn-vue/forms @bootcn-vue/core @bootcn-vue/tooltip bootstrap reka-ui
 \`\`\`
+
+2. **Copy component to your project:**
+
+Copy the \`FieldPassword\` component files from \`node_modules/@bootcn-vue/field-password/src/\` to \`src/components/ui/FieldPassword/\` in your project.
 
 ## Import
 
 \`\`\`vue
 <script setup lang="ts">
-import { FieldPassword } from '@bootcn-vue/field-password';
+import { FieldPassword } from '@/components/ui/FieldPassword';
 </script>
 \`\`\`
 
 ## Package
 
 **[@bootcn-vue/field-password](https://www.npmjs.com/package/@bootcn-vue/field-password)** - Password field component with show/hide toggle
+
+**Note:** Copy components to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

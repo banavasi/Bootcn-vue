@@ -12,21 +12,29 @@ const meta = {
         component: `
 ## Installation
 
+1. **Install dependencies:**
+
 \`\`\`bash
-npm install @bootcn-vue/forms
+npm install @bootcn-vue/forms @bootcn-vue/core bootstrap reka-ui
 \`\`\`
+
+2. **Copy component to your project:**
+
+Copy the \`InputRoot\` component files from \`node_modules/@bootcn-vue/forms/src/primitives/InputRoot/\` to \`src/components/ui/InputRoot/\` in your project.
 
 ## Import
 
 \`\`\`vue
 <script setup lang="ts">
-import { InputRoot } from '@bootcn-vue/forms';
+import { InputRoot } from '@/components/ui/InputRoot';
 </script>
 \`\`\`
 
 ## Package
 
 **[@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)** - Form primitives and components
+
+**Note:** Copy components to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

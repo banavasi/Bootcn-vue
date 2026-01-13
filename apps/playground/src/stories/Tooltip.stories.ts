@@ -19,21 +19,29 @@ const meta = {
         component: `
 ## Installation
 
+1. **Install dependencies:**
+
 \`\`\`bash
-npm install @bootcn-vue/tooltip
+npm install @bootcn-vue/tooltip @bootcn-vue/core bootstrap reka-ui
 \`\`\`
+
+2. **Copy component to your project:**
+
+Copy the \`Tooltip\` component files from \`node_modules/@bootcn-vue/tooltip/src/\` to \`src/components/ui/Tooltip/\` in your project.
 
 ## Import
 
 \`\`\`vue
 <script setup lang="ts">
-import { Tooltip, TooltipTrigger, TooltipContent } from '@bootcn-vue/tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip';
 </script>
 \`\`\`
 
 ## Package
 
 **[@bootcn-vue/tooltip](https://www.npmjs.com/package/@bootcn-vue/tooltip)** - Accessible tooltip component
+
+**Note:** Copy components to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

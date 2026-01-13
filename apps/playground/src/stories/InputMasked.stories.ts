@@ -12,21 +12,29 @@ const meta = {
         component: `
 ## Installation
 
+1. **Install dependencies:**
+
 \`\`\`bash
-npm install @bootcn-vue/forms
+npm install @bootcn-vue/forms @bootcn-vue/core bootstrap reka-ui
 \`\`\`
+
+2. **Copy component to your project:**
+
+Copy the \`InputMasked\` component files from \`node_modules/@bootcn-vue/forms/src/primitives/InputMasked/\` to \`src/components/ui/InputMasked/\` in your project.
 
 ## Import
 
 \`\`\`vue
 <script setup lang="ts">
-import { InputMasked } from '@bootcn-vue/forms';
+import { InputMasked } from '@/components/ui/InputMasked';
 </script>
 \`\`\`
 
 ## Package
 
 **[@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)** - Form primitives and components
+
+**Note:** Copy components to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 
