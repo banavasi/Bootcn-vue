@@ -91,20 +91,31 @@ const handleInput = (event: Event) => {
   const cursorPosition = target.selectionStart || 0;
   const newValue = target.value;
 
-  // Get only the input characters (remove literals from pasted content)
+  // Extract only valid characters from the input
   let inputOnly = "";
   if (props.mask) {
+    // Go through the new value and extract only characters that match token patterns
     for (let i = 0; i < newValue.length; i++) {
       const char = newValue[i];
-      const maskChar = props.mask[i];
-      const token = props.tokens[maskChar];
-      if (token && token.pattern.test(char)) {
-        inputOnly += char;
-      } else if (!maskChar || !token) {
-        // Skip literals
-        continue;
-      } else {
-        inputOnly += char;
+      // Check if this character matches any token pattern
+      let isValid = false;
+      for (const tokenKey in props.tokens) {
+        const token = props.tokens[tokenKey];
+        if (token.pattern.test(char)) {
+          isValid = true;
+          inputOnly += char;
+          break;
+        }
+      }
+      // If not valid and not a literal in the mask, skip it
+      if (!isValid) {
+        // Check if it's a literal character in the mask
+        const isLiteral = props.mask.includes(char) && !props.tokens[char];
+        if (!isLiteral) {
+          // Invalid character, skip it
+          continue;
+        }
+        // It's a literal, skip it (we'll add it back in applyMask)
       }
     }
   } else {
@@ -118,18 +129,36 @@ const handleInput = (event: Event) => {
   // Update model with unmasked value
   model.value = unmaskedValue.value;
 
-  // Restore cursor position
+  // Calculate new cursor position
   requestAnimationFrame(() => {
     if (inputRef.value) {
-      let newCursorPos = cursorPosition;
-      // Adjust cursor if we're on a literal character
-      if (props.mask && masked[newCursorPos - 1]) {
-        const maskChar = props.mask[newCursorPos - 1];
-        if (maskChar && !props.tokens[maskChar]) {
-          // We just added a literal, move cursor forward
-          newCursorPos++;
+      // Count how many valid characters were before the cursor
+      let validCharsBeforeCursor = 0;
+      for (let i = 0; i < Math.min(cursorPosition, newValue.length); i++) {
+        const char = newValue[i];
+        for (const tokenKey in props.tokens) {
+          if (props.tokens[tokenKey].pattern.test(char)) {
+            validCharsBeforeCursor++;
+            break;
+          }
         }
       }
+
+      // Find where to place cursor in masked value
+      let newCursorPos = 0;
+      let validCharsFound = 0;
+      for (let i = 0; i < masked.length; i++) {
+        if (validCharsFound >= validCharsBeforeCursor) {
+          newCursorPos = i;
+          break;
+        }
+        const maskChar = props.mask?.[i];
+        if (maskChar && props.tokens[maskChar]) {
+          validCharsFound++;
+        }
+        newCursorPos = i + 1;
+      }
+
       inputRef.value.setSelectionRange(newCursorPos, newCursorPos);
     }
   });
