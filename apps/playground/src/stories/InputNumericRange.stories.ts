@@ -152,7 +152,7 @@ export const PriceInput: Story = {
         </InputRoot>
         
         <div style="margin-top: 20px; padding: 12px; background: #f5f5f5; border-radius: 4px">
-          <strong>Current Value:</strong> ${{ price }}
+          <strong>Current Value:</strong> $<span>{{ price }}</span>
         </div>
       </div>
     `,
@@ -356,7 +356,7 @@ export const Interactive: Story = {
           <ul style="margin-bottom: 0">
             <li><strong>Percentage:</strong> {{ percentage }}%</li>
             <li><strong>Rating:</strong> {{ rating }}</li>
-            <li><strong>Price:</strong> ${{ price }}</li>
+            <li><strong>Price:</strong> $<span>{{ price }}</span></li>
             <li><strong>Weight:</strong> {{ weight }}kg</li>
           </ul>
         </div>

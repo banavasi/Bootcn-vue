@@ -16,9 +16,25 @@ declare module "@bootcn-vue/forms" {
   const InputError: any;
   const InputDescription: any;
   const InputRoot: any;
+  const InputHelp: any;
+  const InputMasked: any;
+  const InputNumericRange: any;
+  const InputPassword: any;
   const Label: any;
   const SelectField: any;
-  export { InputField, InputLabel, InputError, InputDescription, InputRoot, Label, SelectField };
+  export {
+    InputField,
+    InputLabel,
+    InputError,
+    InputDescription,
+    InputRoot,
+    InputHelp,
+    InputMasked,
+    InputNumericRange,
+    InputPassword,
+    Label,
+    SelectField,
+  };
 }
 
 declare module "@bootcn-vue/field-text" {

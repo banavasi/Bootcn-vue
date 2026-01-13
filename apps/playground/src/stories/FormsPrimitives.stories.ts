@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-// @ts-expect-error - Type declarations not yet generated for workspace package
 import { InputRoot, InputField, InputLabel, InputError, InputHelp } from "@bootcn-vue/forms";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { ref } from "vue";

@@ -190,12 +190,7 @@ const handleInput = (event: Event) => {
 
 // Handle blur - apply clamping and formatting
 const handleBlur = (event: FocusEvent) => {
-  let finalValue = model.value;
-
-  // Apply default value if empty
-  if (finalValue === null) {
-    finalValue = props.defaultValue;
-  }
+  let finalValue: number = model.value ?? props.defaultValue;
 
   // Clamp to range
   finalValue = clampValue(finalValue);
@@ -209,7 +204,7 @@ const handleBlur = (event: FocusEvent) => {
 
 // Handle focus - remove prefix/suffix for editing
 const handleFocus = (event: FocusEvent) => {
-  if (model.value !== null) {
+  if (model.value !== null && model.value !== undefined) {
     const formatted = formatNumber(model.value);
     displayValue.value = formatted;
   }
@@ -223,7 +218,7 @@ watch(
   (newValue) => {
     // Only update display if input is not focused
     if (document.activeElement !== inputRef.value) {
-      updateDisplayValue(newValue);
+      updateDisplayValue(newValue ?? null);
     }
   },
   { immediate: true },

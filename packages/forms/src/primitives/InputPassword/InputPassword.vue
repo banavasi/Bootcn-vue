@@ -50,7 +50,7 @@ const toggleVisibility = () => {
   const cursorPosition = input?.selectionStart;
   showPassword.value = !showPassword.value;
   nextTick(() => {
-    if (input && cursorPosition !== null) {
+    if (input && cursorPosition !== null && cursorPosition !== undefined) {
       input.setSelectionRange(cursorPosition, cursorPosition);
     }
   });
