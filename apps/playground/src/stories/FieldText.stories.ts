@@ -5,6 +5,66 @@ const meta = {
   title: "Forms/FieldText",
   component: FieldText,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Prerequisites
+
+Before adding components, initialize bootcn-vue in your project:
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest init
+\`\`\`
+
+This will:
+- Create \`bootcn.config.json\` configuration file
+- Set up path aliases (\`@/*\`) in \`tsconfig.json\` and \`vite.config.ts\`
+- Create \`src/lib/utils.ts\` with utility functions
+- Create \`src/components/ui/\` directory
+- Install base dependencies: \`bootstrap\`, \`reka-ui\`, \`class-variance-authority\`, \`clsx\`, \`tailwind-merge\`
+
+## Installation
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest add field-text
+\`\`\`
+
+This command will:
+- Install required dependencies: \`@bootcn-vue/core\`, \`@bootcn-vue/forms\`
+- Install peer dependencies: \`reka-ui\`
+- Copy the component to \`src/components/ui/FieldText/\`
+- Transform imports to use local paths
+
+## Import
+
+\`\`\`vue
+<script setup lang="ts">
+import { FieldText } from '@/components/ui/FieldText';
+</script>
+\`\`\`
+
+## Package
+
+**[@bootcn-vue/field-text](https://www.npmjs.com/package/@bootcn-vue/field-text)** - Text input field component
+
+**Note:** Components are copied to \`src/components/ui/\` for full control and customization.
+
+## Overview
+
+\`FieldText\` is a complete text input field component with label, validation, help text, and tooltip support. It's built on top of form primitives and provides a ready-to-use solution for text inputs.
+
+### Key Features
+
+- ✅ Complete field component with label, input, help, and error
+- ✅ Tooltip support
+- ✅ Optional badge indicator
+- ✅ Validation error display
+- ✅ WCAG 2.1 compliant
+        `,
+      },
+    },
+  },
   argTypes: {
     id: {
       control: { type: "text" },

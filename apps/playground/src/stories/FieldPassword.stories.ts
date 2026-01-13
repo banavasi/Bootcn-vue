@@ -5,6 +5,67 @@ const meta = {
   title: "Forms/FieldPassword",
   component: FieldPassword,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Prerequisites
+
+Before adding components, initialize bootcn-vue in your project:
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest init
+\`\`\`
+
+This will:
+- Create \`bootcn.config.json\` configuration file
+- Set up path aliases (\`@/*\`) in \`tsconfig.json\` and \`vite.config.ts\`
+- Create \`src/lib/utils.ts\` with utility functions
+- Create \`src/components/ui/\` directory
+- Install base dependencies: \`bootstrap\`, \`reka-ui\`, \`class-variance-authority\`, \`clsx\`, \`tailwind-merge\`
+
+## Installation
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest add field-password
+\`\`\`
+
+This command will:
+- Install required dependencies: \`@bootcn-vue/core\`, \`@bootcn-vue/forms\`, \`@bootcn-vue/tooltip\`
+- Install peer dependencies: \`reka-ui\`, \`@fortawesome/fontawesome-svg-core\`, \`@fortawesome/free-solid-svg-icons\`, \`@fortawesome/vue-fontawesome\`
+- Copy the component to \`src/components/ui/FieldPassword/\`
+- Transform imports to use local paths
+
+## Import
+
+\`\`\`vue
+<script setup lang="ts">
+import { FieldPassword } from '@/components/ui/FieldPassword';
+</script>
+\`\`\`
+
+## Package
+
+**[@bootcn-vue/field-password](https://www.npmjs.com/package/@bootcn-vue/field-password)** - Password field component with show/hide toggle
+
+**Note:** Components are copied to \`src/components/ui/\` for full control and customization.
+
+## Overview
+
+\`FieldPassword\` is a complete password input field component with label, show/hide toggle, validation, help text, and tooltip support. It's built on top of form primitives and provides a ready-to-use solution for password inputs.
+
+### Key Features
+
+- ✅ Complete field component with label, input, help, and error
+- ✅ Show/hide password toggle button
+- ✅ Tooltip support
+- ✅ Optional badge indicator
+- ✅ Validation error display
+- ✅ WCAG 2.1 compliant
+        `,
+      },
+    },
+  },
   argTypes: {
     id: {
       control: { type: "text" },
@@ -254,7 +315,7 @@ export const CompleteForm: Story = {
     template: `
       <form @submit.prevent="validatePassword" class="p-space-md bg-light rounded" style="max-width: 500px;">
         <h3 class="mb-space-md">Create Account</h3>
-        
+
         <FieldPassword
           id="register-password"
           v-model="password"
@@ -266,7 +327,7 @@ export const CompleteForm: Story = {
           help-text="Must be at least 8 characters with 1 number"
           class="mb-space-sm"
         />
-        
+
         <FieldPassword
           id="confirm-password"
           v-model="confirmPassword"
@@ -277,7 +338,7 @@ export const CompleteForm: Story = {
           :error="errors.confirmPassword"
           class="mb-space-md"
         />
-        
+
         <button type="submit" class="btn btn-primary">
           Create Account
         </button>

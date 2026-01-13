@@ -13,6 +13,71 @@ const meta = {
   title: "Components/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Prerequisites
+
+Before adding components, initialize bootcn-vue in your project:
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest init
+\`\`\`
+
+This will:
+- Create \`bootcn.config.json\` configuration file
+- Set up path aliases (\`@/*\`) in \`tsconfig.json\` and \`vite.config.ts\`
+- Create \`src/lib/utils.ts\` with utility functions
+- Create \`src/components/ui/\` directory
+- Install base dependencies: \`bootstrap\`, \`reka-ui\`, \`class-variance-authority\`, \`clsx\`, \`tailwind-merge\`
+
+## Installation
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest add tooltip
+\`\`\`
+
+This command will:
+- Install required dependencies: \`@bootcn-vue/core\`
+- Install peer dependencies: \`reka-ui\`
+- Copy the component files to \`src/components/ui/Tooltip/\`:
+  - \`Tooltip.vue\`
+  - \`TooltipTrigger.vue\`
+  - \`TooltipContent.vue\`
+  - \`tooltip.css\`
+  - \`index.ts\`
+- Transform imports to use local paths
+
+## Import
+
+\`\`\`vue
+<script setup lang="ts">
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip';
+</script>
+\`\`\`
+
+## Package
+
+**[@bootcn-vue/tooltip](https://www.npmjs.com/package/@bootcn-vue/tooltip)** - Accessible tooltip component
+
+**Note:** Components are copied to \`src/components/ui/\` for full control and customization.
+
+## Overview
+
+\`Tooltip\` provides accessible tooltip functionality built on Reka UI primitives. It supports customizable positioning, delays, and HTML content.
+
+### Key Features
+
+- ✅ Accessible with ARIA attributes
+- ✅ Customizable positioning (top, right, bottom, left)
+- ✅ Configurable delay duration
+- ✅ HTML content support
+- ✅ Custom styling support
+        `,
+      },
+    },
+  },
   argTypes: {
     delayDuration: {
       control: "number",
@@ -34,14 +99,6 @@ const meta = {
       control: "number",
       description: "Distance in pixels from the trigger",
       defaultValue: 4,
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        component:
-          "A tooltip component built on Reka UI with Bootstrap 5 styling. Provides contextual information when users hover over or focus on an element.",
-      },
     },
   },
 } satisfies Meta<TooltipProps>;
