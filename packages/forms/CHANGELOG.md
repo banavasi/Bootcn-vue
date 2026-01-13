@@ -1,5 +1,31 @@
 # @bootcn-vue/forms
 
+## 0.6.0
+
+### Minor Changes
+
+- [#16](https://github.com/banavasi/Bootcn-vue/pull/16) [`3211f80`](https://github.com/banavasi/Bootcn-vue/commit/3211f80a7300c8b6871a939f28125c41cbabebdd) Thanks [@banavasi](https://github.com/banavasi)! - Add FieldSSN component for Social Security Number input with auto-masking
+  - New FieldSSN field component with SSN masking (###-##-####)
+  - Supports "saved" state for backend-stored SSNs (displays placeholder text and becomes readonly)
+  - Auto-formats SSN input with dashes
+  - Includes comprehensive Storybook documentation with 11 stories
+  - Full TypeScript support with proper type declarations
+
+### Patch Changes
+
+- [#18](https://github.com/banavasi/Bootcn-vue/pull/18) [`6c90d79`](https://github.com/banavasi/Bootcn-vue/commit/6c90d79fcb2988264f7c42ab893f1a9f68394e57) Thanks [@banavasi](https://github.com/banavasi)! - docs: comprehensive documentation updates for all packages
+  - Added detailed installation instructions (CLI + direct)
+  - Added 8+ usage examples per component
+  - Added complete API reference (props, events, slots)
+  - Added accessibility guidelines and WCAG compliance details
+  - Added form integration examples (VeeValidate, Zod)
+  - Added TypeScript support documentation
+  - Updated Storybook introduction with package creation guide
+  - Updated main README with enhanced quick start and roadmap
+
+- Updated dependencies [[`6c90d79`](https://github.com/banavasi/Bootcn-vue/commit/6c90d79fcb2988264f7c42ab893f1a9f68394e57)]:
+  - @bootcn-vue/tooltip@0.2.1
+
 ## 0.5.0
 
 ### Minor Changes
