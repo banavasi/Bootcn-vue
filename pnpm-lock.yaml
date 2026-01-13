@@ -72,6 +72,9 @@ importers:
       '@bootcn-vue/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@bootcn-vue/field-password':
+        specifier: workspace:*
+        version: link:../../packages/field-password
       '@bootcn-vue/field-text':
         specifier: workspace:*
         version: link:../../packages/field-text
@@ -214,7 +217,7 @@ importers:
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^5.2.0
-        version: 5.2.4(vite@6.4.1(@types/node@22.19.5)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))
+        version: 5.2.4(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6
@@ -229,7 +232,7 @@ importers:
         version: 5.8.3
       unplugin-vue:
         specifier: ^7.1.0
-        version: 7.1.0(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
+        version: 7.1.0(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
       vitest:
         specifier: ^3.1.1
         version: 3.2.4(@types/node@22.19.5)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2)
@@ -293,6 +296,61 @@ importers:
         specifier: ~5.8.0
         version: 5.8.3
 
+  packages/field-password:
+    dependencies:
+      '@bootcn-vue/core':
+        specifier: workspace:*
+        version: link:../core
+      '@bootcn-vue/forms':
+        specifier: workspace:*
+        version: link:../forms
+      '@bootcn-vue/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      '@fortawesome/fontawesome-svg-core':
+        specifier: ^7.1.0
+        version: 7.1.0
+      '@fortawesome/free-solid-svg-icons':
+        specifier: ^7.1.0
+        version: 7.1.0
+      '@fortawesome/vue-fontawesome':
+        specifier: ^3.1.3
+        version: 3.1.3(@fortawesome/fontawesome-svg-core@7.1.0)(vue@3.5.26(typescript@5.8.3))
+      bootstrap:
+        specifier: ^5.3.0
+        version: 5.3.8(@popperjs/core@2.11.8)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      reka-ui:
+        specifier: ^2.2.1
+        version: 2.7.0(typescript@5.8.3)(vue@3.5.26(typescript@5.8.3))
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^5.2.0
+        version: 5.2.4(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))
+      '@vue/test-utils':
+        specifier: ^2.4.6
+        version: 2.4.6
+      jsdom:
+        specifier: ^26.0.0
+        version: 26.1.0
+      tsup:
+        specifier: ^8.3.5
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.6)(typescript@5.8.3)(yaml@2.8.2)
+      typescript:
+        specifier: ~5.8.0
+        version: 5.8.3
+      unplugin-vue:
+        specifier: ^7.1.0
+        version: 7.1.0(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
+      vitest:
+        specifier: ^3.1.1
+        version: 3.2.4(@types/node@22.19.5)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2)
+      vue:
+        specifier: ^3.5.13
+        version: 3.5.26(typescript@5.8.3)
+
   packages/field-text:
     dependencies:
       '@bootcn-vue/forms':
@@ -332,6 +390,15 @@ importers:
       '@bootcn-vue/tooltip':
         specifier: workspace:*
         version: link:../tooltip
+      '@fortawesome/fontawesome-svg-core':
+        specifier: ^6.0.0 || ^7.0.0
+        version: 7.1.0
+      '@fortawesome/free-solid-svg-icons':
+        specifier: ^6.0.0 || ^7.0.0
+        version: 7.1.0
+      '@fortawesome/vue-fontawesome':
+        specifier: ^3.0.0
+        version: 3.1.3(@fortawesome/fontawesome-svg-core@7.1.0)(vue@3.5.26(typescript@5.8.3))
       bootstrap:
         specifier: ^5.3.0
         version: 5.3.8(@popperjs/core@2.11.8)
@@ -339,6 +406,9 @@ importers:
         specifier: ^2.2.1
         version: 2.7.0(typescript@5.8.3)(vue@3.5.26(typescript@5.8.3))
     devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^6.0.3
+        version: 6.0.3(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6
@@ -1429,6 +1499,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@rolldown/pluginutils@1.0.0-beta.53':
+    resolution: {integrity: sha512-vENRlFU4YbrwVqNDZ7fLvy+JR1CRkyr01jhSiDpE1u6py3OMzQfztQU2jxykW3ALNxO4kSlqIDeYyD0Y9RcQeQ==}
+
   '@rolldown/pluginutils@1.0.0-beta.59':
     resolution: {integrity: sha512-aoh6LAJRyhtazs98ydgpNOYstxUlsOV1KJXcpf/0c0vFcUA8uyd/hwKRhqE/AAPNqAho9RliGsvitCoOzREoVA==}
 
@@ -1896,6 +1969,13 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0
+      vue: ^3.2.25
+
+  '@vitejs/plugin-vue@6.0.3':
+    resolution: {integrity: sha512-TlGPkLFLVOY3T7fZrwdvKpjprR3s4fxRln0ORDo1VQ7HHyxJwTlrjKU3kpVWTlaAjIEuCTokmjkZnr8Tpc925w==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    peerDependencies:
+      vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
       vue: ^3.2.25
 
   '@vitest/eslint-plugin@1.6.6':
@@ -5680,6 +5760,8 @@ snapshots:
   '@rolldown/binding-win32-x64-msvc@1.0.0-beta.59':
     optional: true
 
+  '@rolldown/pluginutils@1.0.0-beta.53': {}
+
   '@rolldown/pluginutils@1.0.0-beta.59': {}
 
   '@rollup/pluginutils@5.3.0(rollup@4.55.1)':
@@ -6206,6 +6288,17 @@ snapshots:
 
   '@vitejs/plugin-vue@5.2.4(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))':
     dependencies:
+      vite: 8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2)
+      vue: 3.5.26(typescript@5.8.3)
+
+  '@vitejs/plugin-vue@5.2.4(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))':
+    dependencies:
+      vite: 8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2)
+      vue: 3.5.26(typescript@5.8.3)
+
+  '@vitejs/plugin-vue@6.0.3(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))':
+    dependencies:
+      '@rolldown/pluginutils': 1.0.0-beta.53
       vite: 8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2)
       vue: 3.5.26(typescript@5.8.3)
 
@@ -8612,6 +8705,28 @@ snapshots:
       - tsx
       - yaml
 
+  unplugin-vue@7.1.0(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2):
+    dependencies:
+      '@jridgewell/gen-mapping': 0.3.13
+      '@jridgewell/trace-mapping': 0.3.31
+      '@vue/reactivity': 3.5.26
+      obug: 2.1.1
+      unplugin: 2.3.11
+      vite: 8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2)
+      vue: 3.5.26(typescript@5.8.3)
+    transitivePeerDependencies:
+      - '@types/node'
+      - esbuild
+      - jiti
+      - less
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+      - tsx
+      - yaml
+
   unplugin@1.16.1:
     dependencies:
       acorn: 8.15.0
@@ -8746,6 +8861,23 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.19.5
       esbuild: 0.25.12
+      fsevents: 2.3.3
+      jiti: 2.6.1
+      sass: 1.97.2
+      yaml: 2.8.2
+
+  vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2):
+    dependencies:
+      '@oxc-project/runtime': 0.107.0
+      fdir: 6.5.0(picomatch@4.0.3)
+      lightningcss: 1.30.2
+      picomatch: 4.0.3
+      postcss: 8.5.6
+      rolldown: 1.0.0-beta.59
+      tinyglobby: 0.2.15
+    optionalDependencies:
+      '@types/node': 22.19.5
+      esbuild: 0.27.2
       fsevents: 2.3.3
       jiti: 2.6.1
       sass: 1.97.2

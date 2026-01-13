@@ -26,6 +26,11 @@ declare module "@bootcn-vue/field-text" {
   export { FieldText };
 }
 
+declare module "@bootcn-vue/field-password" {
+  const FieldPassword: any;
+  export { FieldPassword };
+}
+
 declare module "@bootcn-vue/tooltip" {
   const Tooltip: any;
   const TooltipTrigger: any;

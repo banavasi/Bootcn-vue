@@ -18,6 +18,7 @@
   "dependencies": {
     "@bootcn-vue/buttons": "workspace:*",
     "@bootcn-vue/core": "workspace:*",
+    "@bootcn-vue/field-password": "workspace:*",
     "@bootcn-vue/field-text": "workspace:*",
     "@bootcn-vue/forms": "workspace:*",
     "@bootcn-vue/tooltip": "workspace:*",

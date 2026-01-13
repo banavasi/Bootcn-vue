@@ -25,6 +25,7 @@ export default {
         "core", // @bootcn-vue/core
         "buttons", // @bootcn-vue/buttons
         "forms", // @bootcn-vue/forms
+        "field-password", // @bootcn-vue/field-password
         "tooltip", // @bootcn-vue/tooltip
         "cli", // @bootcn-vue/cli
         "playground", // apps/playground
