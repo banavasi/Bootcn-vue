@@ -1,5 +1,19 @@
 # @bootcn-vue/tooltip
 
+## 0.2.1
+
+### Patch Changes
+
+- [#18](https://github.com/banavasi/Bootcn-vue/pull/18) [`6c90d79`](https://github.com/banavasi/Bootcn-vue/commit/6c90d79fcb2988264f7c42ab893f1a9f68394e57) Thanks [@banavasi](https://github.com/banavasi)! - docs: comprehensive documentation updates for all packages
+  - Added detailed installation instructions (CLI + direct)
+  - Added 8+ usage examples per component
+  - Added complete API reference (props, events, slots)
+  - Added accessibility guidelines and WCAG compliance details
+  - Added form integration examples (VeeValidate, Zod)
+  - Added TypeScript support documentation
+  - Updated Storybook introduction with package creation guide
+  - Updated main README with enhanced quick start and roadmap
+
 ## 0.2.0
 
 ### Minor Changes

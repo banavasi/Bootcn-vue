@@ -1,6 +1,6 @@
 {
   "name": "@bootcn-vue/field-text",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Text input field component for Vue 3 using Bootstrap primitives",
   "type": "module",
   "files": [
