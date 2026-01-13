@@ -6,66 +6,428 @@ import { Meta } from "@storybook/blocks";
 
 **Accessible, customizable Bootstrap 5 + Vue 3 components with a shadcn/ui-inspired CLI.**
 
-This is the component library documentation for bootcn-vue. Browse the sidebar to explore all available components and their usage.
+This is the component library documentation for bootcn-vue. Browse the sidebar to explore all available components, examples, and usage patterns.
+
+## What is bootcn-vue?
+
+**bootcn-vue** is a modern component library that brings Bootstrap 5's design system to Vue 3 with a copy-paste approach. Unlike traditional libraries, components are added directly to your project via CLI, giving you full control and customization freedom.
 
 ## Features
 
-- 🎨 **Bootstrap 5 Design** - Built on Bootstrap 5.3+ with full SCSS customization
+- 🎨 **Bootstrap 5 Design System** - Beautiful, responsive components following Bootstrap conventions
 - ⚡ **Vue 3 Composition API** - Modern Vue 3 with `<script setup>` and TypeScript
-- 📦 **CLI Installation** - Copy components directly into your project (no npm install!)
+- 📦 **CLI-First** - Copy components directly into your project, not node_modules
 - ♿ **Accessible** - Built with [Reka UI](https://reka-ui.com) primitives for ARIA compliance
 - 🎯 **Customizable** - Full control over styles and variants using class-variance-authority
-- 📘 **TypeScript** - Fully typed components and props
+- 📘 **TypeScript Native** - Fully typed components and props
+- 🔧 **Copy & Own** - Components live in your codebase for easy modification
+- ⚡ **Zero Runtime Overhead** - No wrapper library, just pure Vue components
 
-## Installation
+---
 
-### Using the CLI (Recommended)
+## 🚀 Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have:
+
+- **Node.js** >= 20.0.0
+- **Vue 3** >= 3.5.0
+- **Vite** (Required for project setup)
+- A Vue 3 + Vite project
+
+### Step 1: Initialize bootcn-vue
+
+Run the init command in your Vue 3 project:
 
 ```bash
-# Initialize bootcn-vue in your Vue 3 project
 npx @bootcn-vue/cli@latest init
-
-# Add components to your project
-npx @bootcn-vue/cli@latest add button
 ```
 
-### Manual Installation
+This command will:
+
+1. ✅ Detect your Vue 3 + Vite project
+2. ✅ Set up path aliases (`@/*`) in `tsconfig.json` and `vite.config.ts`
+3. ✅ Create `bootcn.config.json` configuration file
+4. ✅ Create `src/lib/utils.ts` with utility functions
+5. ✅ Create `src/components/ui/` directory for components
+6. ✅ Install required dependencies:
+   - `bootstrap` - Bootstrap 5 CSS framework
+   - `reka-ui` - Accessible Vue primitives
+   - `class-variance-authority` - Type-safe variant styling
+   - `clsx` - Conditional class names
+   - `tailwind-merge` - Intelligent class merging
+   - `@fortawesome/fontawesome-free` - Icon library
+
+### Step 2: Add Components
+
+Add components to your project with the `add` command:
 
 ```bash
-# Install individual packages
-npm install @bootcn-vue/core @bootcn-vue/buttons
+# Add a specific component
+npx @bootcn-vue/cli@latest add button
+
+# Add multiple components
+npx @bootcn-vue/cli@latest add button tooltip
+
+# Interactive mode - select from list
+npx @bootcn-vue/cli@latest add
 ```
 
-## Quick Start
+Components are copied to `src/components/ui/{ComponentName}/` with:
 
-After installation, import and use components:
+- Component Vue file (`ComponentName.vue`)
+- Type definitions and variants (`index.ts`)
+- Tests (`ComponentName.spec.ts`)
+
+### Step 3: Use in Your App
+
+Import and use components in your Vue files:
 
 ```vue
 <script setup lang="ts">
 import { Button } from "@/components/ui/Button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/Tooltip";
 </script>
 
 <template>
-  <Button variant="primary">Click me</Button>
+  <div>
+    <Button variant="primary" size="lg">Click me!</Button>
+
+    <Tooltip>
+      <TooltipTrigger>
+        <Button variant="outline-secondary">Hover for info</Button>
+      </TooltipTrigger>
+      <TooltipContent>This is a helpful tooltip</TooltipContent>
+    </Tooltip>
+  </div>
 </template>
 ```
 
-## Component Categories
+---
 
-- **Buttons** - Button, ButtonGroup (coming soon)
-- **Forms** - Input, Textarea, Select, Checkbox (coming soon)
-- **Layout** - Container, Grid, Stack (coming soon)
-- **Feedback** - Alert, Toast, Modal (coming soon)
+## 📦 Available Packages & Components
 
-## Links
+### Core & CLI
 
-- **GitHub**: [github.com/banavasi/Bootcn-vue](https://github.com/banavasi/Bootcn-vue)
-- **npm**: [@bootcn-vue](https://www.npmjs.com/org/bootcn-vue)
-- **Issues**: [Report a bug](https://github.com/banavasi/Bootcn-vue/issues)
+| Package                                                                         | Description                      | Version                                                                                                     |
+| ------------------------------------------------------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [@bootcn-vue/cli](https://www.npmjs.com/package/@bootcn-vue/cli)               | CLI for adding components        | ![npm](https://img.shields.io/npm/v/@bootcn-vue/cli.svg)                                                   |
+| [@bootcn-vue/core](https://www.npmjs.com/package/@bootcn-vue/core)             | Core utilities and functions     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/core.svg)                                                  |
 
-## Philosophy
+### UI Components
 
-bootcn-vue follows the **shadcn/ui approach**: components are copied into your project, giving you full ownership and customization freedom. No black-box npm dependencies—just clean, readable code you can modify.
+| Package                                                                         | Components                       | Status | Version                                                                                                     |
+| ------------------------------------------------------------------------------- | -------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------- |
+| [@bootcn-vue/buttons](https://www.npmjs.com/package/@bootcn-vue/buttons)       | Button                           | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/buttons.svg)                                               |
+| [@bootcn-vue/tooltip](https://www.npmjs.com/package/@bootcn-vue/tooltip)       | Tooltip, TooltipTrigger, TooltipContent | ✅ | ![npm](https://img.shields.io/npm/v/@bootcn-vue/tooltip.svg)                                               |
+| [@bootcn-vue/field-text](https://www.npmjs.com/package/@bootcn-vue/field-text) | FieldText (text input)           | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/field-text.svg)                                            |
+| [@bootcn-vue/field-password](https://www.npmjs.com/package/@bootcn-vue/field-password) | FieldPassword           | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/field-password.svg)                                        |
+| [@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)           | Form primitives & components     | 🚧     | Coming soon                                                                                                 |
+
+**Install individual packages directly**:
+
+```bash
+# If you prefer npm packages over CLI
+npm install @bootcn-vue/buttons
+npm install @bootcn-vue/tooltip
+npm install @bootcn-vue/field-text
+npm install @bootcn-vue/field-password
+```
+
+---
+
+## 🛠️ CLI Commands Reference
+
+### `init` - Initialize Project
+
+```bash
+npx @bootcn-vue/cli init
+```
+
+Sets up your Vue 3 project with bootcn-vue configuration, utilities, and dependencies.
+
+**What it does:**
+
+- Creates `bootcn.config.json` with your project settings
+- Adds path aliases to `tsconfig.json` and `vite.config.ts`
+- Creates `src/lib/utils.ts` with the `cn()` utility
+- Creates `src/components/ui/` directory
+- Installs required dependencies
+
+### `add` - Add Components
+
+```bash
+# Add specific components
+npx @bootcn-vue/cli add button
+npx @bootcn-vue/cli add button tooltip field-text
+
+# Interactive selection
+npx @bootcn-vue/cli add
+```
+
+**What it does:**
+
+- Copies component files to `src/components/ui/{ComponentName}/`
+- Transforms imports from package imports to local imports
+- Makes components ready to use immediately
+
+### `remove` - Remove Components
+
+```bash
+# Remove specific components
+npx @bootcn-vue/cli remove button
+
+# Interactive selection
+npx @bootcn-vue/cli remove
+
+# Remove ALL bootcn-vue setup
+npx @bootcn-vue/cli remove --all
+```
+
+**The `--all` flag:**
+
+- Deletes all components in `src/components/ui/`
+- Deletes `src/lib/utils.ts` (and `lib/` directory if empty)
+- Deletes `bootcn.config.json`
+- Shows commands to uninstall dependencies
+- Includes safety confirmations
+
+---
+
+## 📖 Component Categories
+
+Browse the sidebar to explore components by category:
+
+### **Buttons** ✅
+
+- Button - All Bootstrap variants, sizes, and states
+- ButtonGroup _(coming soon)_
+
+### **Forms** 🚧
+
+- FieldText - Text input with label, help text, and validation
+- FieldPassword - Password input with show/hide toggle
+- FieldSSN - Social Security Number with masking
+- InputMasked - Input with custom masks
+- InputNumericRange - Numeric input with min/max
+- Form Primitives - Low-level building blocks
+
+### **Feedback** 📋
+
+- Tooltip - Accessible tooltips with positioning
+- Alert _(coming soon)_
+- Toast _(coming soon)_
+- Modal _(coming soon)_
+
+### **Layout** 📋
+
+- Container _(coming soon)_
+- Grid / Row / Col _(coming soon)_
+- Stack _(coming soon)_
+
+### **Navigation** 📋
+
+- Navbar _(coming soon)_
+- Tabs _(coming soon)_
+- Breadcrumb _(coming soon)_
+
+### **Data Display** 📋
+
+- Table _(coming soon)_
+- Card _(coming soon)_
+- Badge _(coming soon)_
+
+---
+
+## 🎨 Design System
+
+### RDS Spacing System
+
+bootcn-vue uses the **RDS (Responsive Design System) spacing scale** instead of Bootstrap's numeric spacing:
+
+| Class        | Value         | Usage Example                                      |
+| ------------ | ------------- | -------------------------------------------------- |
+| `space-xxxs` | 0.25rem (4px) | `mb-space-xxxs`, `p-space-xxxs`                    |
+| `space-xxs`  | 0.5rem (8px)  | `mb-space-xxs`, `gap-space-xxs`                    |
+| `space-xs`   | 1rem (16px)   | `mb-space-xs`, `py-space-xs`                       |
+| `space-sm`   | 1.5rem (24px) | `mb-space-sm`, `mt-space-sm`                       |
+| `space-md`   | 2rem (32px)   | `mb-space-md`, `px-space-md`                       |
+| `space-lg`   | 3rem (48px)   | `mb-space-lg`, `p-space-lg`                        |
+| `space-xl`   | 4rem (64px)   | `mb-space-xl`, `mt-space-xl`                       |
+| `space-xxl`  | 6rem (96px)   | `mb-space-xxl`, `py-space-xxl`                     |
+| `space-xxxl` | 8rem (128px)  | `mb-space-xxxl`, `p-space-xxxl`                    |
+
+**Examples:**
+
+```vue
+<template>
+  <!-- Use RDS spacing -->
+  <div class="mb-space-sm px-space-md">Content</div>
+
+  <!-- NOT Bootstrap numeric spacing -->
+  <!-- ❌ Don't use: mb-3, px-4 -->
+</template>
+```
+
+### Typography
+
+Use RDS heading sizes and body text classes:
+
+- `h1-small`, `h1-medium`, `h1-large`
+- `h2-small`, `h2-medium`, `h2-large`
+- `h3-small`, `h3-medium`, `h3-large`
+
+---
+
+## 🏗️ Contributing: Creating New Packages
+
+If you're contributing to bootcn-vue and want to create a new component package:
+
+### Using the Module Generator
+
+```bash
+# In the bootcn-vue monorepo root
+pnpm create:module
+```
+
+The interactive CLI will prompt you for:
+
+- **Module name** (e.g., `alerts`)
+- **Description** (e.g., "Accessible, customizable alert components")
+- **Component name** (e.g., `Alert`)
+- **Author name**
+
+This creates:
+
+```
+packages/
+└── your-module/
+    ├── package.json
+    ├── tsconfig.json
+    ├── tsup.config.ts
+    ├── vitest.config.ts
+    ├── README.md
+    ├── CHANGELOG.md
+    └── src/
+        ├── index.ts
+        ├── env.d.ts
+        └── YourComponent/
+            ├── YourComponent.vue
+            ├── YourComponent.spec.ts
+            └── index.ts
+```
+
+### After Creating a Module
+
+1. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
+
+2. **Build the package:**
+   ```bash
+   pnpm turbo build --filter=@bootcn-vue/your-module
+   ```
+
+3. **Add Storybook story** in `apps/playground/src/stories/`:
+   ```typescript
+   // YourComponent.stories.ts
+   import type { Meta, StoryObj } from "@storybook/vue3";
+   import { YourComponent } from "../components/ui/YourComponent";
+
+   const meta: Meta<typeof YourComponent> = {
+     title: "Components/YourComponent",
+     component: YourComponent,
+     tags: ["autodocs"],
+   };
+
+   export default meta;
+   type Story = StoryObj<typeof meta>;
+
+   export const Default: Story = {
+     args: {
+       // Your props
+     },
+   };
+   ```
+
+4. **View in Storybook:**
+   ```bash
+   pnpm dev
+   ```
+
+5. **Write tests:**
+   ```bash
+   pnpm test:unit -- YourComponent.spec.ts
+   ```
+
+6. **Create a changeset:**
+   ```bash
+   pnpm changeset
+   # Select the package, choose version bump, write description
+   ```
+
+See [AGENTS.md](https://github.com/banavasi/Bootcn-vue/blob/main/AGENTS.md) in the repository for detailed development guidelines.
+
+---
+
+## 🔗 Links & Resources
+
+- **📚 GitHub Repository**: [github.com/banavasi/Bootcn-vue](https://github.com/banavasi/Bootcn-vue)
+- **📦 npm Organization**: [@bootcn-vue](https://www.npmjs.com/org/bootcn-vue)
+- **🐛 Report Issues**: [GitHub Issues](https://github.com/banavasi/Bootcn-vue/issues)
+- **💬 Discussions**: [GitHub Discussions](https://github.com/banavasi/Bootcn-vue/discussions)
+- **📖 Contributing Guide**: [AGENTS.md](https://github.com/banavasi/Bootcn-vue/blob/main/AGENTS.md)
+
+---
+
+## 💡 Philosophy
+
+bootcn-vue follows the **shadcn/ui approach**: components are copied into your project, giving you full ownership and customization freedom. 
+
+### Why Copy-Paste?
+
+- ✅ **Full Control** - Modify components however you need
+- ✅ **No Version Lock** - No breaking changes from library updates
+- ✅ **Tree-Shakeable** - Only bundle what you use
+- ✅ **Easy Debugging** - See the actual component code
+- ✅ **No Bloat** - No unused components in your bundle
+- ✅ **Learn by Reading** - Understand how components work
+
+### Why Bootstrap + Vue 3?
+
+We love Bootstrap's proven design system, but wanted modern Vue 3 tooling:
+
+- Built with **Vue 3 Composition API** (`<script setup>`)
+- Full **TypeScript** support with type inference
+- Accessible foundation with **Reka UI** primitives
+- Modern styling with **class-variance-authority**
+- Bootstrap 5 styles with **SCSS** customization
+
+---
+
+## 📄 License
+
+MIT License - Free for personal and commercial use.
+
+---
+
+## 👨‍💻 Author
+
+Created and maintained by [Shashank Shandilya](https://github.com/banavasi)
+
+Inspired by:
+
+- [shadcn/ui](https://ui.shadcn.com/) - For the copy-paste component philosophy
+- [Reka UI](https://reka-ui.com/) - Accessible Vue components
+- [Bootstrap](https://getbootstrap.com/) - Design system
+
+---
+
+<p align="center">
+  Made with ❤️ using Vue 3, TypeScript, and Bootstrap 5
+</p>
 
 <style>
   {`
