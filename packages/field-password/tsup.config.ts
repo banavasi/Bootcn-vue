@@ -1,11 +1,18 @@
 import { defineConfig } from "tsup";
-import { unplugin } from "unplugin-vue/tsup";
+import Vue from "unplugin-vue/esbuild";
 
 export default defineConfig({
   entry: ["src/index.ts"],
   format: ["esm"],
-  dts: true,
+  dts: false, // We'll generate declarations separately with vue-tsc
   clean: true,
-  external: ["vue", "@bootcn-vue/core", "reka-ui"],
-  plugins: [unplugin()],
+  external: [
+    "vue",
+    "reka-ui",
+    "@bootcn-vue/core",
+    "@bootcn-vue/forms",
+    "@bootcn-vue/tooltip",
+    "bootstrap",
+  ],
+  esbuildPlugins: [Vue()],
 });
