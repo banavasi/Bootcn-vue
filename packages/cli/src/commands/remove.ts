@@ -5,13 +5,57 @@ import * as prompts from "@clack/prompts";
 
 interface ComponentRegistry {
   name: string;
-  type: "component";
+  type: "component" | "primitive";
 }
 
 const REGISTRY: Record<string, ComponentRegistry> = {
   button: {
     name: "Button",
     type: "component",
+  },
+  tooltip: {
+    name: "Tooltip",
+    type: "component",
+  },
+  "field-text": {
+    name: "FieldText",
+    type: "component",
+  },
+  "field-password": {
+    name: "FieldPassword",
+    type: "component",
+  },
+  "input-root": {
+    name: "InputRoot",
+    type: "primitive",
+  },
+  "input-label": {
+    name: "InputLabel",
+    type: "primitive",
+  },
+  "input-field": {
+    name: "InputField",
+    type: "primitive",
+  },
+  "input-password": {
+    name: "InputPassword",
+    type: "primitive",
+  },
+  "input-error": {
+    name: "InputError",
+    type: "primitive",
+  },
+  "input-help": {
+    name: "InputHelp",
+    type: "primitive",
+  },
+  "input-masked": {
+    name: "InputMasked",
+    type: "primitive",
+  },
+  "input-numeric-range": {
+    name: "InputNumericRange",
+    type: "primitive",
   },
 };
 

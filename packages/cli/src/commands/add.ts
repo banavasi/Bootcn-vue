@@ -3,22 +3,138 @@ import path from "path";
 import pc from "picocolors";
 import * as prompts from "@clack/prompts";
 import { fileURLToPath } from "url";
+import { detectProject } from "../utils/detect-project.js";
+import { installDependencies } from "../utils/install-dependencies.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 interface ComponentRegistry {
   name: string;
-  type: "component";
-  files: string[];
-  dependencies: string[];
+  type: "component" | "primitive";
+  package: string; // Package name without @bootcn-vue/ prefix
+  files: string[]; // Files relative to src/{ComponentName} or src/primitives/{ComponentName}
+  sourcePath?: string; // Custom source path relative to package src (default: {ComponentName})
+  dependencies: string[]; // npm packages to install
+  peerDependencies?: string[]; // Peer dependencies (reka-ui, bootstrap, etc.)
 }
 
 const REGISTRY: Record<string, ComponentRegistry> = {
+  // UI Components
   button: {
     name: "Button",
     type: "component",
+    package: "buttons",
     files: ["Button.vue", "index.ts"],
     dependencies: ["@bootcn-vue/core"],
+    peerDependencies: ["reka-ui"],
+  },
+  tooltip: {
+    name: "Tooltip",
+    type: "component",
+    package: "tooltip",
+    files: ["Tooltip.vue", "TooltipTrigger.vue", "TooltipContent.vue", "tooltip.css", "index.ts"],
+    sourcePath: ".", // Files are directly in src/
+    dependencies: ["@bootcn-vue/core"],
+    peerDependencies: ["reka-ui"],
+  },
+  "field-text": {
+    name: "FieldText",
+    type: "component",
+    package: "field-text",
+    files: ["FieldText.vue", "index.ts"],
+    dependencies: ["@bootcn-vue/core", "@bootcn-vue/forms"],
+    peerDependencies: ["reka-ui"],
+  },
+  "field-password": {
+    name: "FieldPassword",
+    type: "component",
+    package: "field-password",
+    files: ["FieldPassword.vue", "index.ts"],
+    dependencies: ["@bootcn-vue/core", "@bootcn-vue/forms", "@bootcn-vue/tooltip"],
+    peerDependencies: [
+      "reka-ui",
+      "@fortawesome/fontawesome-svg-core",
+      "@fortawesome/free-solid-svg-icons",
+      "@fortawesome/vue-fontawesome",
+    ],
+  },
+  // Form Primitives
+  "input-root": {
+    name: "InputRoot",
+    type: "primitive",
+    package: "forms",
+    files: ["InputRoot.vue", "index.ts"],
+    sourcePath: "primitives/InputRoot",
+    dependencies: ["@bootcn-vue/core"],
+    peerDependencies: ["reka-ui"],
+  },
+  "input-label": {
+    name: "InputLabel",
+    type: "primitive",
+    package: "forms",
+    files: ["InputLabel.vue", "index.ts"],
+    sourcePath: "primitives/InputLabel",
+    dependencies: ["@bootcn-vue/core", "@bootcn-vue/tooltip"],
+    peerDependencies: ["reka-ui"],
+  },
+  "input-field": {
+    name: "InputField",
+    type: "primitive",
+    package: "forms",
+    files: ["InputField.vue", "InputField.css", "index.ts"],
+    sourcePath: "primitives/InputField",
+    dependencies: ["@bootcn-vue/core"],
+    peerDependencies: ["reka-ui"],
+  },
+  "input-password": {
+    name: "InputPassword",
+    type: "primitive",
+    package: "forms",
+    files: ["InputPassword.vue", "index.ts"],
+    sourcePath: "primitives/InputPassword",
+    dependencies: ["@bootcn-vue/core"],
+    peerDependencies: [
+      "reka-ui",
+      "@fortawesome/fontawesome-svg-core",
+      "@fortawesome/free-solid-svg-icons",
+      "@fortawesome/vue-fontawesome",
+    ],
+  },
+  "input-error": {
+    name: "InputError",
+    type: "primitive",
+    package: "forms",
+    files: ["InputError.vue", "index.ts"],
+    sourcePath: "primitives/InputError",
+    dependencies: ["@bootcn-vue/core"],
+    peerDependencies: ["reka-ui"],
+  },
+  "input-help": {
+    name: "InputHelp",
+    type: "primitive",
+    package: "forms",
+    files: ["InputHelp.vue", "index.ts"],
+    sourcePath: "primitives/InputHelp",
+    dependencies: ["@bootcn-vue/core"],
+    peerDependencies: ["reka-ui"],
+  },
+  "input-masked": {
+    name: "InputMasked",
+    type: "primitive",
+    package: "forms",
+    files: ["InputMasked.vue", "index.ts"],
+    sourcePath: "primitives/InputMasked",
+    dependencies: ["@bootcn-vue/core"],
+    peerDependencies: ["reka-ui"],
+  },
+  "input-numeric-range": {
+    name: "InputNumericRange",
+    type: "primitive",
+    package: "forms",
+    files: ["InputNumericRange.vue", "index.ts"],
+    sourcePath: "primitives/InputNumericRange",
+    dependencies: ["@bootcn-vue/core"],
+    peerDependencies: ["reka-ui"],
   },
 };
 
@@ -39,6 +155,9 @@ export async function add(components: string[]) {
     const srcDir = config.srcDir || "src";
     const uiDir = path.join(cwd, srcDir, "components", "ui");
 
+    // Detect project to get package manager
+    const projectInfo = await detectProject(cwd);
+
     prompts.intro(pc.bgCyan(pc.black(" bootcn-vue add ")));
 
     // If no components specified, show selector
@@ -48,7 +167,7 @@ export async function add(components: string[]) {
         message: "Which components would you like to add?",
         options: Object.keys(REGISTRY).map((key) => ({
           value: key,
-          label: REGISTRY[key].name,
+          label: `${REGISTRY[key].name} (${REGISTRY[key].type})`,
         })),
         required: true,
       });
@@ -70,6 +189,44 @@ export async function add(components: string[]) {
       }
     }
 
+    // Collect all unique dependencies and peer dependencies
+    const allDependencies = new Set<string>();
+    const allPeerDependencies = new Set<string>();
+
+    for (const componentKey of selectedComponents) {
+      const component = REGISTRY[componentKey];
+      component.dependencies.forEach((dep) => allDependencies.add(dep));
+      if (component.peerDependencies) {
+        component.peerDependencies.forEach((dep) => allPeerDependencies.add(dep));
+      }
+    }
+
+    // Install dependencies if any
+    if (allDependencies.size > 0 || allPeerDependencies.size > 0) {
+      const spinner = prompts.spinner();
+      spinner.start("Installing dependencies...");
+
+      const depsToInstall = [
+        ...Array.from(allDependencies),
+        ...Array.from(allPeerDependencies),
+      ].filter((dep) => {
+        // Don't install @bootcn-vue packages as dependencies (they're copied)
+        return !dep.startsWith("@bootcn-vue/");
+      });
+
+      if (depsToInstall.length > 0) {
+        try {
+          await installDependencies(projectInfo.packageManager, depsToInstall, cwd, false);
+          spinner.stop(pc.green("✓ Dependencies installed"));
+        } catch (error) {
+          spinner.stop(pc.yellow("⚠ Some dependencies may need to be installed manually"));
+          console.log(pc.dim(`Run: ${projectInfo.packageManager} add ${depsToInstall.join(" ")}`));
+        }
+      } else {
+        spinner.stop(pc.green("✓ All dependencies already available"));
+      }
+    }
+
     const spinner = prompts.spinner();
 
     for (const componentKey of selectedComponents) {
@@ -80,31 +237,38 @@ export async function add(components: string[]) {
       const componentDir = path.join(uiDir, component.name);
       await fs.ensureDir(componentDir);
 
-      // Resolve source path - go up from cli/dist to packages/buttons/src/Button
+      // Resolve source path
       const cliDir = path.resolve(__dirname, "../..");
-      const packagesDir = path.resolve(cliDir, "..", "buttons", "src", "Button");
+      const componentSourcePath = component.sourcePath ?? component.name;
+      const packagesDir =
+        componentSourcePath === "."
+          ? path.resolve(cliDir, "..", component.package, "src")
+          : path.resolve(cliDir, "..", component.package, "src", componentSourcePath);
 
       // Copy component files
       for (const file of component.files) {
-        const sourcePath = path.join(packagesDir, file);
+        const sourceFilePath = path.join(packagesDir, file);
         const destPath = path.join(componentDir, file);
 
-        if (!fs.existsSync(sourcePath)) {
+        if (!fs.existsSync(sourceFilePath)) {
           // If not found in local development, try reading from the published package
           // This handles the case when CLI is installed from npm
           try {
-            const packagePath = path.resolve(
-              cwd,
-              "node_modules",
-              "@bootcn-vue",
-              "buttons",
-              "src",
-              "Button",
-              file,
-            );
+            const packagePath =
+              componentSourcePath === "."
+                ? path.resolve(cwd, "node_modules", "@bootcn-vue", component.package, "src", file)
+                : path.resolve(
+                    cwd,
+                    "node_modules",
+                    "@bootcn-vue",
+                    component.package,
+                    "src",
+                    componentSourcePath,
+                    file,
+                  );
             if (fs.existsSync(packagePath)) {
               let content = await fs.readFile(packagePath, "utf-8");
-              content = transformImports(content);
+              content = transformImports(content, component.package, component.name);
               await fs.writeFile(destPath, content, "utf-8");
               continue;
             }
@@ -114,15 +278,58 @@ export async function add(components: string[]) {
 
           spinner.stop(pc.red(`✗ Source file not found: ${file}`));
           throw new Error(
-            `Could not find component source files. Please ensure @bootcn-vue/buttons is installed.`,
+            `Could not find component source files. Please ensure @bootcn-vue/${component.package} is installed.`,
           );
         }
 
-        // Transform imports from @bootcn-vue/core to @/lib/utils
-        let content = await fs.readFile(sourcePath, "utf-8");
-        content = transformImports(content);
+        // Transform imports from @bootcn-vue packages to local imports
+        let content = await fs.readFile(sourceFilePath, "utf-8");
+        // Only transform text files (not binary like images)
+        if (file.endsWith(".vue") || file.endsWith(".ts") || file.endsWith(".js")) {
+          content = transformImports(content, component.package, component.name);
+        }
 
         await fs.writeFile(destPath, content, "utf-8");
+      }
+
+      // For form primitives, copy context file if it doesn't exist
+      if (component.package === "forms" && component.type === "primitive") {
+        const contextSourcePath = path.resolve(
+          cliDir,
+          "..",
+          "forms",
+          "src",
+          "primitives",
+          "context.ts",
+        );
+        const contextDestPath = path.join(componentDir, "context.ts");
+
+        // Only copy if context doesn't exist in destination
+        if (!fs.existsSync(contextDestPath)) {
+          if (fs.existsSync(contextSourcePath)) {
+            const contextContent = await fs.readFile(contextSourcePath, "utf-8");
+            await fs.writeFile(contextDestPath, contextContent, "utf-8");
+          } else {
+            // Try from node_modules
+            try {
+              const contextPackagePath = path.resolve(
+                cwd,
+                "node_modules",
+                "@bootcn-vue",
+                "forms",
+                "src",
+                "primitives",
+                "context.ts",
+              );
+              if (fs.existsSync(contextPackagePath)) {
+                const contextContent = await fs.readFile(contextPackagePath, "utf-8");
+                await fs.writeFile(contextDestPath, contextContent, "utf-8");
+              }
+            } catch (e) {
+              // Context file not critical, continue
+            }
+          }
+        }
       }
 
       spinner.stop(pc.green(`✓ Installed ${component.name}`));
@@ -146,10 +353,50 @@ export async function add(components: string[]) {
   }
 }
 
-function transformImports(content: string): string {
+function transformImports(content: string, packageName: string, componentName: string): string {
   // Transform package imports to local imports
-  return content
+  let transformed = content
     .replace(/@bootcn-vue\/core/g, "@/lib/utils")
-    .replace(/from "@bootcn-vue\/buttons"/g, 'from "."')
-    .replace(/from '@bootcn-vue\/buttons'/g, "from '.'");
+    .replace(new RegExp(`from "@bootcn-vue/${packageName}"`, "g"), 'from "."')
+    .replace(new RegExp(`from '@bootcn-vue/${packageName}'`, "g"), "from '.'");
+
+  // Transform forms package imports to local imports for primitives
+  if (packageName === "forms") {
+    // For form primitives, transform imports from @bootcn-vue/forms to local imports
+    // This handles imports from other primitives in the same package
+    transformed = transformed
+      .replace(/from "@bootcn-vue\/forms"/g, 'from "@/components/ui"')
+      .replace(/from '@bootcn-vue\/forms'/g, "from '@/components/ui'")
+      // Transform relative imports from ../context to local context
+      .replace(/from "\.\.\/context"/g, 'from "./context"')
+      .replace(/from '\.\.\/context'/g, "from './context'");
+  }
+
+  // Transform tooltip imports to local imports
+  if (packageName === "tooltip") {
+    transformed = transformed
+      .replace(/from "@bootcn-vue\/tooltip"/g, 'from "@/components/ui/Tooltip"')
+      .replace(/from '@bootcn-vue\/tooltip'/g, "from '@/components/ui/Tooltip'");
+  }
+
+  // Transform field-text imports
+  if (packageName === "field-text") {
+    transformed = transformed
+      .replace(/from "@bootcn-vue\/field-text"/g, 'from "@/components/ui/FieldText"')
+      .replace(/from '@bootcn-vue\/field-text'/g, "from '@/components/ui/FieldText'");
+  }
+
+  // Transform field-password imports
+  if (packageName === "field-password") {
+    transformed = transformed
+      .replace(/from "@bootcn-vue\/field-password"/g, 'from "@/components/ui/FieldPassword"')
+      .replace(/from '@bootcn-vue\/field-password'/g, "from '@/components/ui/FieldPassword'");
+  }
+
+  // Transform tooltip imports in other components (e.g., form primitives that use tooltip)
+  transformed = transformed
+    .replace(/from "@bootcn-vue\/tooltip"/g, 'from "@/components/ui/Tooltip"')
+    .replace(/from '@bootcn-vue\/tooltip'/g, "from '@/components/ui/Tooltip'");
+
+  return transformed;
 }
