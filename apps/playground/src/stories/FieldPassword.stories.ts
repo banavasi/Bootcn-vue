@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
+// @ts-expect-error - Vue component package types not generated in workspace
 import { FieldPassword } from "@bootcn-vue/field-password";
 
 const meta = {
@@ -136,30 +137,26 @@ export const WithPasswordRequirements: Story = {
   name: "With Password Requirements",
   render: () => ({
     components: { FieldPassword },
-    data() {
+    setup() {
+      const password = { value: "" };
+      const hasMinLength = () => password.value.length >= 8;
+      const hasNumber = () => /\d/.test(password.value);
+      const hasUppercase = () => /[A-Z]/.test(password.value);
+      const hasSpecialChar = () => /[!@#$%^&*(),.?":{}|<>]/.test(password.value);
+
       return {
-        password: "",
+        password,
+        hasMinLength,
+        hasNumber,
+        hasUppercase,
+        hasSpecialChar,
       };
-    },
-    computed: {
-      hasMinLength() {
-        return this.password.length >= 8;
-      },
-      hasNumber() {
-        return /\d/.test(this.password);
-      },
-      hasUppercase() {
-        return /[A-Z]/.test(this.password);
-      },
-      hasSpecialChar() {
-        return /[!@#$%^&*(),.?":{}|<>]/.test(this.password);
-      },
     },
     template: `
       <div class="p-space-md" style="max-width: 500px;">
         <FieldPassword
           id="requirements-password"
-          v-model="password"
+          v-model="password.value"
           label="Create Password"
           placeholder="Enter a strong password"
           required
@@ -169,17 +166,17 @@ export const WithPasswordRequirements: Story = {
             <div class="small mt-space-xxs">
               <p class="mb-space-xxs fw-bold">Password must contain:</p>
               <ul class="mb-0 ps-space-sm">
-                <li :class="hasMinLength ? 'text-success' : 'text-muted'">
-                  {{ hasMinLength ? '✓' : '○' }} At least 8 characters
+                <li :class="hasMinLength() ? 'text-success' : 'text-muted'">
+                  {{ hasMinLength() ? '✓' : '○' }} At least 8 characters
                 </li>
-                <li :class="hasNumber ? 'text-success' : 'text-muted'">
-                  {{ hasNumber ? '✓' : '○' }} One number
+                <li :class="hasNumber() ? 'text-success' : 'text-muted'">
+                  {{ hasNumber() ? '✓' : '○' }} One number
                 </li>
-                <li :class="hasUppercase ? 'text-success' : 'text-muted'">
-                  {{ hasUppercase ? '✓' : '○' }} One uppercase letter
+                <li :class="hasUppercase() ? 'text-success' : 'text-muted'">
+                  {{ hasUppercase() ? '✓' : '○' }} One uppercase letter
                 </li>
-                <li :class="hasSpecialChar ? 'text-success' : 'text-muted'">
-                  {{ hasSpecialChar ? '✓' : '○' }} One special character
+                <li :class="hasSpecialChar() ? 'text-success' : 'text-muted'">
+                  {{ hasSpecialChar() ? '✓' : '○' }} One special character
                 </li>
               </ul>
             </div>
