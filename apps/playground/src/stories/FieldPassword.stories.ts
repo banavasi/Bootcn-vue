@@ -131,3 +131,161 @@ export const Readonly: Story = {
     modelValue: "readonlypassword",
   },
 };
+
+export const WithPasswordRequirements: Story = {
+  name: "With Password Requirements",
+  render: () => ({
+    components: { FieldPassword },
+    data() {
+      return {
+        password: "",
+      };
+    },
+    computed: {
+      hasMinLength() {
+        return this.password.length >= 8;
+      },
+      hasNumber() {
+        return /\d/.test(this.password);
+      },
+      hasUppercase() {
+        return /[A-Z]/.test(this.password);
+      },
+      hasSpecialChar() {
+        return /[!@#$%^&*(),.?":{}|<>]/.test(this.password);
+      },
+    },
+    template: `
+      <div class="p-space-md" style="max-width: 500px;">
+        <FieldPassword
+          id="requirements-password"
+          v-model="password"
+          label="Create Password"
+          placeholder="Enter a strong password"
+          required
+          tooltip-message="Follow the requirements below"
+        >
+          <template #helper>
+            <div class="small mt-space-xxs">
+              <p class="mb-space-xxs fw-bold">Password must contain:</p>
+              <ul class="mb-0 ps-space-sm">
+                <li :class="hasMinLength ? 'text-success' : 'text-muted'">
+                  {{ hasMinLength ? '✓' : '○' }} At least 8 characters
+                </li>
+                <li :class="hasNumber ? 'text-success' : 'text-muted'">
+                  {{ hasNumber ? '✓' : '○' }} One number
+                </li>
+                <li :class="hasUppercase ? 'text-success' : 'text-muted'">
+                  {{ hasUppercase ? '✓' : '○' }} One uppercase letter
+                </li>
+                <li :class="hasSpecialChar ? 'text-success' : 'text-muted'">
+                  {{ hasSpecialChar ? '✓' : '○' }} One special character
+                </li>
+              </ul>
+            </div>
+          </template>
+        </FieldPassword>
+      </div>
+    `,
+  }),
+};
+
+export const Interactive: Story = {
+  name: "Interactive Demo",
+  render: () => ({
+    components: { FieldPassword },
+    data() {
+      return {
+        password: "",
+      };
+    },
+    template: `
+      <div class="p-space-md">
+        <FieldPassword
+          id="interactive-password"
+          v-model="password"
+          label="Password"
+          placeholder="Type a password..."
+          tooltip-message="Try typing and toggling visibility!"
+          help-text="Your password will be hidden by default"
+        />
+        <div class="mt-space-md p-space-sm bg-light rounded">
+          <strong>Current Value:</strong> {{ password || "(empty)" }}
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const CompleteForm: Story = {
+  name: "Complete Registration Form",
+  render: () => ({
+    components: { FieldPassword },
+    data() {
+      return {
+        password: "",
+        confirmPassword: "",
+        errors: {} as Record<string, string>,
+      };
+    },
+    methods: {
+      validatePassword(this: {
+        password: string;
+        confirmPassword: string;
+        errors: Record<string, string>;
+      }) {
+        this.errors = {};
+
+        if (!this.password) {
+          this.errors.password = "Password is required";
+        } else if (this.password.length < 8) {
+          this.errors.password = "Password must be at least 8 characters";
+        } else if (!/\d/.test(this.password)) {
+          this.errors.password = "Password must contain at least one number";
+        }
+
+        if (!this.confirmPassword) {
+          this.errors.confirmPassword = "Please confirm your password";
+        } else if (this.password !== this.confirmPassword) {
+          this.errors.confirmPassword = "Passwords do not match";
+        }
+
+        if (Object.keys(this.errors).length === 0) {
+          alert("Registration successful!");
+        }
+      },
+    },
+    template: `
+      <form @submit.prevent="validatePassword" class="p-space-md bg-light rounded" style="max-width: 500px;">
+        <h3 class="mb-space-md">Create Account</h3>
+        
+        <FieldPassword
+          id="register-password"
+          v-model="password"
+          label="Password"
+          placeholder="Create a password"
+          required
+          tooltip-message="Choose a strong password"
+          :error="errors.password"
+          help-text="Must be at least 8 characters with 1 number"
+          class="mb-space-sm"
+        />
+        
+        <FieldPassword
+          id="confirm-password"
+          v-model="confirmPassword"
+          label="Confirm Password"
+          placeholder="Re-enter your password"
+          required
+          tooltip-message="Must match the password above"
+          :error="errors.confirmPassword"
+          class="mb-space-md"
+        />
+        
+        <button type="submit" class="btn btn-primary">
+          Create Account
+        </button>
+      </form>
+    `,
+  }),
+};
