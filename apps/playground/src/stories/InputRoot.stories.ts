@@ -10,17 +10,32 @@ const meta = {
     docs: {
       description: {
         component: `
-## Installation
+## Prerequisites
 
-1. **Install dependencies:**
+Before adding components, initialize bootcn-vue in your project:
 
 \`\`\`bash
-npm install @bootcn-vue/forms @bootcn-vue/core bootstrap reka-ui
+npx @bootcn-vue/cli@latest init
 \`\`\`
 
-2. **Copy component to your project:**
+This will:
+- Create \`bootcn.config.json\` configuration file
+- Set up path aliases (\`@/*\`) in \`tsconfig.json\` and \`vite.config.ts\`
+- Create \`src/lib/utils.ts\` with utility functions
+- Create \`src/components/ui/\` directory
+- Install base dependencies: \`bootstrap\`, \`reka-ui\`, \`class-variance-authority\`, \`clsx\`, \`tailwind-merge\`
 
-Copy the \`InputRoot\` component files from \`node_modules/@bootcn-vue/forms/src/primitives/InputRoot/\` to \`src/components/ui/InputRoot/\` in your project.
+## Installation
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest add input-root
+\`\`\`
+
+This command will:
+- Install required dependencies: \`@bootcn-vue/core\`
+- Install peer dependencies: \`reka-ui\`
+- Copy the component to \`src/components/ui/InputRoot/\`
+- Transform imports to use local paths (\`@/lib/utils\` instead of \`@bootcn-vue/core\`)
 
 ## Import
 
@@ -34,7 +49,7 @@ import { InputRoot } from '@/components/ui/InputRoot';
 
 **[@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)** - Form primitives and components
 
-**Note:** Copy components to \`src/components/ui/\` for full control and customization.
+**Note:** Components are copied to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

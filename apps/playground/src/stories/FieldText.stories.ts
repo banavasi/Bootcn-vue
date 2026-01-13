@@ -9,17 +9,32 @@ const meta = {
     docs: {
       description: {
         component: `
-## Installation
+## Prerequisites
 
-1. **Install dependencies:**
+Before adding components, initialize bootcn-vue in your project:
 
 \`\`\`bash
-npm install @bootcn-vue/field-text @bootcn-vue/forms @bootcn-vue/core bootstrap reka-ui
+npx @bootcn-vue/cli@latest init
 \`\`\`
 
-2. **Copy component to your project:**
+This will:
+- Create \`bootcn.config.json\` configuration file
+- Set up path aliases (\`@/*\`) in \`tsconfig.json\` and \`vite.config.ts\`
+- Create \`src/lib/utils.ts\` with utility functions
+- Create \`src/components/ui/\` directory
+- Install base dependencies: \`bootstrap\`, \`reka-ui\`, \`class-variance-authority\`, \`clsx\`, \`tailwind-merge\`
 
-Copy the \`FieldText\` component files from \`node_modules/@bootcn-vue/field-text/src/\` to \`src/components/ui/FieldText/\` in your project.
+## Installation
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest add field-text
+\`\`\`
+
+This command will:
+- Install required dependencies: \`@bootcn-vue/core\`, \`@bootcn-vue/forms\`
+- Install peer dependencies: \`reka-ui\`
+- Copy the component to \`src/components/ui/FieldText/\`
+- Transform imports to use local paths
 
 ## Import
 
@@ -33,7 +48,7 @@ import { FieldText } from '@/components/ui/FieldText';
 
 **[@bootcn-vue/field-text](https://www.npmjs.com/package/@bootcn-vue/field-text)** - Text input field component
 
-**Note:** Copy components to \`src/components/ui/\` for full control and customization.
+**Note:** Components are copied to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

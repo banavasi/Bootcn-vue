@@ -17,17 +17,37 @@ const meta = {
     docs: {
       description: {
         component: `
-## Installation
+## Prerequisites
 
-1. **Install dependencies:**
+Before adding components, initialize bootcn-vue in your project:
 
 \`\`\`bash
-npm install @bootcn-vue/tooltip @bootcn-vue/core bootstrap reka-ui
+npx @bootcn-vue/cli@latest init
 \`\`\`
 
-2. **Copy component to your project:**
+This will:
+- Create \`bootcn.config.json\` configuration file
+- Set up path aliases (\`@/*\`) in \`tsconfig.json\` and \`vite.config.ts\`
+- Create \`src/lib/utils.ts\` with utility functions
+- Create \`src/components/ui/\` directory
+- Install base dependencies: \`bootstrap\`, \`reka-ui\`, \`class-variance-authority\`, \`clsx\`, \`tailwind-merge\`
 
-Copy the \`Tooltip\` component files from \`node_modules/@bootcn-vue/tooltip/src/\` to \`src/components/ui/Tooltip/\` in your project.
+## Installation
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest add tooltip
+\`\`\`
+
+This command will:
+- Install required dependencies: \`@bootcn-vue/core\`
+- Install peer dependencies: \`reka-ui\`
+- Copy the component files to \`src/components/ui/Tooltip/\`:
+  - \`Tooltip.vue\`
+  - \`TooltipTrigger.vue\`
+  - \`TooltipContent.vue\`
+  - \`tooltip.css\`
+  - \`index.ts\`
+- Transform imports to use local paths
 
 ## Import
 
@@ -41,7 +61,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip
 
 **[@bootcn-vue/tooltip](https://www.npmjs.com/package/@bootcn-vue/tooltip)** - Accessible tooltip component
 
-**Note:** Copy components to \`src/components/ui/\` for full control and customization.
+**Note:** Components are copied to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

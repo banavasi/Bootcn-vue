@@ -11,23 +11,38 @@ const meta = {
     docs: {
       description: {
         component: `
-## Installation
+## Prerequisites
 
-1. **Install dependencies:**
+Before adding components, initialize bootcn-vue in your project:
 
 \`\`\`bash
-npm install @bootcn-vue/forms @bootcn-vue/core @bootcn-vue/tooltip bootstrap reka-ui
+npx @bootcn-vue/cli@latest init
 \`\`\`
 
-2. **Copy components to your project:**
+This will:
+- Create \`bootcn.config.json\` configuration file
+- Set up path aliases (\`@/*\`) in \`tsconfig.json\` and \`vite.config.ts\`
+- Create \`src/lib/utils.ts\` with utility functions
+- Create \`src/components/ui/\` directory
+- Install base dependencies: \`bootstrap\`, \`reka-ui\`, \`class-variance-authority\`, \`clsx\`, \`tailwind-merge\`
 
-Copy the component files from \`node_modules/@bootcn-vue/forms/src/primitives/\` to \`src/components/ui/\` in your project:
+## Installation
 
-- \`InputRoot/\` → \`src/components/ui/InputRoot/\`
-- \`InputLabel/\` → \`src/components/ui/InputLabel/\`
-- \`InputField/\` → \`src/components/ui/InputField/\`
-- \`InputError/\` → \`src/components/ui/InputError/\`
-- \`InputHelp/\` → \`src/components/ui/InputHelp/\`
+\`\`\`bash
+npx @bootcn-vue/cli@latest add input-root input-label input-field input-error input-help
+\`\`\`
+
+This command will:
+- Install required dependencies: \`@bootcn-vue/core\`, \`@bootcn-vue/tooltip\`
+- Install peer dependencies: \`reka-ui\`
+- Copy all components to \`src/components/ui/\`:
+  - \`InputRoot/\` → \`src/components/ui/InputRoot/\`
+  - \`InputLabel/\` → \`src/components/ui/InputLabel/\`
+  - \`InputField/\` → \`src/components/ui/InputField/\`
+  - \`InputError/\` → \`src/components/ui/InputError/\`
+  - \`InputHelp/\` → \`src/components/ui/InputHelp/\`
+- Copy context file to \`src/components/ui/forms/context.ts\`
+- Transform imports to use local paths
 
 ## Import
 
@@ -45,7 +60,7 @@ import { InputHelp } from '@/components/ui/InputHelp';
 
 **[@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)** - Form primitives and components
 
-**Note:** Copy components to \`src/components/ui/\` for full control and customization.
+**Note:** Components are copied to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 

@@ -9,17 +9,32 @@ const meta = {
     docs: {
       description: {
         component: `
-## Installation
+## Prerequisites
 
-1. **Install dependencies:**
+Before adding components, initialize bootcn-vue in your project:
 
 \`\`\`bash
-npm install @bootcn-vue/field-password @bootcn-vue/forms @bootcn-vue/core @bootcn-vue/tooltip bootstrap reka-ui
+npx @bootcn-vue/cli@latest init
 \`\`\`
 
-2. **Copy component to your project:**
+This will:
+- Create \`bootcn.config.json\` configuration file
+- Set up path aliases (\`@/*\`) in \`tsconfig.json\` and \`vite.config.ts\`
+- Create \`src/lib/utils.ts\` with utility functions
+- Create \`src/components/ui/\` directory
+- Install base dependencies: \`bootstrap\`, \`reka-ui\`, \`class-variance-authority\`, \`clsx\`, \`tailwind-merge\`
 
-Copy the \`FieldPassword\` component files from \`node_modules/@bootcn-vue/field-password/src/\` to \`src/components/ui/FieldPassword/\` in your project.
+## Installation
+
+\`\`\`bash
+npx @bootcn-vue/cli@latest add field-password
+\`\`\`
+
+This command will:
+- Install required dependencies: \`@bootcn-vue/core\`, \`@bootcn-vue/forms\`, \`@bootcn-vue/tooltip\`
+- Install peer dependencies: \`reka-ui\`, \`@fortawesome/fontawesome-svg-core\`, \`@fortawesome/free-solid-svg-icons\`, \`@fortawesome/vue-fontawesome\`
+- Copy the component to \`src/components/ui/FieldPassword/\`
+- Transform imports to use local paths
 
 ## Import
 
@@ -33,7 +48,7 @@ import { FieldPassword } from '@/components/ui/FieldPassword';
 
 **[@bootcn-vue/field-password](https://www.npmjs.com/package/@bootcn-vue/field-password)** - Password field component with show/hide toggle
 
-**Note:** Copy components to \`src/components/ui/\` for full control and customization.
+**Note:** Components are copied to \`src/components/ui/\` for full control and customization.
 
 ## Overview
 
@@ -300,7 +315,7 @@ export const CompleteForm: Story = {
     template: `
       <form @submit.prevent="validatePassword" class="p-space-md bg-light rounded" style="max-width: 500px;">
         <h3 class="mb-space-md">Create Account</h3>
-        
+
         <FieldPassword
           id="register-password"
           v-model="password"
@@ -312,7 +327,7 @@ export const CompleteForm: Story = {
           help-text="Must be at least 8 characters with 1 number"
           class="mb-space-sm"
         />
-        
+
         <FieldPassword
           id="confirm-password"
           v-model="confirmPassword"
@@ -323,7 +338,7 @@ export const CompleteForm: Story = {
           :error="errors.confirmPassword"
           class="mb-space-md"
         />
-        
+
         <button type="submit" class="btn btn-primary">
           Create Account
         </button>
