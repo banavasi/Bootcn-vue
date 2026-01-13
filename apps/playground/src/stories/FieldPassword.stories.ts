@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-// @ts-expect-error - Vue component package types not generated in workspace
 import { FieldPassword } from "@bootcn-vue/field-password";
 
 const meta = {

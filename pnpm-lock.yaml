@@ -72,6 +72,9 @@ importers:
       '@bootcn-vue/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@bootcn-vue/field-password':
+        specifier: workspace:*
+        version: link:../../packages/field-password
       '@bootcn-vue/field-text':
         specifier: workspace:*
         version: link:../../packages/field-text

@@ -58,7 +58,7 @@ const toggleVisibility = () => {
 </script>
 
 <template>
-  <div class="input-group">
+  <div class="position-relative">
     <input
       :id="context.id.value"
       ref="inputRef"
@@ -73,6 +73,7 @@ const toggleVisibility = () => {
           props.class,
         )
       "
+      :style="{ paddingRight: '3rem' }"
       :placeholder="placeholder"
       :required="context.required.value"
       :disabled="context.disabled.value"
@@ -86,13 +87,14 @@ const toggleVisibility = () => {
     />
     <button
       type="button"
-      class="input-group-text"
+      class="btn btn-link position-absolute top-50 end-0 translate-middle-y"
+      :style="{ paddingRight: '0.75rem' }"
       :disabled="context.disabled.value"
       :aria-label="showPassword ? 'Hide password' : 'Show password'"
       @click="toggleVisibility"
     >
       <FontAwesomeIcon :icon="showPassword ? faEyeSlash : faEye" />
-      <span class="sr-only">{{ showPassword ? "Hide" : "Show" }} password</span>
+      <span class="visually-hidden">{{ showPassword ? "Hide" : "Show" }} password</span>
     </button>
   </div>
   <div v-if="$slots.helper" class="mt-space-xxs">
