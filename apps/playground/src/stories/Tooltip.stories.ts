@@ -101,14 +101,6 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip
       defaultValue: 4,
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        component:
-          "A tooltip component built on Reka UI with Bootstrap 5 styling. Provides contextual information when users hover over or focus on an element.",
-      },
-    },
-  },
 } satisfies Meta<TooltipProps>;
 
 export default meta;

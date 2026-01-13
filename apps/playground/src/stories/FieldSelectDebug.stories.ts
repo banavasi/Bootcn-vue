@@ -15,9 +15,11 @@ import {
 
 const meta = {
   title: "Debug/SelectRaw",
-  component: SelectRoot,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: SelectRoot as any,
   tags: ["autodocs"],
-} satisfies Meta<typeof SelectRoot>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+} satisfies Meta<any>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
