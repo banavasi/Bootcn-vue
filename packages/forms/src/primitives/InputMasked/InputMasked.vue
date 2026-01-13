@@ -85,6 +85,46 @@ const applyMask = (value: string): string => {
   return masked;
 };
 
+// Validate if a character is valid for the current mask position
+const isValidCharForPosition = (char: string, position: number): boolean => {
+  if (!props.mask) return true;
+
+  // Find the next token position in the mask
+  let tokenPos = position;
+  while (tokenPos < props.mask.length) {
+    const maskChar = props.mask[tokenPos];
+    const token = props.tokens[maskChar];
+    if (token) {
+      return token.pattern.test(char);
+    }
+    tokenPos++;
+  }
+
+  return false;
+};
+
+// Handle beforeinput to prevent invalid characters from appearing
+const handleBeforeInput = (event: InputEvent) => {
+  if (!props.mask || !event.data) return;
+
+  // Get the character being typed
+  const char = event.data;
+
+  // Check if any character in the input data is valid
+  let hasValidChar = false;
+  for (let i = 0; i < char.length; i++) {
+    if (isValidCharForPosition(char[i], unmaskedValue.value.length)) {
+      hasValidChar = true;
+      break;
+    }
+  }
+
+  // If no valid characters, prevent the input
+  if (!hasValidChar) {
+    event.preventDefault();
+  }
+};
+
 // Handle input events
 const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
@@ -208,6 +248,7 @@ const ariaDescribedBy = computed(() => {
     :aria-required="context.required.value"
     :aria-invalid="context.invalid.value ? 'true' : undefined"
     :aria-describedby="ariaDescribedBy"
+    @beforeinput="handleBeforeInput"
     @input="handleInput"
     @blur="emit('blur', $event)"
     @focus="emit('focus', $event)"
