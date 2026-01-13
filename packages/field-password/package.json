@@ -1,6 +1,6 @@
 {
   "name": "@bootcn-vue/field-password",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Password field component with show/hide toggle",
   "type": "module",
   "main": "./dist/index.js",
