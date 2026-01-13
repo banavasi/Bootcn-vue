@@ -1,0 +1,405 @@
+# Cursor Rules for bootcn-vue
+
+> **Project:** bootcn-vue - Bootstrap + Vue 3 Component Library with CLI
+> **Package Scope:** `@bootcn-vue/*`
+
+## Commit Message Rules
+
+### Conventional Commits Format
+
+```
+<type>(<scope>): <description>
+
+[optional body - max 100 chars per line]
+
+[optional footer(s)]
+```
+
+### Commit Types
+
+- `feat` - New feature
+- `fix` - Bug fix
+- `docs` - Documentation only
+- `style` - Formatting, no code change
+- `refactor` - Code change that neither fixes bug nor adds feature
+- `perf` - Performance improvement
+- `test` - Adding/updating tests
+- `build` - Build system or dependencies
+- `ci` - CI configuration
+- `chore` - Other changes (e.g., updating tasks)
+
+### Required Commit Scopes
+
+**MUST use one of these scopes (enforced by commitlint):**
+
+- `core` - Core utilities package
+- `buttons` - Button components package
+- `forms` - Form components package
+- `field-password` - Password field package
+- `field-text` - Text field package
+- `tooltip` - Tooltip component package
+- `cli` - CLI package
+- `playground` - Storybook/playground app
+- `docs` - Documentation changes
+- `ci` - CI/CD configuration
+- `deps` - Dependency updates
+- `release` - Release-related changes
+- `build` - Build configuration
+- `monorepo` - Monorepo configuration
+
+### Commit Message Requirements
+
+- ✅ Subject MUST be lowercase
+- ✅ Body lines MUST be ≤ 100 characters
+- ✅ Scope MUST be from the allowed list above
+- ✅ Keep commits atomic and focused
+
+### Commit Examples
+
+```bash
+feat(buttons): add ButtonGroup component
+fix(forms): correct Input focus border color
+docs(docs): update installation guide
+chore(deps): upgrade Vue to 3.5.0
+ci(ci): add npm provenance to release workflow
+```
+
+---
+
+## Code Style Rules
+
+### TypeScript
+
+- ✅ Always use strict TypeScript - **NO `any` types**
+- ✅ Define interfaces for component props: `interface Props extends ...`
+- ✅ Use type inference where obvious, explicit types for public APIs
+- ✅ Export types alongside components: `export type ButtonVariants = VariantProps<...>`
+
+### Vue 3 Composition API
+
+- ✅ Use `<script setup lang="ts">` for ALL components
+- ✅ Use `defineProps<Props>()` with TypeScript interfaces, NOT runtime props
+- ✅ Use `withDefaults()` for default prop values
+- ✅ Prefer composables over mixins
+- ✅ Use `type` imports: `import type { HTMLAttributes } from 'vue'`
+
+### Component Structure Order
+
+```vue
+<script setup lang="ts">
+// 1. Type imports
+import type { HTMLAttributes } from "vue";
+// 2. External imports
+import { Primitive, type PrimitiveProps } from "reka-ui";
+// 3. Internal imports
+import { cn } from "@/lib/utils";
+
+// 4. Types/Interfaces
+interface Props extends PrimitiveProps {
+  variant?: string;
+  class?: HTMLAttributes["class"];
+}
+
+// 5. Props with defaults
+const props = withDefaults(defineProps<Props>(), {
+  as: "button",
+});
+</script>
+
+<template>
+  <!-- Clean, semantic HTML -->
+</template>
+```
+
+### Imports
+
+- ✅ Use `@/` alias for src imports: `import { Button } from '@/components/ui/Button'`
+- ✅ Group imports: external packages → Vue imports → internal modules → types
+- ✅ Prefer named exports over default exports for components in barrel files
+
+### Naming Conventions
+
+- **Components**: PascalCase (`Button.vue`, `HelloWorld.vue`)
+- **Files**: Match component name (`Button.vue`, `Button.spec.ts`, `index.ts`)
+- **UI Components**: Store in `src/components/ui/{ComponentName}/` with barrel export
+- **Props**: camelCase
+- **CSS Classes**: kebab-case or use utility functions
+
+### Path Aliases
+
+- `@/` → `./src/`
+- `~bootstrap` → `node_modules/bootstrap`
+
+---
+
+## Styling Rules
+
+### RDS Spacing System
+
+**ALWAYS use RDS spacing instead of Bootstrap numeric spacing!**
+
+```vue
+<!-- ✅ CORRECT - RDS spacing -->
+<div class="mb-space-sm px-space-md">Content</div>
+
+<!-- ❌ WRONG - Bootstrap numeric spacing -->
+<div class="mb-3 px-4">Content</div>
+```
+
+**RDS Spacing Scale:**
+
+- `space-xxxs` - 0.25rem (4px)
+- `space-xxs` - 0.5rem (8px)
+- `space-xs` - 1rem (16px)
+- `space-sm` - 1.5rem (24px)
+- `space-md` - 2rem (32px)
+- `space-lg` - 3rem (48px)
+- `space-xl` - 4rem (64px)
+- `space-xxl` - 6rem (96px)
+- `space-xxxl` - 8rem (128px)
+
+**Usage:**
+
+- Margin: `mb-space-sm`, `mt-space-xs`, `me-space-xxs`
+- Padding: `px-space-md`, `py-space-xs`, `p-space-sm`
+- Gap: `gap-space-xs`, `column-gap-space-sm`, `row-gap-space-md`
+
+### Typography
+
+- Use RDS heading sizes: `h1-small`, `h2-medium`, `h3-large`
+- Use RDS body text classes
+
+### CSS Framework
+
+- Bootstrap 5.3.6 (SCSS) + utility classes
+- Use `cn()` from `@/lib/utils` to merge classes (clsx + tailwind-merge)
+- SCSS preprocessor with Bootstrap auto-import
+- Use `~bootstrap` alias for Bootstrap imports
+- Use `data-slot` attribute for component identification
+
+---
+
+## Component Development Rules
+
+### UI Components Pattern
+
+✅ **Required Structure:**
+
+```
+src/components/ui/{ComponentName}/
+├── {ComponentName}.vue        # Component implementation
+├── index.ts                   # Barrel export with cva variants
+└── {ComponentName}.spec.ts    # Unit tests
+```
+
+✅ **Must Include:**
+
+- Use `class-variance-authority` (cva) for variant styling
+- Export both component AND variant types from `index.ts`
+- Multi-word component names not required for UI components
+
+### Testing Requirements
+
+- **Unit Tests**: Vitest + @vue/test-utils
+- Place tests alongside components: `Button.spec.ts` next to `Button.vue`
+- Test ALL variants and sizes for UI components
+- Use `mount()` from `@vue/test-utils`
+- Test custom classes, slots, and asChild behavior
+
+**Test Structure:**
+
+```ts
+describe('ComponentName', () => {
+  it('renders with default props', () => {
+    const wrapper = mount(Component, { ... })
+    expect(wrapper.find('button').exists()).toBe(true)
+  })
+})
+```
+
+### Error Handling
+
+- Use TypeScript's type system to prevent errors at compile time
+- Validate props with TypeScript interfaces
+- Handle edge cases in component logic
+- Write defensive code for user inputs
+
+---
+
+## Workflow Rules
+
+### Task Workflow (8 Steps)
+
+1. **UPDATE TASKS.MD** - Mark task as `[~]` In Progress
+2. **IMPLEMENT** - Follow code standards, use conventional commits
+3. **VALIDATE** - Run: `pnpm lint && pnpm type-check && pnpm test:unit`
+4. **USER TESTING CHECKPOINT** - Add to Storybook, ask user to test
+5. **WRITE TESTS** - Unit tests (Vitest), E2E if applicable (Playwright)
+6. **DOCUMENTATION** - Update Storybook docs, update README
+7. **COMPLETE** - Mark `[x]` in TASKS.md, create changeset, commit
+8. **MERGE TO MAIN** - When story complete, CI will build/test/deploy/publish
+
+### Task Status Markers
+
+- `[ ]` - Not started
+- `[~]` - In Progress
+- `[!]` - Blocked
+- `[x]` - Complete
+
+### Changesets (Required for Publishable Changes)
+
+```bash
+pnpm changeset
+# Select affected packages
+# Choose bump type (patch/minor/major)
+# Write change description
+```
+
+### User Testing Checkpoints
+
+For UI components, ALWAYS request user testing with this format:
+
+```markdown
+## User Testing Checkpoint
+
+**Component:** Button
+**Location:** Storybook → Buttons → Button
+
+Please test the following:
+
+1. [ ] All variants render correctly
+2. [ ] All sizes render correctly
+3. [ ] Disabled state works
+4. [ ] Click interactions work
+5. [ ] Accessibility (keyboard nav, screen reader)
+
+**Feedback:** (user fills this in)
+**Status:** Awaiting feedback / Approved / Changes requested
+```
+
+---
+
+## Commands Reference
+
+### Development
+
+- `pnpm dev` - Start dev server (http://localhost:8080)
+- `pnpm build` - Type-check and build for production
+- `pnpm preview` - Preview production build
+
+### Testing
+
+- `pnpm test:unit` - Run all unit tests
+- `pnpm test:unit -- Button.spec.ts` - Run specific test
+- `pnpm test:unit -- --watch` - Watch mode
+- `pnpm test:e2e` - Run E2E tests (Playwright)
+- `pnpm test:e2e -- --project=chromium` - Specific browser
+- `pnpm test:e2e -- --debug` - Debug mode
+
+### Linting & Type Checking
+
+- `pnpm type-check` - Type check without building
+- `pnpm lint` - Run oxlint + eslint (with auto-fix)
+- `pnpm lint:eslint` - ESLint only
+- `pnpm lint:oxlint` - Oxlint only
+
+### Storybook
+
+- `pnpm storybook` - Start Storybook dev server (port 6006)
+- `pnpm build-storybook` - Build Storybook static site
+
+### Module Creation
+
+- `pnpm create:module` - Interactive CLI to scaffold new component module
+
+---
+
+## Code Formatting Rules
+
+- **Indentation**: 2 spaces (enforced by .editorconfig)
+- **Line Length**: 100 characters max
+- **Quotes**: Single quotes for strings
+- **Semicolons**: Not required (Vue style)
+- **Trailing Commas**: Yes
+- **Final Newline**: Yes (enforced)
+
+---
+
+## Package Manager Rules
+
+- ✅ **Use pnpm exclusively** (NOT npm or yarn)
+- ✅ Lock file: `pnpm-lock.yaml`
+
+---
+
+## CI/CD Rules
+
+- E2E tests run in headless mode on CI
+- Type checking required before build
+- ESLint forbids `test.only` on CI
+- Retries: 2 on CI, 0 locally
+
+---
+
+## Common Patterns
+
+### Creating a New UI Component
+
+1. Create directory: `src/components/ui/{ComponentName}/`
+2. Create `{ComponentName}.vue` with `<script setup lang="ts">`
+3. Create `index.ts` with cva variants and barrel exports
+4. Create `{ComponentName}.spec.ts` with comprehensive tests
+5. Import: `import { ComponentName } from '@/components/ui/{ComponentName}'`
+
+### Component Props Pattern
+
+```ts
+interface Props extends PrimitiveProps {
+  variant?: ComponentVariants["variant"];
+  size?: ComponentVariants["size"];
+  class?: HTMLAttributes["class"];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  as: "button",
+  asChild: false,
+});
+```
+
+---
+
+## CRITICAL RULES SUMMARY
+
+### ❌ NEVER DO:
+
+- Use `any` type in TypeScript
+- Use Bootstrap numeric spacing (m-1, m-2, m-3, etc.)
+- Use runtime props validation (use TypeScript interfaces)
+- Use default exports for components in barrel files
+- Commit without running validation (`pnpm lint && pnpm type-check && pnpm test:unit`)
+- Create changeset without selecting affected packages
+- Use incorrect commit scope (must be from allowed list)
+- Use uppercase in commit subject
+- Use body lines longer than 100 characters
+
+### ✅ ALWAYS DO:
+
+- Use strict TypeScript with proper interfaces
+- Use RDS spacing system (`space-sm`, `space-md`, etc.)
+- Use `<script setup lang="ts">` for components
+- Use `@/` path alias for imports
+- Follow component structure order (type imports → external → internal → types → props)
+- Write unit tests for all components
+- Create changesets for publishable changes
+- Use conventional commits with correct scope
+- Keep commit messages lowercase with ≤100 char body lines
+- Run validation before committing
+- Request user testing for UI components
+
+---
+
+## Reference Files
+
+- **Full Guidelines**: `AGENTS.md`
+- **Task Tracking**: `TASKS.md`
+- **Release Process**: `RELEASE.md`
