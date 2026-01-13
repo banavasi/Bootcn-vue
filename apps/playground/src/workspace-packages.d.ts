@@ -20,6 +20,7 @@ declare module "@bootcn-vue/forms" {
   const InputMasked: any;
   const InputNumericRange: any;
   const InputPassword: any;
+  const FieldSSN: any;
   const Label: any;
   const SelectField: any;
   export {
@@ -32,6 +33,7 @@ declare module "@bootcn-vue/forms" {
     InputMasked,
     InputNumericRange,
     InputPassword,
+    FieldSSN,
     Label,
     SelectField,
   };
