@@ -230,6 +230,7 @@ watch(
 );
 
 const ariaDescribedBy = computed(() => {
+  if (!context) return undefined;
   const ids: string[] = [];
   ids.push(context.helpId.value);
   if (context.invalid.value) {
@@ -241,7 +242,7 @@ const ariaDescribedBy = computed(() => {
 
 <template>
   <input
-    :id="context.id.value"
+    :id="context?.id.value"
     ref="inputRef"
     :value="displayValue"
     type="text"
@@ -250,18 +251,18 @@ const ariaDescribedBy = computed(() => {
     :class="
       cn(
         {
-          'is-invalid': context.invalid.value,
+          'is-invalid': context?.invalid.value,
         },
         props.class,
       )
     "
     :placeholder="placeholder"
-    :required="context.required.value"
-    :disabled="context.disabled.value"
+    :required="context?.required.value"
+    :disabled="context?.disabled.value"
     :readonly="readonly"
     :autocomplete="autocomplete"
-    :aria-required="context.required.value"
-    :aria-invalid="context.invalid.value ? 'true' : undefined"
+    :aria-required="context?.required.value"
+    :aria-invalid="context?.invalid.value ? 'true' : undefined"
     :aria-describedby="ariaDescribedBy"
     @beforeinput="handleBeforeInput"
     @input="handleInput"
