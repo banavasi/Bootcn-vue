@@ -103,9 +103,32 @@ const isValidCharForPosition = (char: string, position: number): boolean => {
   return false;
 };
 
+// Count total number of token positions in the mask
+const getMaxInputLength = (): number => {
+  if (!props.mask) return Infinity;
+
+  let count = 0;
+  for (let i = 0; i < props.mask.length; i++) {
+    const maskChar = props.mask[i];
+    if (props.tokens[maskChar]) {
+      count++;
+    }
+  }
+  return count;
+};
+
 // Handle beforeinput to prevent invalid characters from appearing
 const handleBeforeInput = (event: InputEvent) => {
   if (!props.mask || !event.data) return;
+
+  // Check if mask is already full
+  const maxLength = getMaxInputLength();
+  const currentLength = unmaskedValue.value.length;
+
+  if (currentLength >= maxLength) {
+    event.preventDefault();
+    return;
+  }
 
   // Get the character being typed
   const char = event.data;
