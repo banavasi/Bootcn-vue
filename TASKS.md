@@ -34,7 +34,7 @@
 | Sprint 3 | CLI Development         | `[x]` Complete    |
 | Sprint 4 | CI/CD & Publishing      | `[x]` Complete    |
 | Sprint 5 | Forms Package           | `[ ]` Not Started |
-| Sprint 6 | Documentation & Polish  | `[ ]` Not Started |
+| Sprint 6 | Documentation & Polish  | `[~]` In Progress |
 
 ---
 
@@ -415,10 +415,11 @@
 
 #### Tasks
 
-- [ ] **T6.1.1:** Create introduction page
-  - [ ] Add welcome/intro MDX
-  - [ ] Add installation instructions
-  - [ ] Add quick start guide
+- [x] **T6.1.1:** Create introduction page
+  - [x] Add welcome/intro MDX
+  - [x] Add installation instructions
+  - [x] Add quick start guide
+  - [x] Add package creation guide (pnpm create:module)
 
 - [ ] **T6.1.2:** Document each component
   - [ ] Add component description
