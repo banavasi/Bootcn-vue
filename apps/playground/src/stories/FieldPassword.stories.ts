@@ -5,6 +5,44 @@ const meta = {
   title: "Forms/FieldPassword",
   component: FieldPassword,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Installation
+
+\`\`\`bash
+npm install @bootcn-vue/field-password
+\`\`\`
+
+## Import
+
+\`\`\`vue
+<script setup lang="ts">
+import { FieldPassword } from '@bootcn-vue/field-password';
+</script>
+\`\`\`
+
+## Package
+
+**[@bootcn-vue/field-password](https://www.npmjs.com/package/@bootcn-vue/field-password)** - Password field component with show/hide toggle
+
+## Overview
+
+\`FieldPassword\` is a complete password input field component with label, show/hide toggle, validation, help text, and tooltip support. It's built on top of form primitives and provides a ready-to-use solution for password inputs.
+
+### Key Features
+
+- ✅ Complete field component with label, input, help, and error
+- ✅ Show/hide password toggle button
+- ✅ Tooltip support
+- ✅ Optional badge indicator
+- ✅ Validation error display
+- ✅ WCAG 2.1 compliant
+        `,
+      },
+    },
+  },
   argTypes: {
     id: {
       control: { type: "text" },

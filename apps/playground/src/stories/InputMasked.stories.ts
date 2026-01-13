@@ -6,6 +6,90 @@ const meta = {
   title: "Forms/Primitives/InputMasked",
   component: InputMasked,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Installation
+
+\`\`\`bash
+npm install @bootcn-vue/forms
+\`\`\`
+
+## Import
+
+\`\`\`vue
+<script setup lang="ts">
+import { InputMasked } from '@bootcn-vue/forms';
+</script>
+\`\`\`
+
+## Package
+
+**[@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)** - Form primitives and components
+
+## Overview
+
+\`InputMasked\` provides pattern-based input masking for formatted inputs like phone numbers, dates, credit cards, and SSNs. The component automatically formats input as the user types and returns the unmasked value via v-model.
+
+### Key Features
+
+- ✅ Pattern-based masking with customizable tokens
+- ✅ Auto-formats input as user types
+- ✅ Returns unmasked value via v-model
+- ✅ Prevents invalid characters
+- ✅ Enforces maximum length based on mask pattern
+- ✅ Maintains cursor position during formatting
+
+## Mask Patterns
+
+| Token | Description | Example |
+|-------|-------------|---------|
+| \`#\` | Digit (0-9) | Phone: \`(###) ###-####\` |
+| \`%\` | Letter (a-z, A-Z) | License: \`%%%-####\` |
+| \`@\` | Alphanumeric | Code: \`@@@@-@@@@\` |
+| \`*\` | Any character | Custom patterns |
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| \`mask\` | \`string\|string[]\` | \`undefined\` | Mask pattern (e.g., \`(###) ###-####\`) |
+| \`tokens\` | \`Record<string, {pattern: RegExp, transform?: (char: string) => string}>\` | See below | Custom token definitions |
+| \`placeholder\` | \`string\` | \`undefined\` | Placeholder text |
+| \`readonly\` | \`boolean\` | \`false\` | Make input readonly |
+| \`autocomplete\` | \`string\` | \`undefined\` | Autocomplete attribute |
+| \`class\` | \`string\` | \`undefined\` | Additional CSS classes |
+
+## Default Tokens
+
+\`\`\`typescript
+{
+  "#": { pattern: /\\d/ },        // digit
+  "%": { pattern: /[a-zA-Z]/ },  // letter
+  "@": { pattern: /[a-zA-Z0-9]/ }, // alphanumeric
+  "*": { pattern: /./ }         // any character
+}
+\`\`\`
+
+## Usage
+
+\`InputMasked\` must be used within \`InputRoot\` to receive the field context:
+
+\`\`\`vue
+<InputRoot id="phone" :required="true">
+  <InputLabel>Phone Number</InputLabel>
+  <InputMasked
+    v-model="phone"
+    mask="(###) ###-####"
+    placeholder="(555) 123-4567"
+  />
+</InputRoot>
+\`\`\`
+        `,
+      },
+    },
+  },
   argTypes: {
     mask: {
       control: { type: "text" },

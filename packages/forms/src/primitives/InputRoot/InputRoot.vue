@@ -19,10 +19,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 // Provide context to child components
 provide(INPUT_INJECTION_KEY, {
-  id: toRef(() => props.id),
-  invalid: toRef(() => props.invalid),
-  disabled: toRef(() => props.disabled),
-  required: toRef(() => props.required),
+  id: toRef(props, "id"),
+  invalid: toRef(props, "invalid"),
+  disabled: toRef(props, "disabled"),
+  required: toRef(props, "required"),
   errorId: computed(() => `${props.id}-error`),
   helpId: computed(() => `${props.id}-help`),
 });

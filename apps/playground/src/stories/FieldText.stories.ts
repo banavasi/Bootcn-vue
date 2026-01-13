@@ -5,6 +5,43 @@ const meta = {
   title: "Forms/FieldText",
   component: FieldText,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Installation
+
+\`\`\`bash
+npm install @bootcn-vue/field-text
+\`\`\`
+
+## Import
+
+\`\`\`vue
+<script setup lang="ts">
+import { FieldText } from '@bootcn-vue/field-text';
+</script>
+\`\`\`
+
+## Package
+
+**[@bootcn-vue/field-text](https://www.npmjs.com/package/@bootcn-vue/field-text)** - Text input field component
+
+## Overview
+
+\`FieldText\` is a complete text input field component with label, validation, help text, and tooltip support. It's built on top of form primitives and provides a ready-to-use solution for text inputs.
+
+### Key Features
+
+- ✅ Complete field component with label, input, help, and error
+- ✅ Tooltip support
+- ✅ Optional badge indicator
+- ✅ Validation error display
+- ✅ WCAG 2.1 compliant
+        `,
+      },
+    },
+  },
   argTypes: {
     id: {
       control: { type: "text" },

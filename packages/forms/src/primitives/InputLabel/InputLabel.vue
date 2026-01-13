@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import type { HTMLAttributes, VNode } from "vue";
-import { inject } from "vue";
+import { computed, inject } from "vue";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@bootcn-vue/tooltip";
 import { INPUT_INJECTION_KEY } from "../context";
 
 interface Props {
+  /**
+   * ID of the input element to associate the label with
+   * If provided, this overrides the context id.
+   * Required if InputLabel is used without InputRoot context.
+   */
+  for?: string;
   level?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   size?: "small" | "medium" | "large";
   class?: HTMLAttributes["class"];
@@ -51,17 +57,34 @@ defineSlots<{
   "optional-badge"?: () => VNode[] | undefined;
 }>();
 
-const context = inject(INPUT_INJECTION_KEY);
-if (!context) {
-  throw new Error("InputLabel must be used within InputRoot");
+const context = inject(INPUT_INJECTION_KEY, undefined);
+
+// Validate: either 'for' prop or context must be provided
+if (!props.for && !context) {
+  throw new Error(
+    "InputLabel requires either a 'for' prop or must be used within InputRoot. " +
+      "Provide 'for' prop when using with custom components, or wrap in InputRoot for standard inputs.",
+  );
 }
+
+// Determine the label's 'for' attribute
+// Priority: 1. Explicit 'for' prop, 2. Context id
+const labelFor = computed(() => {
+  if (props.for) {
+    return props.for;
+  }
+  if (context) {
+    return context.id.value;
+  }
+  return undefined;
+});
 
 const labelClass = `${props.level}-${props.size}`;
 </script>
 
 <template>
   <div class="field-label col-12 d-flex align-items-center mb-space-xxs">
-    <label :for="context.id.value" class="d-flex fw-bold lh-sm" :class="[labelClass, props.class]">
+    <label :for="labelFor" class="d-flex fw-bold lh-sm" :class="[labelClass, props.class]">
       <div class="d-flex align-items-center">
         <span class="my-auto">
           <slot />

@@ -10,8 +10,52 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "Form primitives provide the building blocks for creating accessible, customizable form fields. Use these primitives to compose your own field components with full control over layout and styling.",
+        component: `
+## Installation
+
+\`\`\`bash
+npm install @bootcn-vue/forms
+\`\`\`
+
+## Import
+
+\`\`\`vue
+<script setup lang="ts">
+import { 
+  InputRoot, 
+  InputLabel, 
+  InputField, 
+  InputError, 
+  InputHelp 
+} from '@bootcn-vue/forms';
+</script>
+\`\`\`
+
+## Package
+
+**[@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)** - Form primitives and components
+
+## Overview
+
+Form primitives provide the building blocks for creating accessible, customizable form fields. Use these primitives to compose your own field components with full control over layout and styling.
+
+### Components
+
+- **InputRoot** - Container that provides form context
+- **InputLabel** - Accessible label with tooltip support
+- **InputField** - Standard input element with Bootstrap styling
+- **InputError** - Error message display
+- **InputHelp** - Help text display
+
+### Key Features
+
+- ✅ WCAG 2.1 compliant accessibility
+- ✅ Automatic ID management via context
+- ✅ Support for custom components via \`for\` prop
+- ✅ Tooltip support in labels
+- ✅ Optional badge indicators
+- ✅ Full TypeScript support
+        `,
       },
     },
   },
@@ -791,6 +835,71 @@ export const TooltipHtmlWithFormatting: Story = {
           </InputLabel>
           <InputField type="password" placeholder="Must meet all requirements" />
         </InputRoot>
+      </div>
+    `,
+  }),
+};
+
+/**
+ * InputLabel with custom component using 'for' prop.
+ * This demonstrates how to use InputLabel with non-standard input components
+ * while maintaining proper accessibility.
+ */
+export const WithCustomComponent: Story = {
+  name: "With Custom Component (for prop)",
+  render: () => ({
+    components: { InputRoot, InputLabel, InputField, InputHelp },
+    setup() {
+      const date = ref("");
+      const file = ref<File | null>(null);
+      return { date, file };
+    },
+    template: `
+      <div class="p-space-md">
+        <div class="mb-space-md">
+          <InputRoot id="custom-date-picker">
+            <InputLabel for="custom-date-picker">Birth Date</InputLabel>
+            <div 
+              id="custom-date-picker"
+              class="form-control"
+              style="padding: 0.5rem; background: #f8f9fa; border: 1px solid #dee2e6;"
+            >
+              <input 
+                type="date" 
+                v-model="date"
+                style="border: none; background: transparent; width: 100%;"
+                aria-label="Birth Date"
+              />
+            </div>
+            <InputHelp>Select your date of birth</InputHelp>
+          </InputRoot>
+        </div>
+
+        <div>
+          <InputRoot id="custom-file-upload">
+            <InputLabel for="custom-file-upload">Upload Document</InputLabel>
+            <div 
+              id="custom-file-upload"
+              class="form-control"
+              style="padding: 0.5rem; background: #f8f9fa; border: 1px solid #dee2e6;"
+            >
+              <input 
+                type="file" 
+                @change="file = $event.target.files[0]"
+                style="border: none; background: transparent; width: 100%;"
+                aria-label="Upload Document"
+              />
+            </div>
+            <InputHelp>Accepted formats: PDF, DOC, DOCX (max 5MB)</InputHelp>
+          </InputRoot>
+        </div>
+
+        <div class="mt-space-md p-space-sm bg-light rounded">
+          <small class="text-muted">
+            <strong>Note:</strong> The 'for' prop allows InputLabel to work with custom components
+            that don't use standard input elements, while maintaining proper label association for accessibility.
+          </small>
+        </div>
       </div>
     `,
   }),

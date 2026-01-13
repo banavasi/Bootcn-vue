@@ -13,6 +13,43 @@ const meta = {
   title: "Components/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+## Installation
+
+\`\`\`bash
+npm install @bootcn-vue/tooltip
+\`\`\`
+
+## Import
+
+\`\`\`vue
+<script setup lang="ts">
+import { Tooltip, TooltipTrigger, TooltipContent } from '@bootcn-vue/tooltip';
+</script>
+\`\`\`
+
+## Package
+
+**[@bootcn-vue/tooltip](https://www.npmjs.com/package/@bootcn-vue/tooltip)** - Accessible tooltip component
+
+## Overview
+
+\`Tooltip\` provides accessible tooltip functionality built on Reka UI primitives. It supports customizable positioning, delays, and HTML content.
+
+### Key Features
+
+- ✅ Accessible with ARIA attributes
+- ✅ Customizable positioning (top, right, bottom, left)
+- ✅ Configurable delay duration
+- ✅ HTML content support
+- ✅ Custom styling support
+        `,
+      },
+    },
+  },
   argTypes: {
     delayDuration: {
       control: "number",
