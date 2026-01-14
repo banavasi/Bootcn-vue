@@ -439,6 +439,9 @@ importers:
       '@bootcn-vue/core':
         specifier: workspace:*
         version: link:../core
+      bootstrap:
+        specifier: ^5.3.0
+        version: 5.3.8(@popperjs/core@2.11.8)
       reka-ui:
         specifier: ^2.2.1
         version: 2.7.0(typescript@5.8.3)(vue@3.5.26(typescript@5.8.3))
@@ -446,15 +449,9 @@ importers:
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6
-      bootstrap:
-        specifier: ^5.3.0
-        version: 5.3.8(@popperjs/core@2.11.8)
       jsdom:
         specifier: ^26.0.0
         version: 26.1.0
-      sass:
-        specifier: ^1.87.0
-        version: 1.97.2
       tsup:
         specifier: ^8.3.5
         version: 8.5.1(jiti@2.6.1)(postcss@8.5.6)(typescript@5.8.3)(yaml@2.8.2)
