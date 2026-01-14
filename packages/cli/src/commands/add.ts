@@ -197,9 +197,13 @@ export async function add(components: string[]) {
 
     for (const componentKey of selectedComponents) {
       const component = REGISTRY[componentKey];
-      component.dependencies.forEach((dep) => allDependencies.add(dep));
+      component.dependencies.forEach((dep) => {
+        allDependencies.add(dep);
+      });
       if (component.peerDependencies) {
-        component.peerDependencies.forEach((dep) => allPeerDependencies.add(dep));
+        component.peerDependencies.forEach((dep) => {
+          allPeerDependencies.add(dep);
+        });
       }
     }
 
