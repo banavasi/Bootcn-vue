@@ -1,6 +1,6 @@
 {
   "name": "@bootcn-vue/forms",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "Accessible, customizable form components built with Bootstrap 5 and Vue 3",
   "type": "module",
   "main": "./dist/index.js",

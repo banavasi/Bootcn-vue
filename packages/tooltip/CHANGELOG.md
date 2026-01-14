@@ -1,5 +1,17 @@
 # @bootcn-vue/tooltip
 
+## 0.2.2
+
+### Patch Changes
+
+- [#22](https://github.com/banavasi/Bootcn-vue/pull/22) [`e140184`](https://github.com/banavasi/Bootcn-vue/commit/e140184679876cbef4ddff5657420241d2790bea) Thanks [@banavasi](https://github.com/banavasi)! - update pnpm-lock.yaml and enhance forms documentation
+
+  \- Updated pnpm-lock.yaml to reflect new versions for dependencies including vite and unplugin-vue.
+
+  \- Enhanced forms README.md with import options for individual primitives and tooltip styles requirements.
+
+  \- Updated forms index.ts to export individual primitives for granular imports.
+
 ## 0.2.1
 
 ### Patch Changes

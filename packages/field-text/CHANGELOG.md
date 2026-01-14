@@ -1,5 +1,12 @@
 # @bootcn-vue/field-text
 
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies [[`e140184`](https://github.com/banavasi/Bootcn-vue/commit/e140184679876cbef4ddff5657420241d2790bea)]:
+  - @bootcn-vue/forms@0.6.2
+
 ## 0.2.2
 
 ### Patch Changes
