@@ -1,5 +1,14 @@
 # @bootcn-vue/cli
 
+## 0.6.2
+
+### Patch Changes
+
+- [#24](https://github.com/banavasi/Bootcn-vue/pull/24) [`5602f10`](https://github.com/banavasi/Bootcn-vue/commit/5602f10d369506868ce2d3f2cceea11e44a4c886) Thanks [@banavasi](https://github.com/banavasi)! - fix: add source path for field-text and field-password components
+  - field-text and field-password files are directly in src/ not src/{ComponentName}
+  - add sourcePath: '.' to registry entries for both components
+  - fixes 'Source file not found' error when running `bootcn-vue add field-text` or `bootcn-vue add field-password`
+
 ## 0.6.1
 
 ### Patch Changes
