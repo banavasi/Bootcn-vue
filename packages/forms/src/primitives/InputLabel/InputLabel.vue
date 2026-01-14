@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes, VNode } from "vue";
 import { computed, inject } from "vue";
+// biome-ignore lint/correctness/noUnusedImports: Components are used in Vue template
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@bootcn-vue/tooltip";
 import { INPUT_INJECTION_KEY } from "../context";
 
