@@ -68,7 +68,9 @@ import { InputRoot } from "@bootcn-vue/forms";
 
 #### `InputLabel`
 
-Accessible label with optional tooltip and badge.
+Accessible label with optional tooltip, optional badge, and customizable icons. Provides flexible labeling for form fields with semantic heading levels and visual sizing.
+
+**Basic Usage:**
 
 ```vue
 <script setup lang="ts">
@@ -76,29 +78,134 @@ import { InputLabel } from "@bootcn-vue/forms";
 </script>
 
 <template>
-  <InputLabel for="email" level="h3" size="small" :required="true">
-    Email Address
-    <template #tooltip>We need this to contact you</template>
-    <template #badge>
-      <span class="badge bg-secondary">Optional</span>
-    </template>
-  </InputLabel>
+  <InputRoot id="email">
+    <InputLabel>Email Address</InputLabel>
+    <InputField type="email" />
+  </InputRoot>
 </template>
+```
+
+**With Tooltip:**
+
+```vue
+<InputRoot id="company">
+  <InputLabel tooltip-message="Enter your company's legal name as it appears on official documents">
+    Company Name
+  </InputLabel>
+  <InputField type="text" />
+</InputRoot>
+```
+
+**Optional Field:**
+
+```vue
+<InputRoot id="middle-name">
+  <InputLabel is-optional>
+    Middle Name
+  </InputLabel>
+  <InputField type="text" />
+</InputRoot>
 ```
 
 **Props:**
 
-- `for: string` - ID of the input element (required)
-- `level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'` - Heading level (default: `h3`)
-- `size?: 'small' | 'medium' | 'large'` - Font size (default: `small`)
-- `visible?: boolean` - Show/hide label visually (default: `true`)
-- `required?: boolean` - Show required indicator
+| Prop              | Type                                           | Default      | Description                                     |
+| ----------------- | ---------------------------------------------- | ------------ | ----------------------------------------------- |
+| `level`           | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6"` | `"h3"`       | Semantic heading level for the label            |
+| `size`            | `"small" \| "medium" \| "large"`               | `"small"`    | Visual size of the label text                   |
+| `class`           | `HTMLAttributes["class"]`                      | `undefined`  | Additional CSS classes                          |
+| `tooltipMessage`  | `string`                                       | `undefined`  | Tooltip text. When provided, shows an info icon |
+| `tooltipPosition` | `"top" \| "bottom" \| "left" \| "right"`       | `"top"`      | Position of the tooltip relative to the icon    |
+| `isOptional`      | `boolean`                                      | `false`      | Shows an optional badge next to the label       |
+| `optionalText`    | `string`                                       | `"Optional"` | Text displayed in the optional badge            |
+| `iconPosition`    | `"before" \| "after"`                          | `"after"`    | Position of the tooltip icon relative to label  |
 
 **Slots:**
 
-- `default` - Label text
-- `tooltip` - Tooltip content (appears as info icon)
-- `badge` - Optional badge (e.g., "Optional")
+| Slot Name        | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| `default`        | Label text content                                     |
+| `icon`           | Custom icon for tooltip trigger (replaces default SVG) |
+| `optional-badge` | Custom content for the optional indicator              |
+
+**Advanced Examples:**
+
+**Custom Tooltip Icon (FontAwesome):**
+
+```vue
+<template>
+  <InputRoot id="security-code">
+    <InputLabel
+      tooltip-message="This is sensitive information that we keep secure"
+    >
+      Security Code
+      <template #icon>
+        <FontAwesomeIcon
+          :icon="['fas', 'shield-halved']"
+          class="text-warning"
+        />
+      </template>
+    </InputLabel>
+    <InputField type="text" />
+  </InputRoot>
+</template>
+
+<script setup lang="ts">
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { InputRoot, InputField, InputLabel } from "@bootcn-vue/forms";
+</script>
+```
+
+**Icon Position (Before Label):**
+
+```vue
+<InputLabel
+  tooltip-message="Important security information"
+  icon-position="before"
+>
+  API Key
+</InputLabel>
+```
+
+**Custom Optional Badge:**
+
+```vue
+<!-- Custom text -->
+<InputLabel is-optional optional-text="Not Required">
+  Nickname
+</InputLabel>
+
+<!-- Custom icon badge -->
+<InputLabel is-optional>
+  Display Name
+  <template #optional-badge>
+    <FontAwesomeIcon :icon="['fas', 'circle-question']" class="text-muted" size="sm" />
+  </template>
+</InputLabel>
+```
+
+**Label Sizing:**
+
+```vue
+<!-- Small (default) -->
+<InputLabel level="h3" size="small">Small Label</InputLabel>
+
+<!-- Medium -->
+<InputLabel level="h3" size="medium">Medium Label</InputLabel>
+
+<!-- Large -->
+<InputLabel level="h2" size="large">Large Label</InputLabel>
+```
+
+**Accessibility:**
+
+- Uses semantic `<label>` element with proper `for` attribute
+- Tooltip icon button includes `aria-label="More information"`
+- Supports keyboard navigation for tooltip trigger
+- SVG icons have `aria-hidden="true"` to prevent screen reader announcement
+- Works seamlessly with InputRoot's context for ID management
+
+> **📖 Detailed Guide:** See [INPUT_LABEL_GUIDE.md](./INPUT_LABEL_GUIDE.md) for comprehensive examples and advanced usage patterns.
 
 #### `InputField`
 

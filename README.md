@@ -200,6 +200,7 @@ Each package has comprehensive documentation:
 - **[AGENTS.md](./AGENTS.md)** - Development guidelines, coding standards, and workflow
 - **[TASKS.md](./TASKS.md)** - Project roadmap and current progress
 - **[RELEASE.md](./RELEASE.md)** - Release process and publishing workflow
+- **[FONTAWESOME.md](./FONTAWESOME.md)** - FontAwesome icon integration guide
 
 ## 📦 Packages
 

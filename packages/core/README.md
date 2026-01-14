@@ -115,6 +115,15 @@ const props = defineProps<Props>();
 
 - `vue` ^3.5.0
 
+## RDS Design System
+
+This package includes the **Rocket Design System (RDS)** spacing and color utilities:
+
+- **RDS Spacing System** - Semantic spacing classes (`space-xs`, `space-sm`, `space-md`, etc.)
+- **RDS Color System** - Neutral color palette with light and dark shades
+
+📖 **[View RDS Documentation](./src/styles/README.md)** - Complete guide to spacing and color utilities
+
 ## Links
 
 - **[GitHub Repository](https://github.com/banavasi/Bootcn-vue)**
