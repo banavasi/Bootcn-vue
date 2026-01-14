@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes, VNode } from "vue";
 import { computed, inject } from "vue";
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@bootcn-vue/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@bootcn-vue/tooltip";
 import { INPUT_INJECTION_KEY } from "../context";
 
 interface Props {
