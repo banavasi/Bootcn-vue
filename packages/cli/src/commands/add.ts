@@ -42,6 +42,7 @@ const REGISTRY: Record<string, ComponentRegistry> = {
     type: "component",
     package: "field-text",
     files: ["FieldText.vue", "index.ts"],
+    sourcePath: ".", // Files are directly in src/
     dependencies: ["@bootcn-vue/core", "@bootcn-vue/forms"],
     peerDependencies: ["reka-ui"],
   },
@@ -50,6 +51,7 @@ const REGISTRY: Record<string, ComponentRegistry> = {
     type: "component",
     package: "field-password",
     files: ["FieldPassword.vue", "index.ts"],
+    sourcePath: ".", // Files are directly in src/
     dependencies: ["@bootcn-vue/core", "@bootcn-vue/forms", "@bootcn-vue/tooltip"],
     peerDependencies: [
       "reka-ui",
@@ -195,9 +197,13 @@ export async function add(components: string[]) {
 
     for (const componentKey of selectedComponents) {
       const component = REGISTRY[componentKey];
-      component.dependencies.forEach((dep) => allDependencies.add(dep));
+      component.dependencies.forEach((dep) => {
+        allDependencies.add(dep);
+      });
       if (component.peerDependencies) {
-        component.peerDependencies.forEach((dep) => allPeerDependencies.add(dep));
+        component.peerDependencies.forEach((dep) => {
+          allPeerDependencies.add(dep);
+        });
       }
     }
 
