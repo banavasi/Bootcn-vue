@@ -2,18 +2,11 @@
   "$schema": "https://unpkg.com/@changesets/config@3.1.2/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "banavasi/reka-bootstrap" }
+    { "repo": "banavasi/Bootcn-vue" }
   ],
   "commit": false,
   "fixed": [],
-  "linked": [
-    [
-      "@bootcn-vue/core",
-      "@bootcn-vue/buttons",
-      "@bootcn-vue/forms",
-      "@bootcn-vue/cli"
-    ]
-  ],
+  "linked": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
