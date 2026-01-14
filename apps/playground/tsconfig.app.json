@@ -6,10 +6,7 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
     "paths": {
-      "@/*": ["./src/*"],
-      "@bootcn-vue/core": ["../../packages/core/src/index.ts"],
-      "@bootcn-vue/buttons": ["../../packages/buttons/src/index.ts"],
-      "@bootcn-vue/forms": ["../../packages/forms/src/index.ts"]
+      "@/*": ["./src/*"]
     }
   }
 }

@@ -28,10 +28,11 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && pnpm build:types",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly --outDir dist",
     "dev": "tsup --watch",
     "clean": "rm -rf dist",
-    "type-check": "tsc --noEmit",
+    "type-check": "vue-tsc --noEmit",
     "lint": "eslint src --fix",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -49,7 +50,8 @@
     "typescript": "~5.8.0",
     "unplugin-vue": "^7.1.0",
     "vitest": "^3.1.1",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.2.8"
   },
   "peerDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.0.0 || ^7.0.0",
