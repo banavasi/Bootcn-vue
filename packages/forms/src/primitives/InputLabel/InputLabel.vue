@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { HTMLAttributes, VNode } from "vue";
 import { computed, inject } from "vue";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@bootcn-vue/tooltip";
+// biome-ignore lint/correctness/noUnusedImports: Components are used in Vue template
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@bootcn-vue/tooltip";
 import { INPUT_INJECTION_KEY } from "../context";
 
 interface Props {
@@ -100,45 +101,47 @@ const labelClass = `${props.level}-${props.size}`;
     </label>
 
     <!-- Tooltip Icon (icon position: before tooltip) -->
-    <Tooltip v-if="tooltipMessage || tooltipHtmlContent" :delay-duration="300">
-      <TooltipTrigger as-child>
-        <button
-          type="button"
-          class="btn btn-link p-0"
-          :class="iconPosition === 'before' ? 'me-space-xxs order-first' : 'ms-space-xxs'"
-          aria-label="More information"
-        >
-          <!-- Custom Icon Slot -->
-          <slot v-if="$slots.icon" name="icon" />
-
-          <!-- Default SVG Icon (fallback) -->
-          <svg
-            v-else
-            class="svg-inline--fa fa-circle-info fa-sm my-auto text-dark-1 tooltip-info-icon"
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="circle-info"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
+    <TooltipProvider v-if="tooltipMessage || tooltipHtmlContent">
+      <Tooltip :delay-duration="300">
+        <TooltipTrigger as-child>
+          <button
+            type="button"
+            class="btn btn-link p-0"
+            :class="iconPosition === 'before' ? 'me-space-xxs order-first' : 'ms-space-xxs'"
+            aria-label="More information"
           >
-            <path
-              class=""
-              fill="currentColor"
-              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"
-            ></path>
-          </svg>
-        </button>
-      </TooltipTrigger>
-      <TooltipContent
-        :side="tooltipPosition"
-        :html-content="tooltipHtmlContent"
-        :bg-color="tooltipBgColor"
-        :text-color="tooltipTextColor"
-      >
-        {{ tooltipMessage }}
-      </TooltipContent>
-    </Tooltip>
+            <!-- Custom Icon Slot -->
+            <slot v-if="$slots.icon" name="icon" />
+
+            <!-- Default SVG Icon (fallback) -->
+            <svg
+              v-else
+              class="svg-inline--fa fa-circle-info fa-sm my-auto text-dark-1 tooltip-info-icon"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="circle-info"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                class=""
+                fill="currentColor"
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"
+              ></path>
+            </svg>
+          </button>
+        </TooltipTrigger>
+        <TooltipContent
+          :side="tooltipPosition"
+          :html-content="tooltipHtmlContent"
+          :bg-color="tooltipBgColor"
+          :text-color="tooltipTextColor"
+        >
+          {{ tooltipMessage }}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   </div>
 </template>

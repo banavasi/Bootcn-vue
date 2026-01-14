@@ -37,6 +37,27 @@ npx @bootcn-vue/cli@latest add input
 npm install @bootcn-vue/forms @bootcn-vue/core bootstrap reka-ui
 ```
 
+### Import Options
+
+You can import all components or individual primitives:
+
+```typescript
+// Import all components
+import {
+  InputRoot,
+  InputLabel,
+  InputField,
+  InputError,
+  InputHelp,
+} from "@bootcn-vue/forms";
+
+// Import individual primitives (includes context automatically)
+import { InputLabel } from "@bootcn-vue/forms/InputLabel";
+import { InputField } from "@bootcn-vue/forms/InputField";
+```
+
+**Note:** When importing individual primitives, the form context is automatically available, so components like `InputLabel` and `InputField` will work correctly within `InputRoot`.
+
 ## Components
 
 ### Form Primitives
@@ -488,10 +509,34 @@ Components use Bootstrap 5 classes and the RDS spacing system:
 </template>
 ```
 
+### Tooltip Styles Requirement
+
+The `InputLabel` component uses tooltips from `@bootcn-vue/tooltip`. You must import Bootstrap's tooltip styles in your main SCSS file:
+
+```scss
+// Option 1: Import full Bootstrap (if you're using it)
+@import "bootstrap/scss/bootstrap";
+@import "@bootcn-vue/tooltip/src/tooltip.css";
+
+// Option 2: Import only required Bootstrap modules for tooltips
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/tooltip";
+@import "@bootcn-vue/tooltip/src/tooltip.css";
+```
+
+See the [@bootcn-vue/tooltip documentation](https://www.npmjs.com/package/@bootcn-vue/tooltip) for more details.
+
 ## Dependencies
 
 - `@bootcn-vue/core` - Core utilities (`cn` function, `cva`)
-- `@bootcn-vue/tooltip` - Tooltip component for labels
+- `@bootcn-vue/tooltip` - Tooltip component for labels (requires Bootstrap tooltip styles)
 - `reka-ui` - Accessible primitives
 - `maska` - Input masking library
 - `@fortawesome/vue-fontawesome` - Icons

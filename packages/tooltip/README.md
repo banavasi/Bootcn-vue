@@ -31,6 +31,44 @@ npx @bootcn-vue/cli@latest add tooltip
 npm install @bootcn-vue/tooltip @bootcn-vue/core bootstrap reka-ui
 ```
 
+## Styling Requirements
+
+The tooltip component requires Bootstrap 5 tooltip styles. You must import Bootstrap's tooltip SCSS in your main stylesheet.
+
+### Option 1: Import Full Bootstrap (Recommended)
+
+If you're already using Bootstrap in your project:
+
+```scss
+// In your main SCSS file (e.g., src/assets/styles/main.scss)
+@import "bootstrap/scss/bootstrap";
+
+// Import tooltip component-specific styles
+@import "@bootcn-vue/tooltip/src/tooltip.css";
+```
+
+### Option 2: Import Only Required Bootstrap Modules
+
+For a smaller bundle size, import only the necessary Bootstrap modules:
+
+```scss
+// In your main SCSS file (e.g., src/assets/styles/main.scss)
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/tooltip";
+
+// Import tooltip component-specific styles
+@import "@bootcn-vue/tooltip/src/tooltip.css";
+```
+
+**Note:** The component requires Bootstrap's tooltip CSS variables and classes to function properly. The `tooltip.css` file contains additional styling for the tooltip arrow positioning.
+
 ## Features
 
 - ✅ **Accessible** - Full keyboard navigation and screen reader support

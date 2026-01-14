@@ -1,9 +1,9 @@
-import { globalIgnores } from "eslint/config";
-import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
-import pluginVue from "eslint-plugin-vue";
 import pluginVitest from "@vitest/eslint-plugin";
-import pluginPlaywright from "eslint-plugin-playwright";
+import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
+import { globalIgnores } from "eslint/config";
 import pluginOxlint from "eslint-plugin-oxlint";
+import pluginPlaywright from "eslint-plugin-playwright";
+import pluginVue from "eslint-plugin-vue";
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
 // import { configureVueProject } from '@vue/eslint-config-typescript'
@@ -16,7 +16,7 @@ export default defineConfigWithVueTs(
     files: ["**/*.{ts,mts,tsx,vue}"],
   },
 
-  globalIgnores(["**/dist/**", "**/dist-ssr/**", "**/coverage/**"]),
+  globalIgnores(["**/dist/**", "**/dist-ssr/**", "**/coverage/**", "**/storybook-static/**"]),
 
   pluginVue.configs["flat/essential"],
   vueTsConfigs.recommended,
