@@ -15,7 +15,7 @@ import "../src/assets/styles/bootstrap-theme.scss";
 // Import FontAwesome CSS (for fallback/legacy usage)
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-// Import forms package styles
+// Import forms package styles (required for form components)
 import "@bootcn-vue/forms/dist/index.css";
 
 const preview: Preview = {

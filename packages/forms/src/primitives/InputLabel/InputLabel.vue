@@ -92,7 +92,16 @@ const labelClass = `${props.level}-${props.size}`;
         </span>
 
         <!-- Optional Badge (custom slot or default) -->
-        <span v-if="isOptional" class="my-auto ms-space-xxs badge bg-light text-dark fs-xs">
+        <span
+          v-if="isOptional"
+          class="my-auto ms-space-xxs badge rounded-pill fw-normal"
+          style="
+            background-color: #e8e8e8;
+            color: #484848;
+            font-size: 0.75rem;
+            padding: 0.25em 0.6em;
+          "
+        >
           <slot name="optional-badge">
             {{ optionalText }}
           </slot>
@@ -116,20 +125,20 @@ const labelClass = `${props.level}-${props.size}`;
             <!-- Default SVG Icon (fallback) -->
             <svg
               v-else
-              class="svg-inline--fa fa-circle-info fa-sm my-auto text-dark-1 tooltip-info-icon"
+              width="16"
+              height="16"
+              class="my-auto text-dark-1 tooltip-info-icon"
+              style="vertical-align: middle"
               aria-hidden="true"
               focusable="false"
-              data-prefix="fas"
-              data-icon="circle-info"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
             >
               <path
-                class=""
                 fill="currentColor"
                 d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"
-              ></path>
+              />
             </svg>
           </button>
         </TooltipTrigger>
