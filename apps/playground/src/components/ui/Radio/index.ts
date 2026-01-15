@@ -2,6 +2,7 @@ import { cva, type VariantProps } from "@bootcn-vue/core";
 
 export { default as RadioGroup } from "./RadioGroup.vue";
 export { default as RadioGroupItem } from "./RadioGroupItem.vue";
+export { default as RadioYesNo } from "./RadioYesNo.vue";
 
 export const radioVariants = cva("radio-base border rounded-circle transition-all", {
   variants: {

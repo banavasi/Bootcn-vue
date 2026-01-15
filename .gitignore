@@ -40,3 +40,4 @@ storybook-static
 
 # Git worktrees
 .worktrees
+.pnpm-store

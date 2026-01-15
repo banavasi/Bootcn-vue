@@ -22,6 +22,7 @@
     "@bootcn-vue/field-text": "workspace:*",
     "@bootcn-vue/forms": "workspace:*",
     "@bootcn-vue/tooltip": "workspace:*",
+    "@vueuse/core": "^12.0.0",
     "bootstrap": "^5.3.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
