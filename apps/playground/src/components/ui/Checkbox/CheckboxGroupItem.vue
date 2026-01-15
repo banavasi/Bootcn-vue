@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from "vue";
 import { inject, computed, ref, watchEffect } from "vue";
 import type { ComputedRef } from "vue";
-import { Checkbox } from ".";
+import CheckboxPrimitive from "./CheckboxPrimitive.vue";
 import type { CheckboxVariants } from ".";
 
 interface Props {
@@ -47,7 +47,7 @@ const handleChange = (newValue: "Y" | "N" | null) => {
     :class="['d-flex align-items-center gap-2 user-select-none cursor-pointer', props.class]"
     data-slot="checkbox-group-item"
   >
-    <Checkbox
+    <CheckboxPrimitive
       :model-value="isChecked"
       :variant="group?.variant.value"
       :size="group?.size.value"
