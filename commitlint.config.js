@@ -26,6 +26,9 @@ export default {
         "buttons", // @bootcn-vue/buttons
         "forms", // @bootcn-vue/forms
         "field-password", // @bootcn-vue/field-password
+        "field-text", // @bootcn-vue/field-text
+        "checkbox", // @bootcn-vue/checkbox
+        "radio", // @bootcn-vue/radio
         "tooltip", // @bootcn-vue/tooltip
         "cli", // @bootcn-vue/cli
         "playground", // apps/playground
