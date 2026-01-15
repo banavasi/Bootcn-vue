@@ -1,6 +1,6 @@
 {
   "name": "@bootcn-vue/radio",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Radio button component with iOS-style animations and group support",
   "type": "module",
   "main": "./dist/index.js",
