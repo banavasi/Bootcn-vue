@@ -155,7 +155,8 @@ export async function add(components: string[]) {
 
     const config = await fs.readJson(configPath);
     const srcDir = config.srcDir || "src";
-    const uiDir = path.join(cwd, srcDir, "components", "ui");
+    const componentsDir = config.componentsDir || path.join(srcDir, "components");
+    const uiDir = path.join(cwd, componentsDir, "ui");
 
     // Detect project to get package manager
     const projectInfo = await detectProject(cwd);
@@ -298,23 +299,27 @@ export async function add(components: string[]) {
         await fs.writeFile(destPath, content, "utf-8");
       }
 
-      // For form primitives, copy context file if it doesn't exist
+      // For form primitives, ensure shared context file exists
       if (component.package === "forms" && component.type === "primitive") {
-        const contextSourcePath = path.resolve(
-          cliDir,
-          "..",
-          "forms",
-          "src",
-          "primitives",
-          "context.ts",
-        );
-        const contextDestPath = path.join(componentDir, "context.ts");
+        const sharedContextDir = path.join(uiDir, "forms");
+        const sharedContextPath = path.join(sharedContextDir, "context.ts");
 
-        // Only copy if context doesn't exist in destination
-        if (!fs.existsSync(contextDestPath)) {
+        // Only copy if shared context doesn't exist yet
+        if (!fs.existsSync(sharedContextPath)) {
+          await fs.ensureDir(sharedContextDir);
+
+          const contextSourcePath = path.resolve(
+            cliDir,
+            "..",
+            "forms",
+            "src",
+            "primitives",
+            "context.ts",
+          );
+
           if (fs.existsSync(contextSourcePath)) {
             const contextContent = await fs.readFile(contextSourcePath, "utf-8");
-            await fs.writeFile(contextDestPath, contextContent, "utf-8");
+            await fs.writeFile(sharedContextPath, contextContent, "utf-8");
           } else {
             // Try from node_modules
             try {
@@ -329,7 +334,7 @@ export async function add(components: string[]) {
               );
               if (fs.existsSync(contextPackagePath)) {
                 const contextContent = await fs.readFile(contextPackagePath, "utf-8");
-                await fs.writeFile(contextDestPath, contextContent, "utf-8");
+                await fs.writeFile(sharedContextPath, contextContent, "utf-8");
               }
             } catch (e) {
               // Context file not critical, continue
@@ -347,7 +352,7 @@ export async function add(components: string[]) {
     for (const componentKey of selectedComponents) {
       const component = REGISTRY[componentKey];
       console.log(
-        pc.dim(`  import { ${component.name} } from '@/components/ui/${component.name}'`),
+        pc.dim(`  import { ${component.name} } from '@ui/${component.name}'`),
       );
     }
     console.log();
@@ -362,47 +367,46 @@ export async function add(components: string[]) {
 function transformImports(content: string, packageName: string, componentName: string): string {
   // Transform package imports to local imports
   let transformed = content
-    .replace(/@bootcn-vue\/core/g, "@/lib/utils")
+    .replace(/@bootcn-vue\/core/g, "@lib/utils")
     .replace(new RegExp(`from "@bootcn-vue/${packageName}"`, "g"), 'from "."')
     .replace(new RegExp(`from '@bootcn-vue/${packageName}'`, "g"), "from '.'");
 
-  // Transform forms package imports to local imports for primitives
+  // Transform forms package imports to use @ui alias for primitives
   if (packageName === "forms") {
-    // For form primitives, transform imports from @bootcn-vue/forms to local imports
-    // This handles imports from other primitives in the same package
+    // For form primitives, transform imports to use @ui alias
     transformed = transformed
-      .replace(/from "@bootcn-vue\/forms"/g, 'from "@/components/ui"')
-      .replace(/from '@bootcn-vue\/forms'/g, "from '@/components/ui'")
-      // Transform relative imports from ../context to local context
-      .replace(/from "\.\.\/context"/g, 'from "./context"')
-      .replace(/from '\.\.\/context'/g, "from './context'");
+      .replace(/from "@bootcn-vue\/forms"/g, 'from "@ui"')
+      .replace(/from '@bootcn-vue\/forms'/g, "from '@ui'")
+      // Transform relative imports from ../context to shared @ui/forms/context
+      .replace(/from "\.\.\/context"/g, 'from "@ui/forms/context"')
+      .replace(/from '\.\.\/context'/g, "from '@ui/forms/context'");
   }
 
-  // Transform tooltip imports to local imports
+  // Transform tooltip imports to use @ui alias
   if (packageName === "tooltip") {
     transformed = transformed
-      .replace(/from "@bootcn-vue\/tooltip"/g, 'from "@/components/ui/Tooltip"')
-      .replace(/from '@bootcn-vue\/tooltip'/g, "from '@/components/ui/Tooltip'");
+      .replace(/from "@bootcn-vue\/tooltip"/g, 'from "@ui/Tooltip"')
+      .replace(/from '@bootcn-vue\/tooltip'/g, "from '@ui/Tooltip'");
   }
 
-  // Transform field-text imports
+  // Transform field-text imports to use @ui alias
   if (packageName === "field-text") {
     transformed = transformed
-      .replace(/from "@bootcn-vue\/field-text"/g, 'from "@/components/ui/FieldText"')
-      .replace(/from '@bootcn-vue\/field-text'/g, "from '@/components/ui/FieldText'");
+      .replace(/from "@bootcn-vue\/field-text"/g, 'from "@ui/FieldText"')
+      .replace(/from '@bootcn-vue\/field-text'/g, "from '@ui/FieldText'");
   }
 
-  // Transform field-password imports
+  // Transform field-password imports to use @ui alias
   if (packageName === "field-password") {
     transformed = transformed
-      .replace(/from "@bootcn-vue\/field-password"/g, 'from "@/components/ui/FieldPassword"')
-      .replace(/from '@bootcn-vue\/field-password'/g, "from '@/components/ui/FieldPassword'");
+      .replace(/from "@bootcn-vue\/field-password"/g, 'from "@ui/FieldPassword"')
+      .replace(/from '@bootcn-vue\/field-password'/g, "from '@ui/FieldPassword'");
   }
 
-  // Transform tooltip imports in other components (e.g., form primitives that use tooltip)
+  // Transform tooltip imports in other components (e.g., form primitives that use tooltip) to use @ui
   transformed = transformed
-    .replace(/from "@bootcn-vue\/tooltip"/g, 'from "@/components/ui/Tooltip"')
-    .replace(/from '@bootcn-vue\/tooltip'/g, "from '@/components/ui/Tooltip'");
+    .replace(/from "@bootcn-vue\/tooltip"/g, 'from "@ui/Tooltip"')
+    .replace(/from '@bootcn-vue\/tooltip'/g, "from '@ui/Tooltip'");
 
   return transformed;
 }

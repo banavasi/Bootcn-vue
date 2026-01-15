@@ -65,13 +65,38 @@ export async function init() {
 
     const normalizedSrcDir = (srcDir as string).replace(/^\.\//, "");
 
+    // Ask where to install UI components
+    const componentsBase = await prompts.text({
+      message: "Within your src, where do you want to install UI components?",
+      placeholder: path.join("./", normalizedSrcDir, "components"),
+      initialValue: path.join("./", normalizedSrcDir, "components"),
+      validate: (value) => {
+        if (!value) return "Please enter a path";
+        const fullPath = path.join(cwd, value);
+        // Allow path to not exist - we'll create it
+        const parentDir = path.dirname(fullPath);
+        if (!fs.existsSync(parentDir)) {
+          return `Parent directory ${parentDir} does not exist`;
+        }
+        return undefined;
+      },
+    });
+
+    if (prompts.isCancel(componentsBase)) {
+      prompts.cancel("Installation cancelled");
+      process.exit(0);
+    }
+
+    const normalizedComponentsDir = (componentsBase as string).replace(/^\.\//, "");
+
     // Create config file
     const config = {
       $schema: "https://bootcn-vue.dev/schema.json",
       srcDir: normalizedSrcDir,
+      componentsDir: normalizedComponentsDir,
       aliases: {
-        components: `@/components`,
-        utils: `@/lib`,
+        "@ui": `@/${path.relative(normalizedSrcDir, path.join(normalizedComponentsDir, "ui"))}`,
+        "@lib": `@/lib`,
       },
     };
 
@@ -81,13 +106,13 @@ export async function init() {
     // Update tsconfig.json
     if (project.hasTypeScript) {
       spinner.start("Updating tsconfig.json...");
-      await updateTsConfig(cwd, normalizedSrcDir);
+      await updateTsConfig(cwd, config);
       spinner.stop(pc.green("✓ Updated tsconfig.json"));
     }
 
     // Update vite.config.ts
     spinner.start("Updating vite.config.ts...");
-    await updateViteConfig(cwd, normalizedSrcDir);
+    await updateViteConfig(cwd, config);
     spinner.stop(pc.green("✓ Updated vite.config.ts"));
 
     // Copy utils
@@ -108,10 +133,10 @@ export { cva, type VariantProps } from "class-variance-authority";
     await fs.writeFile(path.join(libDir, "utils.ts"), utilsContent, "utf-8");
     console.log(pc.green(`✓ Created ${normalizedSrcDir}/lib/utils.ts`));
 
-    // Create components/ui directory
-    const uiDir = path.join(cwd, normalizedSrcDir, "components", "ui");
+    // Create components/ui directory based on user's choice
+    const uiDir = path.join(cwd, normalizedComponentsDir, "ui");
     await fs.ensureDir(uiDir);
-    console.log(pc.green(`✓ Created ${normalizedSrcDir}/components/ui/`));
+    console.log(pc.green(`✓ Created ${normalizedComponentsDir}/ui/`));
 
     // Install dependencies
     const shouldInstall = await prompts.confirm({
@@ -135,7 +160,7 @@ export { cva, type VariantProps } from "class-variance-authority";
     console.log(pc.dim("  1. Add components: ") + pc.bold("bootcn-vue add button"));
     console.log(
       pc.dim("  2. Import in your app: ") +
-        pc.bold("import { Button } from '@/components/ui/Button'"),
+        pc.bold(`import { Button } from '${config.aliases["@ui"]}/Button'`),
     );
     console.log();
   } catch (error) {
