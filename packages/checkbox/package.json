@@ -1,6 +1,6 @@
 {
   "name": "@bootcn-vue/checkbox",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Individual checkbox component with tri-state support",
   "type": "module",
   "main": "./dist/index.js",
