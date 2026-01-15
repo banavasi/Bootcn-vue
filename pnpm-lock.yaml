@@ -220,7 +220,7 @@ importers:
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^5.2.0
-        version: 5.2.4(vite@6.4.1(@types/node@22.19.5)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))
+        version: 5.2.4(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6
@@ -235,7 +235,7 @@ importers:
         version: 5.8.3
       unplugin-vue:
         specifier: ^7.1.0
-        version: 7.1.0(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
+        version: 7.1.0(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
       vitest:
         specifier: ^3.1.1
         version: 3.2.4(@types/node@22.19.5)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2)
@@ -272,7 +272,7 @@ importers:
         version: 5.8.3
       unplugin-vue:
         specifier: ^7.1.0
-        version: 7.1.0(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
+        version: 7.1.0(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
       vite:
         specifier: ^6.0.3
         version: 6.4.1(@types/node@22.19.5)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2)
@@ -478,6 +478,49 @@ importers:
         version: 3.5.26(typescript@5.8.3)
       vue-tsc:
         specifier: ^2.2.8
+        version: 2.2.12(typescript@5.8.3)
+
+  packages/radio:
+    dependencies:
+      '@bootcn-vue/core':
+        specifier: workspace:*
+        version: link:../core
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      reka-ui:
+        specifier: ^2.2.1
+        version: 2.7.0(typescript@5.8.3)(vue@3.5.26(typescript@5.8.3))
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^6.0.3
+        version: 6.0.3(vite@6.4.1(@types/node@22.19.5)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))
+      '@vue/test-utils':
+        specifier: ^2.4.6
+        version: 2.4.6
+      jsdom:
+        specifier: ^25.0.1
+        version: 25.0.1
+      tsup:
+        specifier: ^8.3.5
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.6)(typescript@5.8.3)(yaml@2.8.2)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.8.3
+      unplugin-vue:
+        specifier: ^7.1.0
+        version: 7.1.0(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(vue@3.5.26(typescript@5.8.3))(yaml@2.8.2)
+      vite:
+        specifier: ^6.0.3
+        version: 6.4.1(@types/node@22.19.5)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2)
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.19.5)(jsdom@25.0.1)(lightningcss@1.30.2)(sass@1.97.2)
+      vue:
+        specifier: ^3.5.13
+        version: 3.5.26(typescript@5.8.3)
+      vue-tsc:
+        specifier: ^2.1.10
         version: 2.2.12(typescript@5.8.3)
 
   packages/tooltip:
@@ -6768,6 +6811,11 @@ snapshots:
   '@vitejs/plugin-vue@5.2.4(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))':
     dependencies:
       vite: 8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.25.12)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2)
+      vue: 3.5.26(typescript@5.8.3)
+
+  '@vitejs/plugin-vue@5.2.4(vite@8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))':
+    dependencies:
+      vite: 8.0.0-beta.7(@types/node@22.19.5)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.2)(yaml@2.8.2)
       vue: 3.5.26(typescript@5.8.3)
 
   '@vitejs/plugin-vue@6.0.3(vite@6.4.1(@types/node@22.19.5)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.2)(yaml@2.8.2))(vue@3.5.26(typescript@5.8.3))':
