@@ -1,6 +1,8 @@
 import { cva, type VariantProps } from "@bootcn-vue/core";
 
 export { default as Checkbox } from "./Checkbox.vue";
+export { default as CheckboxGroup } from "./CheckboxGroup.vue";
+export { default as CheckboxGroupItem } from "./CheckboxGroupItem.vue";
 
 export const checkboxVariants = cva("checkbox-base border rounded transition-all", {
   variants: {
