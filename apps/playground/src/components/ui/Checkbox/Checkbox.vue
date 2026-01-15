@@ -36,13 +36,23 @@ const checked = computed<CheckboxCheckedState>({
 
 // Icon size and stroke width based on checkbox size
 const iconSize = computed(() => {
-  const sizes = { sm: "0.75rem", md: "1rem", lg: "1.25rem" }; // 12px, 16px, 20px
-  return sizes[props.size || "md"];
+  const sizes: Record<"sm" | "md" | "lg", string> = {
+    sm: "0.75rem",
+    md: "1rem",
+    lg: "1.25rem",
+  }; // 12px, 16px, 20px
+  const size = (props.size ?? "md") as "sm" | "md" | "lg";
+  return sizes[size];
 });
 
 const strokeWidth = computed(() => {
-  const widths = { sm: "2.5", md: "3", lg: "3.5" }; // Thicker strokes
-  return widths[props.size || "md"];
+  const widths: Record<"sm" | "md" | "lg", string> = {
+    sm: "2.5",
+    md: "3",
+    lg: "3.5",
+  }; // Thicker strokes
+  const size = (props.size ?? "md") as "sm" | "md" | "lg";
+  return widths[size];
 });
 </script>
 
