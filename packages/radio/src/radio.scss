@@ -1,0 +1,241 @@
+// Radio base styles with iOS-style animations
+.radio-base {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
+  background-color: #ffffff;
+  border: 2px solid #6c757d;
+  padding: 0;
+  transition:
+    all 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.15s ease;
+
+  &:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  // Radio indicator (inner circle) - inherits color from parent
+  .radio-indicator {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: currentColor;
+    transform: scale(0);
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &[data-state="checked"] .radio-indicator {
+    transform: scale(1);
+    animation: radioIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  &[data-state="unchecked"] .radio-indicator {
+    transform: scale(0);
+  }
+}
+
+// Animation for radio selection
+@keyframes radioIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Size variants
+.radio-sm {
+  width: 18px;
+  height: 18px;
+  border-width: 1.5px;
+}
+
+.radio-md {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+.radio-lg {
+  width: 30px;
+  height: 30px;
+  border-width: 2.5px;
+}
+
+// Bootstrap color variants
+.radio-primary {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #0d6efd;
+    background-color: #ffffff;
+    color: #0d6efd;
+  }
+}
+
+.radio-secondary {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #6c757d;
+    background-color: #ffffff;
+    color: #6c757d;
+  }
+}
+
+.radio-success {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #198754;
+    background-color: #ffffff;
+    color: #198754;
+  }
+}
+
+.radio-danger {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #dc3545;
+    background-color: #ffffff;
+    color: #dc3545;
+  }
+}
+
+.radio-warning {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #ffc107;
+    background-color: #ffffff;
+    color: #ffc107;
+  }
+}
+
+.radio-info {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #0dcaf0;
+    background-color: #ffffff;
+    color: #0dcaf0;
+  }
+}
+
+.radio-dark {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #212529;
+    background-color: #ffffff;
+    color: #212529;
+  }
+}
+
+.radio-light {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #f8f9fa;
+    background-color: #ffffff;
+    color: #f8f9fa;
+  }
+}
+
+// RDS color variants
+.radio-rds-dark-1 {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #1e1e1e;
+    background-color: #ffffff;
+    color: #1e1e1e;
+  }
+}
+
+.radio-rds-dark-2 {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #484848;
+    background-color: #ffffff;
+    color: #484848;
+  }
+}
+
+.radio-rds-dark-3 {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #747474;
+    background-color: #ffffff;
+    color: #747474;
+  }
+}
+
+.radio-rds-light-1 {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #fafafa;
+    background-color: #ffffff;
+    color: #fafafa;
+  }
+}
+
+.radio-rds-light-2 {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #f4f4f4;
+    background-color: #ffffff;
+    color: #f4f4f4;
+  }
+}
+
+.radio-rds-light-3 {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #e8e8e8;
+    background-color: #ffffff;
+    color: #e8e8e8;
+  }
+}
+
+.radio-rds-light-4 {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #d0d0d0;
+    background-color: #ffffff;
+    color: #d0d0d0;
+  }
+}
+
+.radio-rds-light-5 {
+  border-color: #6c757d;
+
+  &[data-state="checked"] {
+    border-color: #b8b8b8;
+    background-color: #ffffff;
+    color: #b8b8b8;
+  }
+}
