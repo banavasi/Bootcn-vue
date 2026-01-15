@@ -1,5 +1,15 @@
 # @bootcn-vue/radio
 
+## 0.3.0
+
+### Minor Changes
+
+- [#31](https://github.com/banavasi/Bootcn-vue/pull/31) [`4778119`](https://github.com/banavasi/Bootcn-vue/commit/477811968f9aec52eda94def3369a6c896beb220) Thanks [@banavasi](https://github.com/banavasi)! - - Add RadioYesNo component for Yes/No binary selection
+  - Support bgColor and textColor props for custom theming
+  - Include hover effects with subtle background tint
+  - Show checkmark indicator on selection and hover
+  - Add Storybook stories with color variant examples"
+
 ## 0.2.0
 
 ### Minor Changes
