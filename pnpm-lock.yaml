@@ -275,6 +275,9 @@ importers:
       '@bootcn-vue/core':
         specifier: workspace:*
         version: link:../core
+      '@bootcn-vue/forms':
+        specifier: workspace:*
+        version: link:../forms
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
