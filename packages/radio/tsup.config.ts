@@ -6,14 +6,9 @@ export default defineConfig({
   format: ["esm"],
   dts: false, // We'll generate declarations separately with vue-tsc
   clean: true,
-  external: ["vue", "reka-ui", "@bootcn-vue/core", "bootstrap"],
+  external: ["vue", "reka-ui", "@bootcn-vue/core", "@bootcn-vue/forms", "bootstrap"],
   esbuildPlugins: [
-    Vue({
-      style: {
-        // Inline all <style> tags
-        preprocessLang: "scss",
-      },
-    }),
+    Vue(),
     {
       name: "ignore-scss-imports",
       setup(build) {
