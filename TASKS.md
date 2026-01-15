@@ -27,14 +27,15 @@
 
 ## Sprint Overview
 
-| Sprint   | Focus                   | Status            |
-| -------- | ----------------------- | ----------------- |
-| Sprint 1 | Monorepo Infrastructure | `[x]` Complete    |
-| Sprint 2 | Core & Button Package   | `[x]` Complete    |
-| Sprint 3 | CLI Development         | `[x]` Complete    |
-| Sprint 4 | CI/CD & Publishing      | `[x]` Complete    |
-| Sprint 5 | Forms Package           | `[ ]` Not Started |
-| Sprint 6 | Documentation & Polish  | `[~]` In Progress |
+| Sprint    | Focus                   | Status            |
+| --------- | ----------------------- | ----------------- |
+| Sprint 1  | Monorepo Infrastructure | `[x]` Complete    |
+| Sprint 2  | Core & Button Package   | `[x]` Complete    |
+| Sprint 3  | CLI Development         | `[x]` Complete    |
+| Sprint 4  | CI/CD & Publishing      | `[x]` Complete    |
+| Sprint 4B | Checkbox Package        | `[x]` Complete    |
+| Sprint 5  | Forms Package           | `[ ]` Not Started |
+| Sprint 6  | Documentation & Polish  | `[~]` In Progress |
 
 ---
 
@@ -345,6 +346,57 @@
 
 ---
 
+## E4B: Checkbox Package (P1 - High)
+
+**Goal:** Create `@bootcn-vue/checkbox` with iOS-style animated checkbox component.
+
+### S4B.1: Checkbox Package Setup (P1)
+
+> Create @bootcn-vue/checkbox with tri-state checkbox component
+
+#### Tasks
+
+- [x] **T4B.1.1:** Initialize checkbox package
+  - [x] Create `packages/checkbox/package.json`
+  - [x] Set up dependencies (reka-ui, cva, @bootcn-vue/core)
+  - [x] Configure peer dependencies
+  - [x] Configure build (tsup, vitest)
+
+- [x] **T4B.1.2:** Implement Checkbox component
+  - [x] Create Checkbox.vue with tri-state model ('Y'/'N'/null)
+  - [x] Create checkbox.scss with iOS-style animations
+  - [x] Create index.ts with cva variants (16 colors, 3 sizes)
+  - [x] Export component and types
+
+- [x] **T4B.1.3:** Add visual features
+  - [x] iOS-style animations (bounce, scale, stroke drawing)
+  - [x] Bold checkmark with responsive stroke width (2.5-3.5px)
+  - [x] Colored border hints when unchecked
+  - [x] Focus rings with soft glow
+  - [x] Hover and press states
+
+- [x] **T4B.1.4:** Add Checkbox tests
+  - [x] Create Checkbox.spec.ts
+  - [x] Test tri-state model
+  - [x] Test variants and sizes
+
+- [x] **T4B.1.5:** Add Checkbox to Storybook
+  - [x] Copy component to playground/src/components/ui/Checkbox/
+  - [x] Create Checkbox.stories.ts
+  - [x] Add Default, Sizes, and Bootstrap Colors stories
+  - [x] Verify stories render correctly
+
+- [x] **T4B.1.6:** Quality assurance & merge
+  - [x] Run lint, type-check, tests
+  - [x] Create changeset (smooth-checkbox-component.md)
+  - [x] Commit with conventional commits format
+  - [x] Create PR #26
+  - [x] Merge to main
+
+**Status:** ✅ Complete (merged to main on 2026-01-14)
+
+---
+
 ## E5: Forms Package (P2 - Medium)
 
 **Goal:** Create `@bootcn-vue/forms` with Input, MaskInput, and future form components.
@@ -486,6 +538,17 @@
 - [x] **Storybook Setup** - Basic Storybook configuration
 - [x] **Unit Tests** - 68 tests passing (Button + Input)
 
+### Completed in Sprint 4B (2026-01-14)
+
+- [x] **Checkbox Component** - iOS-style checkbox with smooth animations
+  - Tri-state model ('Y'/'N'/null)
+  - 16 color variants (Bootstrap + RDS), 3 sizes (sm/md/lg)
+  - iOS-style animations: bounce, scale, stroke drawing
+  - Bold checkmark with responsive stroke width
+  - Full accessibility via reka-ui primitives
+  - Storybook stories: Default, Sizes, Bootstrap Colors
+  - PR #26 merged to main
+
 ---
 
 ## Notes & Decisions
@@ -493,7 +556,7 @@
 ### Package Naming
 
 - Organization: `@bootcn-vue`
-- Packages: `cli`, `core`, `buttons`, `forms`, `overlays` (future)
+- Packages: `cli`, `core`, `buttons`, `checkbox`, `forms`, `overlays` (future)
 
 ### Tech Stack
 
@@ -516,6 +579,7 @@
 
 | Date       | Change                                                            |
 | ---------- | ----------------------------------------------------------------- |
+| 2026-01-14 | Sprint 4B complete - Checkbox component with iOS-style animations |
 | 2026-01-10 | Sprint 3 & 4 complete - CLI implementation and CI/CD optimization |
 | 2026-01-10 | Sprint 2 complete - Core & Buttons packages with tests            |
 | 2026-01-09 | Initial backlog created                                           |
