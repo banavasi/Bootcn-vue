@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue";
-import { inject, computed } from "vue";
+import { inject, computed, ref, watchEffect } from "vue";
 import type { ComputedRef } from "vue";
 import { Checkbox } from ".";
 import type { CheckboxVariants } from ".";
@@ -23,8 +23,14 @@ interface CheckboxGroupContext {
 
 const group = inject<CheckboxGroupContext>("checkboxGroup");
 
-const isChecked = computed(() => {
-  return group?.modelValue.value.includes(props.value) ? "Y" : "N";
+// Use a ref instead of computed to ensure reactivity
+const isChecked = ref<"Y" | "N">("N");
+
+// Watch for changes in the group's modelValue
+watchEffect(() => {
+  if (group?.modelValue.value) {
+    isChecked.value = group.modelValue.value.includes(props.value) ? "Y" : "N";
+  }
 });
 
 const isDisabled = computed(() => props.disabled || group?.disabled.value);

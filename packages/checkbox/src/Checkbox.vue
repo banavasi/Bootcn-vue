@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue";
-import { computed } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { CheckboxRoot, CheckboxIndicator } from "reka-ui";
 import type { CheckboxCheckedState } from "reka-ui";
 import { type CheckboxVariants, checkboxVariants } from ".";
@@ -26,13 +26,21 @@ const emit = defineEmits<{
   "update:modelValue": [value: "Y" | "N" | null];
 }>();
 
-// Create a computed property with getter/setter for v-model
-const checked = computed<CheckboxCheckedState>({
-  get: () => props.modelValue === "Y",
-  set: (value: CheckboxCheckedState) => {
-    emit("update:modelValue", value === true ? "Y" : "N");
-  },
+// Use a ref for the checked state
+const checked = ref<CheckboxCheckedState>(false);
+
+// Watch for prop changes and update the ref
+watchEffect(() => {
+  const newValue = props.modelValue === "Y";
+  if (checked.value !== newValue) {
+    checked.value = newValue;
+  }
 });
+
+// Handle changes from the checkbox
+const handleCheckedChange = (value: CheckboxCheckedState) => {
+  emit("update:modelValue", value === true ? "Y" : "N");
+};
 
 // Icon size and stroke width based on checkbox size
 const iconSize = computed(() => {
@@ -58,7 +66,7 @@ const strokeWidth = computed(() => {
 
 <template>
   <CheckboxRoot
-    v-model:checked="checked"
+    v-model="checked"
     :disabled="props.disabled"
     :class="
       cn(
@@ -68,6 +76,7 @@ const strokeWidth = computed(() => {
       )
     "
     data-slot="checkbox"
+    @update:model-value="handleCheckedChange"
   >
     <CheckboxIndicator class="flex items-center justify-center h-full w-full text-white">
       <slot name="icon">

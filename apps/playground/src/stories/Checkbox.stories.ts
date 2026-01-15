@@ -166,3 +166,36 @@ export const BootstrapColors: Story = {
     `,
   }),
 };
+
+// Test prop binding (model-value) vs v-model
+export const PropBindingTest: Story = {
+  render: () => ({
+    components: { Checkbox },
+    setup() {
+      const vModelValue = ref<"Y" | "N" | null>("Y");
+      const propValue = "Y";
+      return { vModelValue, propValue };
+    },
+    template: `
+      <div class="d-flex flex-column gap-3">
+        <div>
+          <h4>Using v-model (works):</h4>
+          <label class="d-flex align-items-center gap-2 cursor-pointer user-select-none">
+            <Checkbox v-model="vModelValue" />
+            <span>v-model checkbox (initialized with "Y")</span>
+          </label>
+          <p class="text-sm text-muted">Value: {{ vModelValue }}</p>
+        </div>
+        
+        <div>
+          <h4>Using :model-value prop (testing):</h4>
+          <label class="d-flex align-items-center gap-2 cursor-pointer user-select-none">
+            <Checkbox :model-value="propValue" />
+            <span>:model-value checkbox (set to "Y")</span>
+          </label>
+          <p class="text-sm text-muted">Value: {{ propValue }}</p>
+        </div>
+      </div>
+    `,
+  }),
+};
