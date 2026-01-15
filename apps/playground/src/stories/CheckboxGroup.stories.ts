@@ -3,11 +3,11 @@ import { ref } from "vue";
 import { CheckboxGroup, CheckboxGroupItem } from "@/components/ui/Checkbox";
 
 interface CheckboxGroupArgs {
-  modelValue: Array<string | number>;
-  spacing: "xs" | "sm" | "md" | "lg" | "xl";
-  variant: string;
-  size: "sm" | "md" | "lg";
-  disabled: boolean;
+  modelValue?: Array<string | number>;
+  spacing?: "xs" | "sm" | "md" | "lg" | "xl";
+  variant?: string;
+  size?: "sm" | "md" | "lg";
+  disabled?: boolean;
 }
 
 const meta = {
@@ -75,7 +75,7 @@ export const Default: Story = {
   render: (args: CheckboxGroupArgs) => ({
     components: { CheckboxGroup, CheckboxGroupItem },
     setup() {
-      const selected = ref(args.modelValue);
+      const selected = ref(args.modelValue || []);
       return { args, selected };
     },
     template: `
@@ -111,7 +111,7 @@ export const PreSelected: Story = {
   render: (args: CheckboxGroupArgs) => ({
     components: { CheckboxGroup, CheckboxGroupItem },
     setup() {
-      const selected = ref(args.modelValue);
+      const selected = ref([...((args.modelValue as Array<string | number>) || [])]);
       return { args, selected };
     },
     template: `
@@ -242,7 +242,7 @@ export const Disabled: Story = {
   render: (args: CheckboxGroupArgs) => ({
     components: { CheckboxGroup, CheckboxGroupItem },
     setup() {
-      const selected = ref(args.modelValue);
+      const selected = ref([...((args.modelValue as Array<string | number>) || [])]);
       return { args, selected };
     },
     template: `
