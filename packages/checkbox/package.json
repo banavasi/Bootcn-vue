@@ -1,0 +1,53 @@
+{
+  "name": "@bootcn-vue/checkbox",
+  "version": "0.1.0",
+  "description": "Individual checkbox component with tri-state support",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "dependencies": {
+    "@bootcn-vue/core": "workspace:*",
+    "reka-ui": "^2.2.1",
+    "class-variance-authority": "^0.7.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.3",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.1.10"
+  },
+  "keywords": [
+    "vue",
+    "checkbox",
+    "component",
+    "bootstrap",
+    "rds"
+  ],
+  "author": "Shashank Shandilya",
+  "license": "MIT"
+}
