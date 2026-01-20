@@ -60,6 +60,15 @@ const REGISTRY: Record<string, ComponentRegistry> = {
       "@fortawesome/vue-fontawesome",
     ],
   },
+  "field-ssn": {
+    name: "FieldSSN",
+    type: "component",
+    package: "forms",
+    files: ["FieldSSN.vue", "index.ts"],
+    sourcePath: "components/FieldSSN",
+    dependencies: ["@bootcn-vue/core", "@bootcn-vue/forms"],
+    peerDependencies: ["reka-ui"],
+  },
   // Form Primitives
   "input-root": {
     name: "InputRoot",

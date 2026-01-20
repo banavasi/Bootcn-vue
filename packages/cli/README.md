@@ -124,6 +124,7 @@ import { Button } from "@/components/ui/Button";
 | Radio         | `radio`          | Radio buttons with RadioGroup, RadioGroupItem, RadioYesNo          |
 | FieldText     | `field-text`     | Complete text input field with validation                          |
 | FieldPassword | `field-password` | Password field with show/hide toggle                               |
+| FieldSSN      | `field-ssn`      | Social Security Number field with masking                          |
 
 ### Form Primitives
 

@@ -1,5 +1,15 @@
 # @bootcn-vue/cli
 
+## 0.7.0
+
+### Minor Changes
+
+- Add checkbox and radio components to CLI registry
+  - Added `checkbox` component with Checkbox, CheckboxGroup, CheckboxGroupItem, CheckboxPrimitive
+  - Added `radio` component with RadioGroup, RadioGroupItem, RadioYesNo
+  - Updated import transformations for checkbox and radio packages
+  - Users can now install checkbox and radio components via `npx @bootcn-vue/cli add checkbox` or `npx @bootcn-vue/cli add radio`
+
 ## 0.6.2
 
 ### Patch Changes
