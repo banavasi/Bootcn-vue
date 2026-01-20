@@ -68,7 +68,7 @@ Add components to your project with the `add` command:
 npx @bootcn-vue/cli@latest add button
 
 # Add multiple components
-npx @bootcn-vue/cli@latest add button tooltip
+npx @bootcn-vue/cli@latest add button tooltip checkbox radio
 
 # Interactive mode - select from list
 npx @bootcn-vue/cli@latest add
@@ -87,7 +87,13 @@ Import and use components in your Vue files:
 ```vue
 <script setup lang="ts">
 import { Button } from "@/components/ui/Button";
-import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/Tooltip";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/Tooltip";
+import { Checkbox, CheckboxGroup } from "@/components/ui/Checkbox";
+import { RadioGroup, RadioYesNo } from "@/components/ui/Radio";
 </script>
 
 <template>
@@ -100,6 +106,26 @@ import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/Tooltip
       </TooltipTrigger>
       <TooltipContent>This is a helpful tooltip</TooltipContent>
     </Tooltip>
+
+    <Checkbox v-model="isChecked" label="Accept terms" />
+
+    <CheckboxGroup
+      v-model="selectedOptions"
+      :options="[
+        { label: 'Option 1', value: '1' },
+        { label: 'Option 2', value: '2' },
+      ]"
+    />
+
+    <RadioGroup
+      v-model="selectedValue"
+      :options="[
+        { label: 'Choice A', value: 'a' },
+        { label: 'Choice B', value: 'b' },
+      ]"
+    />
+
+    <RadioYesNo v-model="yesNoValue" />
   </div>
 </template>
 ```
@@ -110,20 +136,22 @@ import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/Tooltip
 
 ### Core & CLI
 
-| Package                                                                         | Description                      | Version                                                                                                     |
-| ------------------------------------------------------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [@bootcn-vue/cli](https://www.npmjs.com/package/@bootcn-vue/cli)               | CLI for adding components        | ![npm](https://img.shields.io/npm/v/@bootcn-vue/cli.svg)                                                   |
-| [@bootcn-vue/core](https://www.npmjs.com/package/@bootcn-vue/core)             | Core utilities and functions     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/core.svg)                                                  |
+| Package                                                            | Description                  | Version                                                   |
+| ------------------------------------------------------------------ | ---------------------------- | --------------------------------------------------------- |
+| [@bootcn-vue/cli](https://www.npmjs.com/package/@bootcn-vue/cli)   | CLI for adding components    | ![npm](https://img.shields.io/npm/v/@bootcn-vue/cli.svg)  |
+| [@bootcn-vue/core](https://www.npmjs.com/package/@bootcn-vue/core) | Core utilities and functions | ![npm](https://img.shields.io/npm/v/@bootcn-vue/core.svg) |
 
 ### UI Components
 
-| Package                                                                         | Components                       | Status | Version                                                                                                     |
-| ------------------------------------------------------------------------------- | -------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------- |
-| [@bootcn-vue/buttons](https://www.npmjs.com/package/@bootcn-vue/buttons)       | Button                           | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/buttons.svg)                                               |
-| [@bootcn-vue/tooltip](https://www.npmjs.com/package/@bootcn-vue/tooltip)       | Tooltip, TooltipTrigger, TooltipContent | ✅ | ![npm](https://img.shields.io/npm/v/@bootcn-vue/tooltip.svg)                                               |
-| [@bootcn-vue/field-text](https://www.npmjs.com/package/@bootcn-vue/field-text) | FieldText (text input)           | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/field-text.svg)                                            |
-| [@bootcn-vue/field-password](https://www.npmjs.com/package/@bootcn-vue/field-password) | FieldPassword           | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/field-password.svg)                                        |
-| [@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)           | Form primitives & components     | 🚧     | Coming soon                                                                                                 |
+| Package                                                                                | Components                              | Status | Version                                                             |
+| -------------------------------------------------------------------------------------- | --------------------------------------- | ------ | ------------------------------------------------------------------- |
+| [@bootcn-vue/buttons](https://www.npmjs.com/package/@bootcn-vue/buttons)               | Button                                  | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/buttons.svg)        |
+| [@bootcn-vue/tooltip](https://www.npmjs.com/package/@bootcn-vue/tooltip)               | Tooltip, TooltipTrigger, TooltipContent | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/tooltip.svg)        |
+| [@bootcn-vue/checkbox](https://www.npmjs.com/package/@bootcn-vue/checkbox)             | Checkbox, CheckboxGroup                 | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/checkbox.svg)       |
+| [@bootcn-vue/radio](https://www.npmjs.com/package/@bootcn-vue/radio)                   | RadioGroup, RadioYesNo                  | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/radio.svg)          |
+| [@bootcn-vue/field-text](https://www.npmjs.com/package/@bootcn-vue/field-text)         | FieldText (text input)                  | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/field-text.svg)     |
+| [@bootcn-vue/field-password](https://www.npmjs.com/package/@bootcn-vue/field-password) | FieldPassword                           | ✅     | ![npm](https://img.shields.io/npm/v/@bootcn-vue/field-password.svg) |
+| [@bootcn-vue/forms](https://www.npmjs.com/package/@bootcn-vue/forms)                   | Form primitives & components            | 🚧     | Coming soon                                                         |
 
 **Install individual packages directly**:
 
@@ -131,6 +159,8 @@ import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/Tooltip
 # If you prefer npm packages over CLI
 npm install @bootcn-vue/buttons
 npm install @bootcn-vue/tooltip
+npm install @bootcn-vue/checkbox
+npm install @bootcn-vue/radio
 npm install @bootcn-vue/field-text
 npm install @bootcn-vue/field-password
 ```
@@ -165,6 +195,28 @@ npx @bootcn-vue/cli add button tooltip field-text
 # Interactive selection
 npx @bootcn-vue/cli add
 ```
+
+**Available Components:**
+
+#### UI Components
+
+- `button` - Button component with all Bootstrap variants
+- `tooltip` - Tooltip with trigger and content (Tooltip, TooltipTrigger, TooltipContent)
+- `checkbox` - Checkbox components (Checkbox, CheckboxGroup, CheckboxGroupItem, CheckboxPrimitive)
+- `radio` - Radio button components (RadioGroup, RadioGroupItem, RadioYesNo)
+- `field-text` - Complete text input field with validation
+- `field-password` - Password field with show/hide toggle
+
+#### Form Primitives
+
+- `input-root` - Form input container primitive
+- `input-label` - Form label with tooltip support
+- `input-field` - Basic input field primitive
+- `input-password` - Password input primitive
+- `input-error` - Error message display
+- `input-help` - Help text display
+- `input-masked` - Input with masking support
+- `input-numeric-range` - Numeric range input
 
 **What it does:**
 
@@ -206,6 +258,9 @@ Browse the sidebar to explore components by category:
 
 ### **Forms** 🚧
 
+- **Checkbox** - Tri-state checkbox with group support ✅
+- **RadioGroup** - Radio buttons with group support ✅
+- **RadioYesNo** - iOS-style Yes/No radio toggle ✅
 - FieldText - Text input with label, help text, and validation
 - FieldPassword - Password input with show/hide toggle
 - FieldSSN - Social Security Number with masking
@@ -246,17 +301,17 @@ Browse the sidebar to explore components by category:
 
 bootcn-vue uses the **RDS (Responsive Design System) spacing scale** instead of Bootstrap's numeric spacing:
 
-| Class        | Value         | Usage Example                                      |
-| ------------ | ------------- | -------------------------------------------------- |
-| `space-xxxs` | 0.25rem (4px) | `mb-space-xxxs`, `p-space-xxxs`                    |
-| `space-xxs`  | 0.5rem (8px)  | `mb-space-xxs`, `gap-space-xxs`                    |
-| `space-xs`   | 1rem (16px)   | `mb-space-xs`, `py-space-xs`                       |
-| `space-sm`   | 1.5rem (24px) | `mb-space-sm`, `mt-space-sm`                       |
-| `space-md`   | 2rem (32px)   | `mb-space-md`, `px-space-md`                       |
-| `space-lg`   | 3rem (48px)   | `mb-space-lg`, `p-space-lg`                        |
-| `space-xl`   | 4rem (64px)   | `mb-space-xl`, `mt-space-xl`                       |
-| `space-xxl`  | 6rem (96px)   | `mb-space-xxl`, `py-space-xxl`                     |
-| `space-xxxl` | 8rem (128px)  | `mb-space-xxxl`, `p-space-xxxl`                    |
+| Class        | Value         | Usage Example                   |
+| ------------ | ------------- | ------------------------------- |
+| `space-xxxs` | 0.25rem (4px) | `mb-space-xxxs`, `p-space-xxxs` |
+| `space-xxs`  | 0.5rem (8px)  | `mb-space-xxs`, `gap-space-xxs` |
+| `space-xs`   | 1rem (16px)   | `mb-space-xs`, `py-space-xs`    |
+| `space-sm`   | 1.5rem (24px) | `mb-space-sm`, `mt-space-sm`    |
+| `space-md`   | 2rem (32px)   | `mb-space-md`, `px-space-md`    |
+| `space-lg`   | 3rem (48px)   | `mb-space-lg`, `p-space-lg`     |
+| `space-xl`   | 4rem (64px)   | `mb-space-xl`, `mt-space-xl`    |
+| `space-xxl`  | 6rem (96px)   | `mb-space-xxl`, `py-space-xxl`  |
+| `space-xxxl` | 8rem (128px)  | `mb-space-xxxl`, `p-space-xxxl` |
 
 **Examples:**
 
@@ -321,16 +376,19 @@ packages/
 ### After Creating a Module
 
 1. **Install dependencies:**
+
    ```bash
    pnpm install
    ```
 
 2. **Build the package:**
+
    ```bash
    pnpm turbo build --filter=@bootcn-vue/your-module
    ```
 
 3. **Add Storybook story** in `apps/playground/src/stories/`:
+
    ```typescript
    // YourComponent.stories.ts
    import type { Meta, StoryObj } from "@storybook/vue3";
@@ -353,11 +411,13 @@ packages/
    ```
 
 4. **View in Storybook:**
+
    ```bash
    pnpm dev
    ```
 
 5. **Write tests:**
+
    ```bash
    pnpm test:unit -- YourComponent.spec.ts
    ```
@@ -384,7 +444,7 @@ See [AGENTS.md](https://github.com/banavasi/Bootcn-vue/blob/main/AGENTS.md) in t
 
 ## 💡 Philosophy
 
-bootcn-vue follows the **shadcn/ui approach**: components are copied into your project, giving you full ownership and customization freedom. 
+bootcn-vue follows the **shadcn/ui approach**: components are copied into your project, giving you full ownership and customization freedom.
 
 ### Why Copy-Paste?
 
@@ -425,9 +485,7 @@ Inspired by:
 
 ---
 
-<p align="center">
-  Made with ❤️ using Vue 3, TypeScript, and Bootstrap 5
-</p>
+<p align="center">Made with ❤️ using Vue 3, TypeScript, and Bootstrap 5</p>
 
 <style>
   {`
