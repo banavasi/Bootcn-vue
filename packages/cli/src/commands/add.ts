@@ -1,7 +1,7 @@
+import * as prompts from "@clack/prompts";
 import fs from "fs-extra";
 import path from "path";
 import pc from "picocolors";
-import * as prompts from "@clack/prompts";
 import { fileURLToPath } from "url";
 import { detectProject } from "../utils/detect-project.js";
 import { installDependencies } from "../utils/install-dependencies.js";
@@ -137,6 +137,40 @@ const REGISTRY: Record<string, ComponentRegistry> = {
     sourcePath: "primitives/InputNumericRange",
     dependencies: ["@bootcn-vue/core"],
     peerDependencies: ["reka-ui"],
+  },
+  // Checkbox Components
+  checkbox: {
+    name: "Checkbox",
+    type: "component",
+    package: "checkbox",
+    files: [
+      "Checkbox.vue",
+      "CheckboxGroup.vue",
+      "CheckboxGroupItem.vue",
+      "CheckboxPrimitive.vue",
+      "checkbox.scss",
+      "index.ts",
+    ],
+    sourcePath: ".",
+    dependencies: ["@bootcn-vue/core", "@bootcn-vue/forms"],
+    peerDependencies: ["reka-ui"],
+  },
+  // Radio Components
+  radio: {
+    name: "Radio",
+    type: "component",
+    package: "radio",
+    files: [
+      "RadioGroup.vue",
+      "RadioGroupItem.vue",
+      "RadioYesNo.vue",
+      "radio.scss",
+      "radio-yes-no.css",
+      "index.ts",
+    ],
+    sourcePath: ".",
+    dependencies: ["@bootcn-vue/core", "@bootcn-vue/forms"],
+    peerDependencies: ["reka-ui", "@vueuse/core"],
   },
 };
 
@@ -403,6 +437,20 @@ function transformImports(content: string, packageName: string, componentName: s
   transformed = transformed
     .replace(/from "@bootcn-vue\/tooltip"/g, 'from "@/components/ui/Tooltip"')
     .replace(/from '@bootcn-vue\/tooltip'/g, "from '@/components/ui/Tooltip'");
+
+  // Transform checkbox imports
+  if (packageName === "checkbox") {
+    transformed = transformed
+      .replace(/from "@bootcn-vue\/checkbox"/g, 'from "@/components/ui/Checkbox"')
+      .replace(/from '@bootcn-vue\/checkbox'/g, "from '@/components/ui/Checkbox'");
+  }
+
+  // Transform radio imports
+  if (packageName === "radio") {
+    transformed = transformed
+      .replace(/from "@bootcn-vue\/radio"/g, 'from "@/components/ui/Radio"')
+      .replace(/from '@bootcn-vue\/radio'/g, "from '@/components/ui/Radio'");
+  }
 
   return transformed;
 }
